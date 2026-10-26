@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>AURA | Artisan Café & Roastery · Dijital Menü</title>
+  <meta name="description" content="AURA Artisan Café özel çekirdek kahveleri, soğuk demlemeleri ve taze patisserie lezzetleri." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- QRCode.js CDN (Masa QR Kodu üretimi için) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- Özel Stil Dosyası (Açık Lüks Tema) -->
+  <link rel="stylesheet" href="styles.css?v=8.0" />
+</head>
+<body class="text-neutral-900 antialiased selection:bg-amber-500/20 selection:text-amber-900">
+
+  <!-- Üst Bilgi Barı (Masa & Servis Durumu) -->
+  <header class="sticky top-0 z-40 glass-header px-4 py-2.5 transition-all">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+      
+      <!-- Logo & Canlı Durum (Tıklanınca Ana Kategori Ekranına Döner) -->
+      <div onclick="returnToLanding()" class="flex items-center gap-2.5 cursor-pointer group" title="Ana Kategori Ekranına Dön">
+        <div class="w-8 h-8 rounded-full border border-amber-600/30 bg-amber-500/10 flex items-center justify-center text-amber-800 font-cinzel font-bold text-xs shadow-inner group-hover:scale-105 transition-transform">
+          A
+        </div>
+        <div>
+          <span class="font-cinzel text-xs tracking-widest text-neutral-900 block font-bold leading-tight group-hover:text-amber-800 transition-colors">AURA</span>
+          <span class="flex items-center gap-1.5 text-[10px] text-neutral-600 font-medium">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 live-pulse"></span>
+            Açık · Masaya Servis
+          </span>
+        </div>
+      </div>
+
+      <!-- Sağ Aksiyon Butonları -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <!-- Toplam Sipariş Göstergesi (Header Pill - Her Zaman Görünür) -->
+        <button 
+          id="btn-header-cart"
+          class="px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-500/15 to-amber-600/20 hover:from-amber-500/25 hover:to-amber-600/30 border border-amber-600/40 text-amber-950 text-[11px] font-bold flex items-center gap-1.5 shadow-sm transition-all cursor-pointer"
+          title="Toplam Siparişi Görüntüle"
+        >
+          <span>🛍️</span>
+          <span id="header-order-total-text">₺0</span>
+        </button>
+
+        <!-- Masa Bilgisi -->
+        <div class="px-2.5 py-1 rounded-full bg-amber-950/[0.04] border border-amber-900/15 text-[11px] font-medium text-neutral-700 flex items-center gap-1 shadow-sm">
+          <span class="text-amber-700">📍</span>
+          <span>Masa <strong id="header-table-number" class="text-neutral-900">04</strong></span>
+        </div>
+
+        <!-- Garson Çağır -->
+        <button 
+          id="btn-call-waiter"
+          class="px-2.5 py-1 rounded-full bg-amber-100 hover:bg-amber-200 border border-amber-300 text-amber-900 text-[11px] font-semibold flex items-center gap-1 transition-all shadow-sm"
+          title="Garson Çağır"
+        >
+          <span>🛎️</span>
+          <span class="hidden sm:inline">Garson Çağır</span>
+        </button>
+
+        <!-- QR Kod Modalını Aç (İşletme / Müşteri) -->
+        <button 
+          id="btn-open-qr"
+          class="p-1.5 rounded-full bg-amber-950/[0.04] hover:bg-amber-950/[0.08] border border-amber-900/15 text-neutral-700 transition-colors shadow-sm"
+          title="Masa QR Kodunu Göster"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Ana İçerik Kapsayıcısı -->
+  <main class="max-w-5xl mx-auto">
+
+    <!-- ======================================================== -->
+    <!-- 1. İLK AÇILIŞ: SADECE 3 KART (FOTOĞRAF VE İSİM, KAYDIRMA YOK) -->
+    <!-- ======================================================== -->
+    <section id="landing-view" class="h-[calc(100dvh-54px)] max-h-[calc(100vh-54px)] overflow-hidden flex flex-col md:flex-row gap-3 p-3 sm:p-4 transition-all duration-300">
+
+      <!-- KART 1: KAHVELER -->
+      <article 
+        onclick="selectCategoryFromLanding('coffee')"
+        class="hero-category-card flex-1 min-h-0 relative rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 group flex items-end p-5 sm:p-6"
+        role="button"
+        tabindex="0"
+      >
+        <img 
+          src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1000&q=80" 
+          alt="Kahveler" 
+          class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"></div>
+        <h2 class="relative z-10 font-serif-luxury text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-wide drop-shadow-md">
+          Kahveler
+        </h2>
+      </article>
+
+      <!-- KART 2: TATLILAR -->
+      <article 
+        onclick="selectCategoryFromLanding('dessert')"
+        class="hero-category-card flex-1 min-h-0 relative rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 group flex items-end p-5 sm:p-6"
+        role="button"
+        tabindex="0"
+      >
+        <img 
+          src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=80" 
+          alt="Tatlılar" 
+          class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"></div>
+        <h2 class="relative z-10 font-serif-luxury text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-wide drop-shadow-md">
+          Tatlılar
+        </h2>
+      </article>
+
+      <!-- KART 3: KAHVALTILIK -->
+      <article 
+        onclick="selectCategoryFromLanding('breakfast')"
+        class="hero-category-card flex-1 min-h-0 relative rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 group flex items-end p-5 sm:p-6"
+        role="button"
+        tabindex="0"
+      >
+        <img 
+          src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=1000&q=80" 
+          alt="Kahvaltılık" 
+          class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"></div>
+        <h2 class="relative z-10 font-serif-luxury text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-wide drop-shadow-md">
+          Kahvaltılık
+        </h2>
+      </article>
+
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 2. NORMAL ANA MENÜ GÖRÜNÜMÜ (SEÇİLEN KATEGORİYE YÖNLENDİRME) -->
+    <!-- ======================================================== -->
+    <section id="menu-view" class="hidden px-4 pb-32 pt-4 transition-all duration-300">
+
+      <!-- Geri Butonu ve Başlık Çubuğu -->
+      <div class="flex items-center justify-between mb-4 pb-2 border-b border-amber-900/10">
+        <button 
+          onclick="returnToLanding()"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-amber-900/20 hover:border-amber-600 text-xs font-bold text-amber-950 shadow-sm transition-all"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          <span>Kategorilere Dön</span>
+        </button>
+        <span class="text-[11px] text-neutral-500 font-medium">Masa <strong id="menu-table-badge" class="text-neutral-900 font-semibold">04</strong></span>
+      </div>
+
+      <!-- Kategori Butonları (Kahve, Tatlı, Kahvaltılık) -->
+      <nav class="sticky top-[53px] z-30 py-3 -mx-4 px-4 bg-[#f8f6f0]/95 backdrop-blur-xl border-b border-amber-900/10 mb-6">
+        <div class="flex items-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar scroll-smooth">
+          <button data-category="all" class="category-tab active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide">
+            Tüm Menü
+          </button>
+          <button data-category="coffee" class="category-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-medium tracking-wide">
+            ☕ Kahveler
+          </button>
+          <button data-category="dessert" class="category-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-medium tracking-wide">
+            🍰 Tatlılar
+          </button>
+          <button data-category="breakfast" class="category-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-medium tracking-wide">
+            🥐 Kahvaltılık
+          </button>
+        </div>
+      </nav>
+
+      <!-- Menü Kartları Izgarası (Grid) -->
+      <div>
+        <div id="menu-items-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- JavaScript ile dinamik doldurulur -->
+        </div>
+
+        <!-- Boş Durum -->
+        <div id="empty-search-state" class="hidden py-16 text-center">
+          <div class="w-12 h-12 rounded-full bg-amber-900/5 border border-amber-900/15 flex items-center justify-center mx-auto mb-3 text-neutral-500">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="8" x2="14" y1="11" y2="11"/></svg>
+          </div>
+          <h3 class="text-neutral-800 font-serif-luxury text-lg font-medium">Bu Kategoride Ürün Bulunmuyor</h3>
+          <p class="text-xs text-neutral-500 mt-1 max-w-xs mx-auto">Lütfen diğer sekmelere göz atınız.</p>
+        </div>
+      </div>
+
+      <!-- Alt Bilgi & Alerjen Açıklaması (Sadece Menü İçindeyken Görünür) -->
+      <footer class="mt-16 pt-8 border-t border-amber-900/10 text-center text-neutral-500 space-y-3">
+        <div class="font-cinzel text-xs tracking-widest text-neutral-600 font-semibold">
+          AURA ARTISAN CAFÉ · ISTANBUL
+        </div>
+        <p class="text-[11px] max-w-md mx-auto leading-relaxed text-neutral-500">
+          * Tüm ürünlerimizde doğal ve taze malzemeler kullanılır. Fiyatlarımıza KDV dahildir. Gıda alerjiniz veya özel beslenme hassasiyetiniz varsa lütfen sipariş vermeden önce servis ekibimize bilgi veriniz.
+        </p>
+        <div class="text-[10px] text-neutral-400">
+          © 2026 AURA Coffee Co. Tüm Hakları Saklıdır.
+        </div>
+      </footer>
+
+    </section>
+
+  </main>
+
+  <!-- Yüzen "Seçtiklerim" Çubuğu (Kullanıcı ürün seçtiğinde görünür) -->
+  <aside 
+    id="floating-selection-bar" 
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md z-40 transition-all duration-300 transform translate-y-24 opacity-0 pointer-events-none"
+  >
+    <div class="p-3.5 rounded-2xl bg-white/95 border border-amber-600/30 shadow-2xl backdrop-blur-xl flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="relative w-9 h-9 rounded-xl bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-900">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span id="selected-count-badge" class="absolute -top-1.5 -right-1.5 bg-amber-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow">0</span>
+        </div>
+        <div>
+          <span class="text-xs text-neutral-500 block font-medium">Seçilen Lezzetler</span>
+          <span id="selected-total-amount" class="text-sm font-serif font-bold text-amber-900">₺0</span>
+        </div>
+      </div>
+
+      <button 
+        id="btn-view-selection"
+        class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold text-xs tracking-wide shadow-md transition-all flex items-center gap-1.5"
+      >
+        <span>Siparişi Göster</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- "Seçtiklerim" Çekmece Modal (Adisyo Sipariş Formu) -->
+  <div id="cart-modal" class="fixed inset-0 z-50 bg-neutral-900/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-lg bg-[#fdfcf9] border border-amber-900/15 rounded-t-3xl sm:rounded-3xl p-6 shadow-2xl flex flex-col max-h-[90vh] animate-slide-up text-neutral-900">
+      
+      <!-- Modal Başlık -->
+      <div class="flex items-center justify-between pb-3 border-b border-amber-900/10">
+        <div>
+          <div class="flex items-center gap-2">
+            <h3 class="font-serif-luxury text-lg font-bold text-neutral-900">Masa Siparişiniz</h3>
+            <span class="px-2 py-0.5 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-[10px] font-semibold">
+              Masa <span id="cart-table-badge">04</span>
+            </span>
+          </div>
+          <p class="text-xs text-neutral-500 mt-0.5">Onayladığınızda sipariş doğrudan Adisyo sistemine işlenecektir.</p>
+        </div>
+        <button id="btn-close-cart" class="p-2 rounded-full hover:bg-neutral-200/50 text-neutral-500 hover:text-neutral-900 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- Ürün Listesi (Mevcut Seçimler) -->
+      <div id="cart-items-list" class="flex-1 overflow-y-auto py-2.5 space-y-2">
+        <!-- JS ile doldurulur -->
+      </div>
+
+      <!-- Masanın Açık Adisyonu (Daha Önce Adisyo'ya İletilen Siparişler) -->
+      <div id="placed-orders-container" class="hidden my-2 p-3 rounded-2xl bg-amber-500/[0.08] border border-amber-600/25">
+        <div class="flex items-center justify-between text-xs font-semibold text-neutral-800 pb-1.5 border-b border-amber-900/10 mb-2">
+          <span class="flex items-center gap-1.5 text-amber-900 font-bold">
+            <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+            <span>Mutfakta Hazırlanan Siparişleriniz</span>
+          </span>
+          <span id="placed-orders-total" class="font-serif font-bold text-amber-900">₺0</span>
+        </div>
+        <div id="placed-orders-list" class="space-y-1.5 text-xs text-neutral-700">
+          <!-- JS ile doldurulur -->
+        </div>
+      </div>
+
+      <!-- Adisyo Mutfak / Bar Sipariş Notu (Max 15 Karakter & Max 4 Kelime) -->
+      <div class="pt-2 pb-3">
+        <label for="order-notes-input" class="block text-[11px] font-medium text-neutral-700 mb-1.5 flex items-center justify-between">
+          <span>✍️ Mutfak & Bar Sipariş Notu</span>
+          <span class="text-[10px] text-amber-800 font-semibold">Adisyon fişine yazılır</span>
+        </label>
+        <input 
+          type="text"
+          id="order-notes-input" 
+          maxlength="15"
+          placeholder="Örn: Az şekerli soğuk"
+          class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-amber-900/20 text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600 shadow-sm transition-all"
+        />
+        <div class="flex justify-between items-center mt-1.5 px-0.5">
+          <span class="text-[10px] text-neutral-500">Maks. 15 karakter & en fazla 4 kelime</span>
+          <span id="note-char-count" class="text-[10px] font-mono font-medium text-amber-800">0/15 krkt · 0/4 kelime</span>
+        </div>
+      </div>
+
+      <!-- Toplam & Adisyona Gönder Butonu -->
+      <div class="pt-3 border-t border-amber-900/10 space-y-3">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs text-neutral-500 uppercase tracking-wider block">Masa Toplam Tutarı</span>
+            <span id="cart-breakdown-subtext" class="text-[10px] text-emerald-700 font-medium flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+              Adisyo Canlı Entegrasyon
+            </span>
+          </div>
+          <div class="text-right">
+            <span id="cart-modal-total" class="font-serif text-2xl font-bold text-amber-900">₺0</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button 
+            id="btn-clear-selection"
+            class="px-3.5 py-3 rounded-xl border border-amber-900/20 text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 text-xs font-medium transition-colors"
+          >
+            Temizle
+          </button>
+          <button 
+            id="btn-submit-adisyo"
+            class="flex-1 py-3 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold text-xs tracking-wide shadow-xl transition-all flex items-center justify-center gap-2 group"
+          >
+            <span>🛎️ Siparişi Adisyona Gönder</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-0.5 transition-transform"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Adisyo Başarılı Sipariş Onay Modalı -->
+  <div id="adisyo-success-modal" class="fixed inset-0 z-50 bg-neutral-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-sm bg-[#fdfcf9] border border-emerald-600/30 rounded-3xl p-6 shadow-2xl text-center relative animate-slide-up text-neutral-900">
+      
+      <!-- Başarı İkonu -->
+      <div class="w-16 h-16 rounded-full bg-emerald-100 border-2 border-emerald-500 flex items-center justify-center mx-auto mb-4 text-emerald-700 shadow-md">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+
+      <div class="font-cinzel text-xs tracking-[0.2em] text-emerald-800 font-semibold mb-1">
+        ADİSYO SİSTEMİNE İLETİLDİ
+      </div>
+      <h3 class="font-serif-luxury text-xl font-bold text-neutral-900 mb-2">
+        Siparişiniz Alındı!
+      </h3>
+      <p class="text-xs text-neutral-600 mb-5 leading-relaxed">
+        <strong id="success-table-text" class="text-neutral-900">Masa 04</strong> adisyonu açıldı. Mutfak ve bar ekibimiz lezzetlerinizi hazırlamaya başladı.
+      </p>
+
+      <!-- Sipariş Detay Özeti -->
+      <div class="bg-amber-50/60 border border-amber-900/10 rounded-2xl p-3.5 mb-5 text-left space-y-2">
+        <div class="flex justify-between text-xs text-neutral-600 pb-1.5 border-b border-amber-900/10">
+          <span>Adisyo Fiş No:</span>
+          <span id="adisyo-order-code" class="text-amber-900 font-mono font-bold">#AD-84920</span>
+        </div>
+        <div class="flex justify-between text-xs text-neutral-600 pb-1.5 border-b border-amber-900/10">
+          <span>Tahmini Hazırlık:</span>
+          <span class="text-neutral-900 font-medium">8 - 12 Dakika</span>
+        </div>
+        <div class="flex justify-between text-xs font-semibold pt-0.5">
+          <span class="text-neutral-700">Adisyon Toplamı:</span>
+          <span id="success-order-total" class="text-amber-900 font-serif font-bold">₺0</span>
+        </div>
+      </div>
+
+      <button 
+        id="btn-close-success"
+        class="w-full py-2.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-semibold text-xs tracking-wide transition-colors border border-neutral-300"
+      >
+        Menüye Dön
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Masa QR Kodu Modal (İşletmeci Masa Seçici) -->
+  <div id="qr-modal" class="fixed inset-0 z-50 bg-neutral-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-sm bg-[#fdfcf9] border border-amber-900/15 rounded-3xl p-6 shadow-2xl text-center relative text-neutral-900">
+      
+      <button id="btn-close-qr" class="absolute top-4 right-4 p-2 rounded-full hover:bg-neutral-200/50 text-neutral-500 hover:text-neutral-900 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <!-- Kart Tasarımı -->
+      <div class="font-cinzel text-xs tracking-[0.25em] text-amber-800 font-semibold mb-1">
+        AURA ARTISAN CAFÉ
+      </div>
+      <h3 class="font-serif-luxury text-xl font-bold text-neutral-900 mb-1">
+        Masa QR Kod Üretici
+      </h3>
+      <p class="text-xs text-neutral-600 mb-4">
+        Hangi masanın QR kodunu üretmek istiyorsanız seçiniz:
+      </p>
+
+      <!-- Masa Seçici Dropdown -->
+      <div class="mb-4">
+        <select 
+          id="qr-table-select" 
+          class="w-full px-3 py-2 rounded-xl bg-white border border-amber-900/20 text-xs font-semibold text-neutral-900 focus:outline-none focus:ring-1 focus:ring-amber-600 shadow-sm"
+        >
+          <option value="01">Masa 01</option>
+          <option value="02">Masa 02</option>
+          <option value="03">Masa 03</option>
+          <option value="04" selected>Masa 04 (Seçili)</option>
+          <option value="05">Masa 05</option>
+          <option value="06">Masa 06</option>
+          <option value="07">Masa 07</option>
+          <option value="08">Masa 08</option>
+          <option value="09">Masa 09</option>
+          <option value="10">Masa 10</option>
+          <option value="Bahce-1">Bahçe Masa 1</option>
+          <option value="Bahce-2">Bahçe Masa 2</option>
+          <option value="Teras-1">Teras Masa 1</option>
+        </select>
+      </div>
+
+      <!-- QR Kod Çerçevesi -->
+      <div class="p-4 bg-white rounded-2xl inline-block shadow-md border-2 border-amber-600/30 mx-auto">
+        <div id="qrcode-canvas" class="flex justify-center"></div>
+      </div>
+
+      <!-- Hedef URL Önizlemesi -->
+      <div id="qr-target-url" class="mt-3 text-[10px] text-amber-900 font-mono break-all px-2 py-1 bg-amber-50 rounded-lg border border-amber-200">
+        <!-- JS ile doldurulur -->
+      </div>
+
+      <div class="mt-4 flex items-center gap-2">
+        <button 
+          onclick="window.print()" 
+          class="flex-1 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shadow transition-colors"
+        >
+          🖨️ Yazdır / İndir
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JavaScript Dosyası -->
+  <script src="app.js?v=8.0"></script>
+</body>
+</html>

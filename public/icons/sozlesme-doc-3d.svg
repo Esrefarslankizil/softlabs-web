@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="92" height="92" viewBox="0 0 92 92" fill="none">
+  <!-- Outer 3D metallic squircle -->
+  <g filter="url(#f_contract_a)">
+    <rect width="88.181" height="88.181" x="1.91" y="1.91" fill="url(#g_contract_b)" rx="24"/>
+  </g>
+  <!-- Inner inset metallic squircle -->
+  <g filter="url(#f_contract_c)">
+    <rect width="66.667" height="66.667" x="12.666" y="12.666" fill="url(#g_contract_d)" rx="13"/>
+  </g>
+  <!-- Glowing Center Glyph -->
+  <g filter="url(#f_contract_e)">
+    
+  <g transform="translate(46, 46) translate(-17, -19)">
+    <path fill="#fff" fill-rule="evenodd" d="M4 0C1.79 0 0 1.79 0 4v30c0 2.21 1.79 4 4 4h26c2.21 0 4-1.79 4-4V10L24 0H4zm19 2.5V9a1 1 0 0 0 1 1h6.5L23 2.5zM6 13h22a1.5 1.5 0 0 1 0 3H6a1.5 1.5 0 0 1 0-3zm0 7h22a1.5 1.5 0 0 1 0 3H6a1.5 1.5 0 0 1 0-3zm0 7h15a1.5 1.5 0 0 1 0 3H6a1.5 1.5 0 0 1 0-3z" clip-rule="evenodd"/>
+  </g>
+
+  </g>
+  <defs>
+    <filter id="f_contract_a" width="88.181" height="90.585" x="1.91" y=".707" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="-2.004"/>
+      <feGaussianBlur stdDeviation=".601"/>
+      <feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+      <feBlend in2="shape" result="effect1_innerShadow"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="1.202"/>
+      <feGaussianBlur stdDeviation=".601"/>
+      <feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/>
+      <feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+      <feBlend in2="effect1_innerShadow" result="effect2_innerShadow"/>
+    </filter>
+    <filter id="f_contract_c" width="66.667" height="66.667" x="12.666" y="12.666" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="1.002"/>
+      <feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"/>
+      <feBlend in2="shape" result="effect1_innerShadow"/>
+    </filter>
+    <filter id="f_contract_e" width="80.25" height="78" x="5.5" y="7" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset/>
+      <feGaussianBlur stdDeviation="12"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0"/>
+      <feBlend in2="effect1_dropShadow" result="effect2_dropShadow"/>
+      <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape"/>
+    </filter>
+    <linearGradient id="g_contract_b" x1="46" x2="46" y1="1.91" y2="90.09" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#999"/>
+    </linearGradient>
+    <linearGradient id="g_contract_d" x1="46" x2="46" y1="12.666" y2="79.334" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#CECECE"/>
+      <stop offset="1" stop-color="#525252"/>
+    </linearGradient>
+  </defs>
+</svg>

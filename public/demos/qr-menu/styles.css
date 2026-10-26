@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-primary: #f8f6f0;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-card-hover: #ffffff;
+  --gold-primary: #a87e24;
+  --gold-light: #e8c97e;
+  --gold-dark: #7a5811;
+  --gold-gradient: linear-gradient(135deg, #c79a32 0%, #a0741c 50%, #7d5910 100%);
+  --gold-border: rgba(168, 126, 36, 0.22);
+  --gold-glow: rgba(168, 126, 36, 0.12);
+  --text-primary: #1c1a17;
+  --text-secondary: #575249;
+  --text-muted: #807a70;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Lüks Fildişi & Şampanya Arka Planı (Quiet Luxury Light Theme) */
+body {
+  background-color: var(--bg-primary);
+  background-image: 
+    /* Üst Sıcak Güneş Işığı Hüzmesi */
+    radial-gradient(ellipse 80% 50% at 50% -15%, rgba(225, 185, 95, 0.25) 0%, transparent 75%),
+    /* Sağ Sıcak Krem Parıltısı */
+    radial-gradient(ellipse 60% 40% at 95% 35%, rgba(215, 175, 90, 0.12) 0%, transparent 70%),
+    /* Sol Sıcak Kum Yansıması */
+    radial-gradient(ellipse 60% 40% at 5% 70%, rgba(210, 170, 95, 0.1) 0%, transparent 70%),
+    /* İnce Doku Noktaları */
+    radial-gradient(rgba(100, 80, 40, 0.05) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px;
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.01em;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Üst İnce Altın Çizgi */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(168, 126, 36, 0.5) 50%, transparent 100%);
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* Tipografi Sınıfları */
+.font-serif-luxury {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.16em;
+}
+
+/* Altın Metin & Vurgular */
+.text-gold {
+  color: var(--gold-primary);
+}
+
+.text-gold-gradient {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gold {
+  border-color: var(--gold-border);
+}
+
+.bg-gold-subtle {
+  background: rgba(168, 126, 36, 0.08);
+}
+
+/* Cam Efekti (Glassmorphism Light) */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(168, 126, 36, 0.15);
+  box-shadow: 0 16px 36px rgba(100, 80, 40, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.glass-header {
+  background: rgba(248, 246, 240, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(168, 126, 36, 0.15);
+  box-shadow: 0 4px 20px rgba(100, 80, 40, 0.04);
+}
+
+/* Lüks Altınımsı Şampanya Ürün Kartı (Subtle Champagne Gold Tint) */
+.menu-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(184, 142, 54, 0.3);
+  background: linear-gradient(165deg, rgba(255, 253, 246, 0.98) 0%, rgba(252, 247, 235, 0.96) 50%, rgba(247, 239, 222, 0.94) 100%);
+  box-shadow: 0 8px 24px -6px rgba(160, 120, 40, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 0 20px rgba(225, 185, 95, 0.07);
+}
+
+.menu-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(195, 150, 50, 0.65), transparent);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(184, 142, 54, 0.58);
+  box-shadow: 0 16px 36px -8px rgba(180, 135, 45, 0.18), 0 0 20px rgba(225, 185, 95, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.menu-card:hover::before {
+  opacity: 1;
+}
+
+.menu-card:active {
+  transform: scale(0.99);
+}
+
+/* Kategori Butonları */
+.category-tab {
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(168, 126, 36, 0.2);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text-secondary);
+  box-shadow: 0 2px 8px rgba(100, 80, 40, 0.04);
+}
+
+.category-tab:hover {
+  border-color: rgba(168, 126, 36, 0.4);
+  color: var(--text-primary);
+  background: #ffffff;
+}
+
+.category-tab.active {
+  background: var(--gold-gradient);
+  color: #ffffff;
+  font-weight: 700;
+  border-color: transparent;
+  box-shadow: 0 6px 18px rgba(168, 126, 36, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Yatay Kaydırma Çubuğu Gizleme */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Rozetler (Pills) */
+.badge-signature {
+  background: linear-gradient(135deg, rgba(168, 126, 36, 0.14) 0%, rgba(168, 126, 36, 0.06) 100%);
+  border: 1px solid rgba(168, 126, 36, 0.32);
+  color: #7d5910;
+  font-weight: 600;
+}
+
+.badge-diet {
+  background: rgba(100, 80, 40, 0.04);
+  border: 1px solid rgba(100, 80, 40, 0.1);
+  color: var(--text-secondary);
+}
+
+/* Canlı Nabız Göstergesi */
+.live-pulse {
+  position: relative;
+}
+.live-pulse::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  background: #16a34a;
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
+}
+
+/* Lüks Bildirim Toast */
+.toast-notice {
+  animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translate(-50%, 30px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+/* 3 Büyük Karşılama Kartı (Hero Category Cards with Subtle Gold Tint) */
+.hero-category-card {
+  position: relative;
+  border: 1px solid rgba(184, 142, 54, 0.32);
+  background: linear-gradient(165deg, rgba(255, 253, 246, 0.98) 0%, rgba(252, 247, 235, 0.96) 50%, rgba(247, 239, 222, 0.94) 100%);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px -10px rgba(160, 120, 40, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 0 25px rgba(225, 185, 95, 0.08);
+}
+
+.hero-category-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(184, 142, 54, 0.6);
+  box-shadow: 0 20px 42px -12px rgba(180, 135, 45, 0.22), 0 0 22px rgba(225, 185, 95, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.hero-category-card:active {
+  transform: scale(0.985);
+}
+
+.hero-category-card img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-category-card:hover img {
+  transform: scale(1.06);
+}
+
+/* Ekran Geçiş Animasyonu */
+.view-fade-in {
+  animation: viewFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes viewFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* İlk Açılış Ekranında Kesinlikle Kaydırmayı Kapat (3 Kart Ekrana Sabitlenir) */
+body.landing-active {
+  overflow: hidden !important;
+  height: 100vh;
+  height: 100dvh;
+  touch-action: pan-x;
+}
+
+
