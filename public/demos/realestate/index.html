@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>VALMONT ESTATES — Private Office & Luxury Properties</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0c0e;
+      --card-bg: #131417;
+      --card-elevated: #1a1c22;
+      --ink: #f8f7f5;
+      --muted: #8b8f9a;
+      --subtle: #555964;
+      --gold: #d4b37f;
+      --gold-glow: rgba(212, 179, 127, 0.18);
+      --gold-border: rgba(212, 179, 127, 0.32);
+      --line: rgba(255, 255, 255, 0.08);
+      --line-strong: rgba(255, 255, 255, 0.16);
+      --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+      --sans: 'Manrope', -apple-system, sans-serif;
+      --display: 'Syne', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; background: #000; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 78px;
+    }
+
+    @media (min-width: 500px) {
+      body { box-shadow: 0 0 70px rgba(0,0,0,0.85); border-inline: 1px solid var(--line); }
+    }
+
+    ::-webkit-scrollbar { width: 0; height: 0; }
+    button { font-family: inherit; }
+
+    /* Top Kicker */
+    .top-kicker {
+      background: linear-gradient(90deg, #121316, #1c1d22, #121316);
+      border-bottom: 1px solid var(--line);
+      padding: 7px 14px;
+      font-size: 9px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+    .kicker-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+    }
+
+    /* Minimal Sticky Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(11, 12, 14, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .brand-top {
+      font-size: 8px;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2px;
+      font-weight: 600;
+    }
+    .brand-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .icon-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--gold-border);
+    }
+
+    .badge-count {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      min-width: 15px;
+      height: 15px;
+      padding: 0 4px;
+      border-radius: 99px;
+      background: var(--gold);
+      color: #0b0c0e;
+      font-size: 9px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 390px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px 20px;
+      background: #000;
+    }
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.72;
+      transform: scale(1.03);
+      animation: heroZoom 16s ease-in-out infinite alternate;
+    }
+    @keyframes heroZoom {
+      to { transform: scale(1.1); }
+    }
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(11,12,14,0.18) 0%, rgba(11,12,14,0.55) 60%, rgba(11,12,14,0.98) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: rgba(212, 179, 127, 0.16);
+      border: 1px solid var(--gold-border);
+      border-radius: 99px;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: 34px;
+      font-weight: 500;
+      line-height: 1.05;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      max-width: 360px;
+      font-weight: 300;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 10px;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #e3c79b, #c59f63);
+      color: #0b0c0e;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 18px rgba(212,179,127,0.25);
+      transition: transform 0.18s;
+    }
+    .btn-gold:active { transform: scale(0.97); }
+
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--line-strong);
+      color: #ffffff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Category Pill Strip */
+    .filter-strip {
+      padding: 14px 18px 6px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .filter-strip::-webkit-scrollbar { display: none; }
+
+    .filter-pill {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      padding: 7px 14px;
+      border-radius: 99px;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-pill.active {
+      background: #ffffff;
+      color: #0b0c0e;
+      border-color: #ffffff;
+      font-weight: 800;
+    }
+
+    /* Section Header */
+    .section-head {
+      padding: 18px 18px 10px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+    .sec-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .sec-count {
+      font-size: 10.5px;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+    }
+
+    /* Property Cards List */
+    .property-list {
+      padding: 6px 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .estate-card {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .estate-card:active { transform: scale(0.985); }
+    .estate-card:hover { border-color: var(--gold-border); }
+
+    .card-media {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #18191f;
+    }
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .estate-card:hover .card-media img { transform: scale(1.05); }
+
+    .media-overlay-top {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .badge-status {
+      background: rgba(11, 12, 14, 0.85);
+      border: 1px solid var(--gold-border);
+      color: var(--gold);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 6px;
+      backdrop-filter: blur(8px);
+    }
+
+    .fav-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(11, 12, 14, 0.75);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: transform 0.15s;
+    }
+    .fav-btn:active { transform: scale(1.2); }
+    .fav-btn.active { color: #f43f5e; border-color: rgba(244,63,94,0.4); }
+
+    .media-overlay-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px 12px 10px;
+      background: linear-gradient(180deg, transparent 0%, rgba(11,12,14,0.92) 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .card-location {
+      font-size: 10.5px;
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .card-price {
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+
+    .card-body {
+      padding: 12px 14px 14px;
+    }
+    .card-title {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .card-summary {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+
+    .specs-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: rgba(255,255,255,0.025);
+      padding: 6px 4px;
+      border-radius: 6px;
+    }
+    .spec-val {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .spec-lbl {
+      font-size: 9px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    /* Private Office Banner */
+    .vip-office {
+      margin: 10px 16px 24px;
+      background: linear-gradient(145deg, #18191f, #121316);
+      border: 1px solid var(--gold-border);
+      border-radius: 14px;
+      padding: 22px 18px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .vip-office::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,179,127,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .vip-tag {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .vip-title {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .vip-desc {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      font-weight: 300;
+    }
+    .vip-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      background: rgba(212, 179, 127, 0.15);
+      border: 1px solid var(--gold-border);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .vip-btn:hover {
+      background: var(--gold);
+      color: #0b0c0e;
+    }
+
+    /* Fixed Bottom Tab Bar */
+    .tabbar {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      background: rgba(11, 12, 14, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      z-index: 45;
+      padding: 8px 0 10px;
+      border-top: 1px solid var(--line);
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      font-size: 8.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+    }
+    .tab-btn.active { color: var(--gold); font-weight: 700; }
+
+    /* Overlay + Detail Bottom Sheet */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(4px);
+      z-index: 60;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .overlay.open { opacity: 1; pointer-events: auto; }
+
+    .sheet {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      width: 100%;
+      max-width: 480px;
+      max-height: 92%;
+      background: #111216;
+      border: 1px solid var(--line-strong);
+      z-index: 70;
+      transform: translate(-50%, 102%);
+      transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      border-radius: 20px 20px 0 0;
+      overflow: hidden;
+    }
+    .sheet.open { transform: translate(-50%, 0); }
+
+    .sheet-grabber {
+      width: 36px;
+      height: 4px;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.2);
+      margin: 8px auto 0;
+      flex-shrink: 0;
+    }
+
+    .sheet-scroll {
+      overflow-y: auto;
+      flex: 1;
+      padding-bottom: 12px;
+    }
+
+    .sheet-hero-img {
+      position: relative;
+      height: 260px;
+      background: #000;
+    }
+    .sheet-hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .sheet-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(11, 12, 14, 0.85);
+      border: 1px solid var(--line);
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    .sheet-body {
+      padding: 18px 20px 10px;
+    }
+    .sheet-loc {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .sheet-title {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .sheet-price {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .sheet-desc {
+      font-size: 12px;
+      color: #c2c5ce;
+      line-height: 1.75;
+      margin-bottom: 18px;
+      font-weight: 300;
+    }
+
+    .specs-grid-full {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .spec-box {
+      background: rgba(255,255,255,0.035);
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+    .sb-lbl { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; }
+    .sb-val { font-size: 12.5px; font-weight: 700; color: #fff; margin-top: 3px; }
+
+    .tour-preview {
+      background: linear-gradient(135deg, rgba(212,179,127,0.1), rgba(0,0,0,0.6));
+      border: 1px dashed var(--gold-border);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .tour-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .tour-sub { font-size: 10.5px; color: var(--muted); }
+
+    .sheet-foot {
+      padding: 14px 20px 20px;
+      background: #111216;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn-sheet-primary {
+      width: 100%;
+      background: linear-gradient(135deg, #e3c79b, #c59f63);
+      color: #0b0c0e;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-sheet-wa {
+      width: 100%;
+      background: rgba(37, 211, 102, 0.1);
+      border: 1px solid rgba(37, 211, 102, 0.35);
+      color: #25d366;
+      padding: 11px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* VIP Booking Modal Inside Sheet */
+    .vip-confirmed-box {
+      text-align: center;
+      padding: 30px 16px;
+    }
+    .ring-check {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin: 0 auto 16px;
+      background: var(--gold-glow);
+    }
+    .conf-title {
+      font-family: var(--serif);
+      font-size: 26px;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .conf-sub {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 84px;
+      transform: translate(-50%, 20px);
+      background: #17181d;
+      color: var(--gold);
+      padding: 10px 18px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      z-index: 90;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.28s;
+      white-space: nowrap;
+      border: 1px solid var(--gold-border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement -->
+  <div class="top-kicker">
+    <span class="kicker-dot"></span>
+    <span>VALMONT PRIVATE OFFICE · İSTANBUL & BODRUM PORTFÖYÜ</span>
+    <span class="kicker-dot"></span>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <span class="brand-top">Private Office</span>
+      <span class="brand-title">VALMONT</span>
+    </div>
+
+    <div class="header-actions">
+      <button class="icon-btn" onclick="switchView('fav')" title="Favori Portföyüm" aria-label="Favoriler">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-9-9.2C1.7 7.5 3.9 4.5 7 4.5c2 0 3.7 1.1 5 3 1.3-1.9 3-3 5-3 3.1 0 5.3 3 4 6.3C19 15.6 12 20 12 20z"/></svg>
+        <span class="badge-count" id="favBadge" style="display:none">0</span>
+      </button>
+      <button class="icon-btn" onclick="openContactModal()" title="VIP İletişim" aria-label="İletişim">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main View Container -->
+  <main id="mainContainer"></main>
+
+  <!-- Fixed Bottom Navigation -->
+  <nav class="tabbar">
+    <button class="tab-btn active" id="tab-home" onclick="switchView('home')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Koleksiyon
+    </button>
+    <button class="tab-btn" id="tab-fav" onclick="switchView('fav')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20s-7-4.4-9-9.2C1.7 7.5 3.9 4.5 7 4.5c2 0 3.7 1.1 5 3 1.3-1.9 3-3 5-3 3.1 0 5.3 3 4 6.3C19 15.6 12 20 12 20z"/></svg>
+      Favorilerim
+    </button>
+    <button class="tab-btn" id="tab-contact" onclick="openContactModal()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Danışmanlık
+    </button>
+  </nav>
+
+  <!-- Overlay + Property Detail Bottom Sheet -->
+  <div class="overlay" id="overlay" onclick="closeSheet()"></div>
+  <section class="sheet" id="propertySheet"></section>
+
+  <!-- Toast -->
+  <div class="toast" id="toastEl">✓ Portföy listenize eklendi</div>
+
+  <script>
+    const PROPERTIES = [
+      {
+        id: 'p1',
+        title: 'The Cliffside Minimalist Yalı',
+        location: 'Bodrum, Yalıkavak',
+        type: 'villa',
+        typeLabel: 'Bodrum Villa',
+        priceStr: '€4.850.000',
+        badge: 'Özel Portföy',
+        area: '720 m²',
+        rooms: '5+2 Süit',
+        land: '1.400 m²',
+        year: '2025',
+        image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80',
+        desc: 'Yalıkavak Marina manzarasına hakim falez üzerinde konumlanmış brütalist mimari şaheser. Özel sonsuzluk havuzu, akıllı ev otomasyonu ve bağımsız misafir evi mevcuttur.'
+      },
+      {
+        id: 'p2',
+        title: 'Boğaziçi Bebek Yalı Dairesi',
+        location: 'İstanbul, Bebek Koyu',
+        type: 'yali',
+        typeLabel: 'Yalı & Köşk',
+        priceStr: '$6.200.000',
+        badge: 'Yalı Statüsü',
+        area: '385 m²',
+        rooms: '4+1 Salon',
+        land: 'Özel İskele',
+        year: 'Tarihi Eser',
+        image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',
+        desc: 'Bebek sahil hattında rıhtımlı, tekne yanaşma hakkı bulunan ve 4.20 metre tavan yüksekliğine sahip eşsiz Boğaz manzaralı yalı dairesi.'
+      },
+      {
+        id: 'p3',
+        title: 'Abdi İpekçi Teraslı Duplex Penthouse',
+        location: 'İstanbul, Nişantaşı',
+        type: 'penthouse',
+        typeLabel: 'Penthouse',
+        priceStr: '₺94.000.000',
+        badge: 'Panoramik Manzara',
+        area: '430 m²',
+        rooms: '4+2 Dubleks',
+        land: '110 m² Teras',
+        year: '2024',
+        image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80',
+        desc: 'Şehrin en prestijli caddesinde doğrudan daireye açılan özel asansör, jakuzili cam teras ve Valmont iç mimari tasarımıyla teslim edilen penthouse.'
+      },
+      {
+        id: 'p4',
+        title: 'Cennet Koyu Müstakil Malikane',
+        location: 'Bodrum, Göltürkbükü',
+        type: 'villa',
+        typeLabel: 'Bodrum Villa',
+        priceStr: '€7.900.000',
+        badge: 'Özel Plaj Erişimi',
+        area: '910 m²',
+        rooms: '7+2 Malikane',
+        land: '2.800 m²',
+        year: '2025',
+        image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=900&q=80',
+        desc: 'Çam ormanlarıyla çevrili Cennet Koyu sahilinde özel helikopter iniş alanı, şarap kavı ve spa & sauna kompleksine sahip malikane.'
+      },
+      {
+        id: 'p5',
+        title: 'Kemer Orman Malikane Kompleksi',
+        location: 'İstanbul, Kemerburgaz',
+        type: 'yali',
+        typeLabel: 'Müstakil Malikane',
+        priceStr: '$4.400.000',
+        badge: '8 Dönüm Bahçe',
+        area: '850 m²',
+        rooms: '6+2 Villa',
+        land: '8.200 m²',
+        year: '2023',
+        image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80',
+        desc: 'Belgrad Ormanı sınırında, tenis kortu, kapalı ısıtmalı yüzme havuzu ve 24 saat özel güvenlikli sitede yer alan prestijli orman villası.'
+      }
+    ];
+
+    let currentFilter = 'all';
+    let currentView = 'home';
+    const favoriteIds = new Set(['p1', 'p2']);
+    let toastTimeout;
+
+    function renderView() {
+      const container = document.getElementById('mainContainer');
+
+      if (currentView === 'fav') {
+        const favList = PROPERTIES.filter(p => favoriteIds.has(p.id));
+        container.innerHTML = `
+          <div style="padding: 24px 18px 10px;">
+            <div class="sec-title" style="font-size:24px; margin-bottom:4px;">KAYDEDİLEN PORTFÖY</div>
+            <div style="font-size:11px; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">
+              ${favList.length} Özel Mülk Listenizde
+            </div>
+          </div>
+          ${favList.length === 0 ? `
+            <div style="text-align:center; padding:70px 20px; color:var(--muted);">
+              <div style="font-size:32px; margin-bottom:10px;">🏛️</div>
+              <div style="font-family:var(--serif); font-size:22px; color:#fff; margin-bottom:6px;">Listeniz Henüz Boş</div>
+              <div style="font-size:12px; line-height:1.6;">Beğendiğiniz villaların ve yalıların üzerindeki kalp simgesine dokunarak özel seçkinizi oluşturabilirsiniz.</div>
+            </div>
+          ` : `
+            <div class="property-list">
+              ${favList.map(renderCard).join('')}
+            </div>
+          `}
+        `;
+        updateBadges();
+        return;
+      }
+
+      const filtered = PROPERTIES.filter(p => currentFilter === 'all' || p.type === currentFilter);
+
+      container.innerHTML = `
+        <!-- Hero Section -->
+        <section class="hero">
+          <img class="hero-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" alt="Valmont Estates Hero" />
+          <div class="hero-gradient"></div>
+          <div class="hero-content">
+            <span class="hero-tag">● 2026 Emsalsiz Seçki</span>
+            <h1 class="hero-title">Exclusive<br /><em>Living Spaces</em></h1>
+            <p class="hero-sub">Boğaziçi yalılarından Bodrum Cennet Koyu villalarına; Türkiye'nin en seçkin gayrimenkul portföyü.</p>
+            <div class="hero-cta-row">
+              <button class="btn-gold" onclick="document.getElementById('listAnchor').scrollIntoView({behavior:'smooth'})">
+                Koleksiyonu İncele ↓
+              </button>
+              <button class="btn-glass" onclick="openContactModal()">
+                VIP Danışman
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Category Filters -->
+        <div class="filter-strip" id="listAnchor">
+          <button class="filter-pill ${currentFilter === 'all' ? 'active' : ''}" onclick="setFilter('all')">Tüm Portföy</button>
+          <button class="filter-pill ${currentFilter === 'yali' ? 'active' : ''}" onclick="setFilter('yali')">Yalı & Köşk</button>
+          <button class="filter-pill ${currentFilter === 'villa' ? 'active' : ''}" onclick="setFilter('villa')">Bodrum Villa</button>
+          <button class="filter-pill ${currentFilter === 'penthouse' ? 'active' : ''}" onclick="setFilter('penthouse')">Penthouse</button>
+        </div>
+
+        <!-- Section Title -->
+        <div class="section-head">
+          <h2 class="sec-title">Özel Portföy</h2>
+          <span class="sec-count">${filtered.length} Emsalsiz Mülk</span>
+        </div>
+
+        <!-- Property List -->
+        <div class="property-list">
+          ${filtered.map(renderCard).join('')}
+        </div>
+
+        <!-- Private Office Box -->
+        <div class="vip-office">
+          <div class="vip-tag">Valmont Private Office</div>
+          <h3 class="vip-title">Gizli Satış Portföyü</h3>
+          <p class="vip-desc">Pazara açık ilan edilmeyen, sadece akredite yatırımcılara sunulan yalı ve ada portföyümüz için özel sunum talep edin.</p>
+          <button class="vip-btn" onclick="openContactModal()">
+            <span>✦</span>
+            <span>Gizlilik Sözleşmeli Sunum İste</span>
+          </button>
+        </div>
+      `;
+
+      updateBadges();
+    }
+
+    function renderCard(p) {
+      const isFav = favoriteIds.has(p.id);
+      return `
+        <article class="estate-card" onclick="openProperty('${p.id}')">
+          <div class="card-media">
+            <div class="media-overlay-top">
+              <span class="badge-status">${p.badge}</span>
+              <button
+                type="button"
+                class="fav-btn ${isFav ? 'active' : ''}"
+                onclick="event.stopPropagation(); toggleFav('${p.id}')"
+                aria-label="Favoriye Ekle"
+              >${isFav ? '♥' : '♡'}</button>
+            </div>
+            <img src="${p.image}" alt="${p.title}" loading="lazy" />
+            <div class="media-overlay-bottom">
+              <span class="card-location">📍 ${p.location}</span>
+              <span class="card-price">${p.priceStr}</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">${p.title}</h3>
+            <p class="card-summary">${p.desc}</p>
+            <div class="specs-row">
+              <div class="spec-item">
+                <span class="spec-val">${p.area}</span>
+                <span class="spec-lbl">Kapalı Alan</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-val">${p.rooms}</span>
+                <span class="spec-lbl">Oda & Salon</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-val">${p.land}</span>
+                <span class="spec-lbl">Arsa / Parsel</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function setFilter(f) {
+      currentFilter = f;
+      renderView();
+    }
+
+    function switchView(v) {
+      currentView = v;
+      document.getElementById('tab-home').classList.toggle('active', v === 'home');
+      document.getElementById('tab-fav').classList.toggle('active', v === 'fav');
+      document.getElementById('tab-contact').classList.toggle('active', false);
+      closeSheet();
+      renderView();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleFav(id) {
+      if (favoriteIds.has(id)) {
+        favoriteIds.delete(id);
+        showToast('Favorilerden kaldırıldı');
+      } else {
+        favoriteIds.add(id);
+        showToast('✓ Portföy listenize eklendi');
+      }
+      renderView();
+    }
+
+    function updateBadges() {
+      const badge = document.getElementById('favBadge');
+      if (favoriteIds.size > 0) {
+        badge.textContent = favoriteIds.size;
+        badge.style.display = 'flex';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    function openProperty(id) {
+      const p = PROPERTIES.find(x => x.id === id);
+      if (!p) return;
+
+      const sheet = document.getElementById('propertySheet');
+      sheet.innerHTML = `
+        <div class="sheet-grabber"></div>
+        <div class="sheet-scroll">
+          <div class="sheet-hero-img">
+            <img src="${p.image}" alt="${p.title}" />
+            <button class="sheet-close-btn" onclick="closeSheet()">✕</button>
+          </div>
+          <div class="sheet-body">
+            <div class="sheet-loc">📍 ${p.location} · ${p.typeLabel}</div>
+            <h2 class="sheet-title">${p.title}</h2>
+            <div class="sheet-price">${p.priceStr}</div>
+            <p class="sheet-desc">${p.desc}</p>
+
+            <div class="specs-grid-full">
+              <div class="spec-box">
+                <div class="sb-lbl">Kullanım Alanı</div>
+                <div class="sb-val">${p.area}</div>
+              </div>
+              <div class="spec-box">
+                <div class="sb-lbl">Oda Yapısı</div>
+                <div class="sb-val">${p.rooms}</div>
+              </div>
+              <div class="spec-box">
+                <div class="sb-lbl">Parsel & Bahçe</div>
+                <div class="sb-val">${p.land}</div>
+              </div>
+              <div class="spec-box">
+                <div class="sb-lbl">Yapım & Restorasyon</div>
+                <div class="sb-val">${p.year}</div>
+              </div>
+            </div>
+
+            <!-- Virtual 360 Tour Simulation -->
+            <div class="tour-preview">
+              <div class="tour-title">🎥 3D Matterport & Drone Sanal Tur</div>
+              <div class="tour-sub">Mülkü 4K çözünürlükte mimari detaylarıyla keşfedin</div>
+            </div>
+          </div>
+        </div>
+        <div class="sheet-foot">
+          <button class="btn-sheet-primary" onclick="simulateBooking('${p.title}')">
+            <span>🏛️</span>
+            <span>Özel VIP Gösterim Randevusu Al</span>
+          </button>
+          <button class="btn-sheet-wa" onclick="simulateWhatsApp('${p.title}')">
+            <span>💬</span>
+            <span>Danışmandan Portföy PDF'i İste</span>
+          </button>
+        </div>
+      `;
+
+      document.getElementById('overlay').classList.add('open');
+      sheet.classList.add('open');
+    }
+
+    function closeSheet() {
+      document.getElementById('overlay').classList.remove('open');
+      document.getElementById('propertySheet').classList.remove('open');
+    }
+
+    function simulateBooking(title) {
+      const sheet = document.getElementById('propertySheet');
+      sheet.innerHTML = `
+        <div class="sheet-grabber"></div>
+        <div class="vip-confirmed-box">
+          <div class="ring-check">✓</div>
+          <h3 class="conf-title">VIP Randevu Oluşturuldu</h3>
+          <div style="font-size:11px; color:var(--gold); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:12px;">
+            Valmont Private Client Service
+          </div>
+          <p class="conf-sub">
+            <strong>${title}</strong> sunumu için talebiniz portföy direktörümüze iletildi.<br />
+            Özel şoförlü transfer ve randevu detayları için en geç 15 dakika içinde aranacaksınız.
+          </p>
+          <button class="btn-sheet-primary" style="margin:0 auto; max-width:280px;" onclick="closeSheet()">
+            Tamamlandı
+          </button>
+        </div>
+      `;
+    }
+
+    function simulateWhatsApp(title) {
+      showToast('💬 WhatsApp sunum dosyası oluşturuldu');
+    }
+
+    function openContactModal() {
+      const sheet = document.getElementById('propertySheet');
+      sheet.innerHTML = `
+        <div class="sheet-grabber"></div>
+        <div class="sheet-scroll" style="padding:24px 20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <div style="font-size:10px; letter-spacing:0.24em; color:var(--gold); text-transform:uppercase;">Valmont Özel Danışmanlık</div>
+            <button class="sheet-close-btn" style="position:static;" onclick="closeSheet()">✕</button>
+          </div>
+          <h3 style="font-family:var(--serif); font-size:26px; color:#fff; margin-bottom:12px;">Portföy Direktörü ile Görüşün</h3>
+          <p style="font-size:12px; color:var(--muted); line-height:1.6; margin-bottom:20px;">
+            Bebek Yalıları, Bodrum Cennet Koyu villaları ve gizli portföyümüz için doğrudan kıdemli gayrimenkul danışmanımıza ulaşın.
+          </p>
+
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--line); border-radius:10px; padding:14px; margin-bottom:14px;">
+            <div style="font-size:12px; font-weight:700; color:#fff;">Kaan Aras Valmont</div>
+            <div style="font-size:10.5px; color:var(--gold); margin-top:2px;">Kıdemli Portföy Yöneticisi & Partner</div>
+            <div style="font-size:11px; color:var(--muted); margin-top:8px;">📞 +90 (212) 351 00 90</div>
+            <div style="font-size:11px; color:var(--muted);">📍 Bebek Sahil Cad. No: 42, Beşiktaş / İstanbul</div>
+          </div>
+
+          <button class="btn-sheet-primary" style="margin-bottom:8px;" onclick="showToast('📞 Randevu merkezi arandı'); closeSheet();">
+            Hemen Arayın · 7/24 VIP Hat
+          </button>
+          <button class="btn-sheet-wa" onclick="showToast('💬 WhatsApp danışma hattına bağlandı'); closeSheet();">
+            WhatsApp ile Hızlı Mesaj Gönder
+          </button>
+        </div>
+      `;
+      document.getElementById('overlay').classList.add('open');
+      sheet.classList.add('open');
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById('toastEl');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => el.classList.remove('show'), 2400);
+    }
+
+    // Initial render
+    renderView();
+  </script>
+</body>
+</html>
