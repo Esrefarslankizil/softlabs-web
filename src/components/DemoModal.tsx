@@ -100,7 +100,7 @@ export default function DemoModal() {
 
 
   // Dynamic origin for mobile QR code test (uses public Vercel URL even if viewed on localhost so phone camera QR always works)
-  const [originUrl, setOriginUrl] = useState('https://softlabs-web.vercel.app');
+  const [originUrl, setOriginUrl] = useState('https://softlabs-web-rho.vercel.app');
 
   // Listen to open-demo-modal events
   useEffect(() => {
