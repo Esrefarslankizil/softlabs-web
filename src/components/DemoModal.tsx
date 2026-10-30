@@ -231,7 +231,7 @@ export default function DemoModal() {
         </div>
 
         {/* Modal Scrollable Body */}
-        <div className="flex-1 overflow-y-auto overscroll-contain bg-gradient-to-b from-[#141414] via-[#111111] to-[#0a0a0a]">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden overscroll-contain bg-gradient-to-b from-[#141414] via-[#111111] to-[#0a0a0a]">
           
           {/* ========================================================= */}
           {/* VIEW 1: SECTOR SELECTION CATALOG                          */}
@@ -392,45 +392,45 @@ export default function DemoModal() {
                     </div>
 
                     {/* iPhone 18 Pro Max Outer Shell */}
-                    <div className="relative w-full max-w-[375px] h-[740px] rounded-[54px] p-[3.5px] bg-gradient-to-b from-[#44423e] via-[#242321] to-[#363431] shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(236,219,187,0.12)] ring-1 ring-white/25 select-none transition-all">
+                    <div className="relative w-full max-w-[375px] h-[740px] max-sm:max-w-full max-sm:h-[calc(100dvh-210px)] max-sm:min-h-[520px] max-sm:rounded-[26px] max-sm:p-[2px] rounded-[54px] p-[3.5px] bg-gradient-to-b from-[#44423e] via-[#242321] to-[#363431] shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(236,219,187,0.12)] ring-1 ring-white/25 select-none transition-all">
                       
                       {/* --- PHYSICAL HARDWARE BUTTONS --- */}
                       {/* Left: Action Button (Eylem Tuşu) */}
-                      <div className="absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="max-sm:hidden absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
                       
                       {/* Left: Volume Up */}
-                      <div className="absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="max-sm:hidden absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
                       
                       {/* Left: Volume Down */}
-                      <div className="absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="max-sm:hidden absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
                       
                       {/* Left Antenna Bands */}
-                      <div className="absolute -left-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="absolute -left-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="max-sm:hidden absolute -left-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="max-sm:hidden absolute -left-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
 
                       {/* Right: Power / Siri Button */}
-                      <div className="absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="max-sm:hidden absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] shadow-sm pointer-events-none" />
                       
                       {/* Right: Camera Control (iPhone 16/17/18 Pro Sapphire Capacitive Sensor) */}
-                      <div className="absolute -right-[4.5px] top-[465px] w-[4.5px] h-14 bg-gradient-to-l from-[#1e1d1c] to-[#343330] rounded-r-sm border-y border-r border-[#4e4c47] shadow-inner pointer-events-none" />
+                      <div className="max-sm:hidden absolute -right-[4.5px] top-[465px] w-[4.5px] h-14 bg-gradient-to-l from-[#1e1d1c] to-[#343330] rounded-r-sm border-y border-r border-[#4e4c47] shadow-inner pointer-events-none" />
                       
                       {/* Right Antenna Bands */}
-                      <div className="absolute -right-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="absolute -right-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="max-sm:hidden absolute -right-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="max-sm:hidden absolute -right-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
 
                       {/* Top Micro Speaker Earpiece Slit */}
-                      <div className="absolute top-[2px] left-1/2 -translate-x-1/2 w-14 h-[2px] bg-[#181716] rounded-full z-30 pointer-events-none" />
+                      <div className="max-sm:hidden absolute top-[2px] left-1/2 -translate-x-1/2 w-14 h-[2px] bg-[#181716] rounded-full z-30 pointer-events-none" />
 
                       {/* --- SCREEN CONTAINER (Ultra-slim 3.5px Bezel & Concentric 50px Radius) --- */}
                       <div 
-                        className="relative w-full h-full rounded-[50px] overflow-hidden bg-[#f8f6f0] flex flex-col ring-1 ring-black/80"
+                        className="relative w-full h-full max-sm:rounded-[22px] rounded-[50px] overflow-hidden bg-[#f8f6f0] flex flex-col ring-1 ring-black/80"
                         style={{
                           WebkitMaskImage: '-webkit-radial-gradient(white, black)',
                           isolation: 'isolate',
                         }}
                       >
                         {/* iOS Status Bar (Native Pro Max Header) */}
-                        <div className="h-[42px] shrink-0 bg-[#f8f6f0] px-6 flex items-center justify-between z-30 select-none border-b border-[#a87e24]/10">
+                        <div className="max-sm:hidden h-[42px] shrink-0 bg-[#f8f6f0] px-6 flex items-center justify-between z-30 select-none border-b border-[#a87e24]/10">
                           {/* Time */}
                           <div className="w-16 flex items-center">
                             <span className="text-[13px] font-semibold tracking-tight text-neutral-900 font-sans">
@@ -484,12 +484,12 @@ export default function DemoModal() {
                         </div>
 
                         {/* iOS Bottom Home Bar */}
-                        <div className="h-[20px] shrink-0 bg-[#f8f6f0] flex items-center justify-center z-30 select-none pb-1">
+                        <div className="max-sm:hidden h-[20px] shrink-0 bg-[#f8f6f0] flex items-center justify-center z-30 select-none pb-1">
                           <div className="w-32 h-[4px] bg-neutral-900/35 rounded-full hover:bg-neutral-900/60 transition-colors" />
                         </div>
 
                         {/* Corner Curvature Protective Ring Overlay */}
-                        <div className="pointer-events-none absolute inset-0 rounded-[52px] ring-1 ring-black/35 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.15)] z-40" />
+                        <div className="pointer-events-none absolute inset-0 max-sm:rounded-[22px] rounded-[52px] ring-1 ring-black/35 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.15)] z-40" />
                       </div>
                     </div>
 
@@ -764,45 +764,45 @@ export default function DemoModal() {
                     </div>
 
                     {/* iPhone 18 Pro Max Outer Shell */}
-                    <div className="relative w-full max-w-[375px] h-[740px] rounded-[54px] p-[3.5px] bg-gradient-to-b from-[#44423e] via-[#242321] to-[#363431] shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(16,185,129,0.14)] ring-1 ring-white/25 select-none transition-all">
+                    <div className="relative w-full max-w-[375px] h-[740px] max-sm:max-w-full max-sm:h-[calc(100dvh-210px)] max-sm:min-h-[520px] max-sm:rounded-[26px] max-sm:p-[2px] rounded-[54px] p-[3.5px] bg-gradient-to-b from-[#44423e] via-[#242321] to-[#363431] shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(16,185,129,0.14)] ring-1 ring-white/25 select-none transition-all">
                       
                       {/* --- PHYSICAL HARDWARE BUTTONS --- */}
                       {/* Left: Action Button (Eylem Tuşu) */}
-                      <div className="absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="max-sm:hidden absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
                       
                       {/* Left: Volume Up */}
-                      <div className="absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="max-sm:hidden absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
                       
                       {/* Left: Volume Down */}
-                      <div className="absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="max-sm:hidden absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
                       
                       {/* Left Antenna Bands */}
-                      <div className="absolute -left-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="absolute -left-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="max-sm:hidden absolute -left-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="max-sm:hidden absolute -left-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
 
                       {/* Right: Power / Siri Button */}
-                      <div className="absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="max-sm:hidden absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] shadow-sm pointer-events-none" />
                       
                       {/* Right: Camera Control (iPhone 18 Pro Sapphire Capacitive Sensor) */}
-                      <div className="absolute -right-[4.5px] top-[465px] w-[4.5px] h-14 bg-gradient-to-l from-[#1e1d1c] to-[#343330] rounded-r-sm border-y border-r border-[#4e4c47] shadow-inner pointer-events-none" />
+                      <div className="max-sm:hidden absolute -right-[4.5px] top-[465px] w-[4.5px] h-14 bg-gradient-to-l from-[#1e1d1c] to-[#343330] rounded-r-sm border-y border-r border-[#4e4c47] shadow-inner pointer-events-none" />
                       
                       {/* Right Antenna Bands */}
-                      <div className="absolute -right-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="absolute -right-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="max-sm:hidden absolute -right-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="max-sm:hidden absolute -right-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
 
                       {/* Top Micro Speaker Earpiece Slit */}
-                      <div className="absolute top-[2px] left-1/2 -translate-x-1/2 w-14 h-[2px] bg-[#181716] rounded-full z-30 pointer-events-none" />
+                      <div className="max-sm:hidden absolute top-[2px] left-1/2 -translate-x-1/2 w-14 h-[2px] bg-[#181716] rounded-full z-30 pointer-events-none" />
 
                       {/* --- SCREEN CONTAINER (Ultra-slim 3.5px Bezel & Concentric 50px Radius) --- */}
                       <div 
-                        className="relative w-full h-full rounded-[50px] overflow-hidden bg-[#0b0c0e] flex flex-col ring-1 ring-black/80"
+                        className="relative w-full h-full max-sm:rounded-[22px] rounded-[50px] overflow-hidden bg-[#0b0c0e] flex flex-col ring-1 ring-black/80"
                         style={{
                           WebkitMaskImage: '-webkit-radial-gradient(white, black)',
                           isolation: 'isolate',
                         }}
                       >
                         {/* iOS Status Bar (Dark Mode Pro Max Header - 18:00) */}
-                        <div className="h-[42px] shrink-0 bg-[#0b0c0e] px-6 flex items-center justify-between z-30 select-none border-b border-white/5">
+                        <div className="max-sm:hidden h-[42px] shrink-0 bg-[#0b0c0e] px-6 flex items-center justify-between z-30 select-none border-b border-white/5">
                           {/* Time */}
                           <div className="w-16 flex items-center">
                             <span className="text-[13px] font-semibold tracking-tight text-white font-sans">
@@ -856,12 +856,12 @@ export default function DemoModal() {
                         </div>
 
                         {/* iOS Bottom Home Bar */}
-                        <div className="h-[20px] shrink-0 bg-[#0b0c0e] flex items-center justify-center z-30 select-none pb-1">
+                        <div className="max-sm:hidden h-[20px] shrink-0 bg-[#0b0c0e] flex items-center justify-center z-30 select-none pb-1">
                           <div className="w-32 h-[4px] bg-white/35 rounded-full hover:bg-white/60 transition-colors" />
                         </div>
 
                         {/* Corner Curvature Protective Ring Overlay */}
-                        <div className="pointer-events-none absolute inset-0 rounded-[50px] ring-1 ring-black/50 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] z-40" />
+                        <div className="pointer-events-none absolute inset-0 max-sm:rounded-[22px] rounded-[50px] ring-1 ring-black/50 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] z-40" />
                       </div>
                     </div>
 
@@ -966,24 +966,24 @@ export default function DemoModal() {
                       <span className="text-emerald-400 font-medium">Canlı Mağaza Simülatörü</span>
                     </div>
 
-                    <div className="relative w-full max-w-[375px] h-[740px] rounded-[54px] p-[3.5px] bg-gradient-to-b from-[#44423e] via-[#242321] to-[#363431] shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(236,219,187,0.14)] ring-1 ring-white/25 select-none transition-all">
-                      <div className="absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      <div className="absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      <div className="absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      <div className="absolute -left-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="absolute -left-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] shadow-sm pointer-events-none" />
-                      <div className="absolute -right-[4.5px] top-[465px] w-[4.5px] h-14 bg-gradient-to-l from-[#1e1d1c] to-[#343330] rounded-r-sm border-y border-r border-[#4e4c47] shadow-inner pointer-events-none" />
-                      <div className="absolute -right-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="absolute -right-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="absolute top-[2px] left-1/2 -translate-x-1/2 w-14 h-[2px] bg-[#181716] rounded-full z-30 pointer-events-none" />
+                    <div className="relative w-full max-w-[375px] h-[740px] max-sm:max-w-full max-sm:h-[calc(100dvh-210px)] max-sm:min-h-[520px] max-sm:rounded-[26px] max-sm:p-[2px] rounded-[54px] p-[3.5px] bg-gradient-to-b from-[#44423e] via-[#242321] to-[#363431] shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(236,219,187,0.14)] ring-1 ring-white/25 select-none transition-all">
+                      <div className="max-sm:hidden absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="max-sm:hidden absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="max-sm:hidden absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="max-sm:hidden absolute -left-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="max-sm:hidden absolute -left-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="max-sm:hidden absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="max-sm:hidden absolute -right-[4.5px] top-[465px] w-[4.5px] h-14 bg-gradient-to-l from-[#1e1d1c] to-[#343330] rounded-r-sm border-y border-r border-[#4e4c47] shadow-inner pointer-events-none" />
+                      <div className="max-sm:hidden absolute -right-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="max-sm:hidden absolute -right-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="max-sm:hidden absolute top-[2px] left-1/2 -translate-x-1/2 w-14 h-[2px] bg-[#181716] rounded-full z-30 pointer-events-none" />
 
                       <div
-                        className="relative w-full h-full rounded-[50px] overflow-hidden bg-[#fbf8f3] flex flex-col ring-1 ring-black/80"
+                        className="relative w-full h-full max-sm:rounded-[22px] rounded-[50px] overflow-hidden bg-[#fbf8f3] flex flex-col ring-1 ring-black/80"
                         style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)', isolation: 'isolate' }}
                       >
                         {/* iOS Status Bar */}
-                        <div className="h-[42px] shrink-0 bg-[#fbf8f3] px-6 flex items-center justify-between z-30 select-none">
+                        <div className="max-sm:hidden h-[42px] shrink-0 bg-[#fbf8f3] px-6 flex items-center justify-between z-30 select-none">
                           <div className="w-16 flex items-center">
                             <span className="text-[13px] font-semibold tracking-tight text-neutral-900">09:41</span>
                           </div>
@@ -1022,11 +1022,11 @@ export default function DemoModal() {
                         </div>
 
                         {/* Home Bar */}
-                        <div className="h-[20px] shrink-0 bg-[#0e0d0c] flex items-center justify-center z-30 select-none pb-1">
+                        <div className="max-sm:hidden h-[20px] shrink-0 bg-[#0e0d0c] flex items-center justify-center z-30 select-none pb-1">
                           <div className="w-32 h-[4px] bg-white/40 rounded-full" />
                         </div>
 
-                        <div className="pointer-events-none absolute inset-0 rounded-[50px] ring-1 ring-black/35 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.15)] z-40" />
+                        <div className="pointer-events-none absolute inset-0 max-sm:rounded-[22px] rounded-[50px] ring-1 ring-black/35 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.15)] z-40" />
                       </div>
                     </div>
 

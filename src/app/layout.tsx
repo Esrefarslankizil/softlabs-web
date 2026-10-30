@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope, Syne } from "next/font/google";
 import "./globals.css";
 
@@ -11,6 +11,12 @@ const syne = Syne({
   variable: "--font-syne",
   subsets: ["latin", "latin-ext"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   title: "SoftLabs — Yerel firmalar için yazılım",
