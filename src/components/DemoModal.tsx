@@ -53,12 +53,12 @@ const SECTORS: SectorInfo[] = [
   },
   {
     id: 'ecommerce',
-    title: 'E-Ticaret & Butik Mağaza',
-    tagline: 'Hızlı Satış, Sanal POS & Akıllı Sepet',
-    badge: 'İnteraktif Sistem',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
-    tags: ['Iyzico / Stripe POS', 'WhatsApp Sipariş', 'Canlı Stok', 'Kargo Entegrasyonu'],
-    description: 'Milisaniyeler içinde yüklenen ultra hızlı butik e-ticaret altyapısı; tek dokunuşla sepet ve doğrudan WhatsApp hızlı sipariş kanalı.',
+    title: 'E-Ticaret & Streetwear Mağaza',
+    tagline: 'New Drop Vitrin, Hızlı Beden Seçimi & Sanal POS',
+    badge: 'Canlı Çalışan Demo',
+    image: 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=800&q=80',
+    tags: ['New Drop Vitrin', 'Hızlı Beden & Sepet', 'Iyzico / Stripe POS', 'Ücretsiz Kargo Barı'],
+    description: 'Sokak modası ve butik giyim markaları için milisaniyeler içinde açılan, tek dokunuşla beden seçip sepete ekleyen modern e-ticaret deneyimi.',
   },
   {
     id: 'hotel',
@@ -99,8 +99,7 @@ export default function DemoModal() {
   const [gymMemberName, setGymMemberName] = useState('Eşref Fırat');
 
   // E-Commerce Interactive State
-  const [cartCount, setCartCount] = useState(1);
-  const [orderToast, setOrderToast] = useState(false);
+  const [ecomViewMode, setEcomViewMode] = useState<'desktop' | 'mobile'>('desktop');
 
   // Dynamic origin for mobile QR code test (uses public Vercel URL even if viewed on localhost so phone camera QR always works)
   const [originUrl, setOriginUrl] = useState('https://softlabs-web.vercel.app');
@@ -954,71 +953,207 @@ export default function DemoModal() {
               )}
 
               {/* ----------------------------------------------------------- */}
-              {/* DEMO 5: E-TİCARET & BUTİK MAĞAZA                           */}
+              {/* DEMO 5: E-TİCARET & STREETWEAR MAĞAZA (FLAW ATELIER DEMO)   */}
               {/* ----------------------------------------------------------- */}
               {selectedSector === 'ecommerce' && (
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                  <div className="lg:col-span-7 flex flex-col gap-6">
-                    <div className="p-6 rounded-2xl border border-white/10 bg-[#1c1c1c]/90">
-                      <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/10">
-                        <div className="flex items-center gap-2.5">
-                          <span className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 text-lg">🛍️</span>
-                          <div>
-                            <h3 className="text-base font-semibold text-white">Lüks Butik E-Ticaret Arayüzü</h3>
-                            <p className="text-xs text-zinc-400">Tek tıkla sepete ekleme, beden seçimi ve anlık WhatsApp sipariş akışı.</p>
-                          </div>
-                        </div>
-                        <div className="px-3 py-1 rounded-full bg-white/10 text-xs font-semibold text-[#ecdbbb]">
-                          Sepetim: {cartCount} Ürün
-                        </div>
-                      </div>
+                <div className="flex flex-col gap-6">
+                  {/* Top View Switcher: Desktop Browser vs iPhone 18 Pro Max */}
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-3 rounded-2xl bg-[#18181b] border border-white/10">
+                    <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/60 border border-white/10">
+                      <button
+                        type="button"
+                        onClick={() => setEcomViewMode('desktop')}
+                        className={'px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 ' + (
+                          ecomViewMode === 'desktop'
+                            ? 'bg-[#ecdbbb] text-zinc-950 shadow-sm'
+                            : 'text-zinc-400 hover:text-white'
+                        )}
+                      >
+                        <span>💻</span>
+                        <span>Masaüstü Mağaza Vitrin</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setEcomViewMode('mobile')}
+                        className={'px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 ' + (
+                          ecomViewMode === 'mobile'
+                            ? 'bg-[#ecdbbb] text-zinc-950 shadow-sm'
+                            : 'text-zinc-400 hover:text-white'
+                        )}
+                      >
+                        <span>📱</span>
+                        <span>iPhone 18 Pro Max Mobil</span>
+                      </button>
+                    </div>
 
-                      <div className="p-4 rounded-xl bg-black/50 border border-white/10 flex flex-col sm:flex-row gap-4 items-center">
-                        <img
-                          src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=300&q=80"
-                          alt="Lüks Kaşmir Ceket"
-                          className="w-24 h-32 object-cover rounded-lg border border-white/10"
-                        />
-                        <div className="flex-1 space-y-2 text-xs text-left w-full">
-                          <div className="text-sm font-semibold text-white">Artisan İtalyan Yün & Kaşmir Ceket</div>
-                          <div className="text-zinc-400">Özel Seri · Kum Beji / Beden: M</div>
-                          <div className="text-lg font-bold font-display text-[#ecdbbb]">₺3.850</div>
-                          
-                          <div className="flex items-center gap-2 pt-2">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setCartCount((prev) => prev + 1);
-                                setOrderToast(true);
-                              }}
-                              className="px-4 py-2 rounded-xl bg-[#ecdbbb] hover:bg-white text-zinc-950 font-bold transition-all shadow-md cursor-pointer"
-                            >
-                              + Sepete Ekle
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => setOrderToast(true)}
-                              className="px-4 py-2 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold transition-all flex items-center gap-1.5"
-                            >
-                              <span>💬</span>
-                              <span>WhatsApp ile 1-Tıkla Al</span>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {orderToast && (
-                        <div className="mt-4 p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-xs animate-fadeIn">
-                          ✓ Sipariş akışı simüle edildi! Ürün sepetinize eklendi ve Iyzico sanal POS veya WhatsApp sipariş kanalı hazırlandı.
-                        </div>
-                      )}
+                    <div className="flex items-center gap-3">
+                      <span className="hidden md:inline text-[11px] text-zinc-400">
+                        Kategori filtreleyebilir, beden seçip sepete ekleyebilirsiniz
+                      </span>
+                      <a
+                        href="/demos/ecommerce/index.html"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-semibold text-white border border-white/15 transition-all"
+                      >
+                        <span>↗</span>
+                        <span>Tam Ekran Mağazayı Aç</span>
+                      </a>
                     </div>
                   </div>
 
-                  <div className="lg:col-span-5 p-6 rounded-2xl border border-[#ecdbbb]/25 bg-[#1c1c1c]/90 text-xs text-zinc-300 space-y-3">
-                    <h4 className="text-base font-semibold text-white">Modern E-Ticaret Avantajı</h4>
-                    <p>Shopify veya WooCommerce hantallığından uzak, 0.8 saniyede açılan özel Next.js butik mağaza altyapısıyla satış dönüşüm oranınızı 2-3 katına çıkarın.</p>
-                  </div>
+                  {/* MODE A: DESKTOP EDITORIAL STOREFRONT (MacOS Studio Browser) */}
+                  {ecomViewMode === 'desktop' && (
+                    <div className="flex flex-col gap-6">
+                      <div className="rounded-2xl overflow-hidden border border-white/15 bg-[#0f0f11] shadow-[0_25px_70px_rgba(0,0,0,0.75)]">
+                        {/* Browser Chrome Header */}
+                        <div className="h-11 px-4 bg-[#18181b] border-b border-white/10 flex items-center justify-between gap-4 select-none">
+                          <div className="flex items-center gap-2">
+                            <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+                            <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
+                            <span className="w-3 h-3 rounded-full bg-[#28c840]" />
+                          </div>
+
+                          <div className="flex-1 max-w-md mx-auto px-3 py-1 rounded-lg bg-black/50 border border-white/10 flex items-center justify-center gap-2 text-[11px] text-zinc-300 font-mono">
+                            <span className="text-emerald-400">🔒</span>
+                            <span>flawatelier.com/new-season-drop</span>
+                          </div>
+
+                          <div className="text-[10px] font-semibold text-[#ecdbbb] uppercase tracking-wider hidden sm:block">
+                            Canlı Mağaza
+                          </div>
+                        </div>
+
+                        {/* Live Storefront Iframe */}
+                        <div className="w-full h-[640px] bg-white">
+                          <iframe
+                            src="/demos/ecommerce/index.html"
+                            title="FLAW ATELIER Streetwear E-Ticaret Demosu"
+                            className="w-full h-full border-0"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Bottom Info + Mobile QR Row */}
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <div className="lg:col-span-8 p-6 rounded-2xl border border-white/10 bg-[#1c1c1c]/90 flex flex-col justify-between">
+                          <div>
+                            <h3 className="text-base font-semibold text-white mb-2 flex items-center gap-2">
+                              <span>🛍️</span>
+                              <span>Yeni Nesil Streetwear & Butik E-Ticaret Altyapısı</span>
+                            </h3>
+                            <p className="text-xs text-zinc-300 leading-relaxed mb-4">
+                              Klasik hazır paketlerin yavaşlığından arındırılmış, markanızın sokak modası veya butik kimliğini öne çıkaran minimalist vitrin tasarımı. Müşterileriniz sayfa yenilemeden kategori filtreler, kart üzerinden beden seçip tek dokunuşla sepete ekler.
+                            </p>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                            <div className="p-3 rounded-xl bg-black/40 border border-white/5">
+                              <strong className="text-[#ecdbbb] block mb-0.5">⚡ 0.4s Açılış Hızı</strong>
+                              <span className="text-zinc-400 text-[11px]">Instagram & TikTok reklam trafiğinde sıfır kayıp.</span>
+                            </div>
+                            <div className="p-3 rounded-xl bg-black/40 border border-white/5">
+                              <strong className="text-[#ecdbbb] block mb-0.5">💳 Iyzico & PayTR POS</strong>
+                              <span className="text-zinc-400 text-[11px]">12 taksit, 3D Secure ve üyeliksiz hızlı ödeme.</span>
+                            </div>
+                            <div className="p-3 rounded-xl bg-black/40 border border-white/5">
+                              <strong className="text-[#ecdbbb] block mb-0.5">📦 Kargo & Stok Senkron</strong>
+                              <span className="text-zinc-400 text-[11px]">Otomatik kargo barkodu ve beden bazlı stok takibi.</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="lg:col-span-4 p-5 rounded-2xl border border-[#ecdbbb]/25 bg-[#1c1c1c]/90 flex items-center gap-4">
+                          <div className="p-2.5 bg-white rounded-xl shrink-0 shadow-md">
+                            <img
+                              src={'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' + encodeURIComponent(originUrl + '/demos/ecommerce/index.html')}
+                              alt="Mobil Mağaza QR"
+                              className="w-24 h-24"
+                            />
+                          </div>
+                          <div className="text-xs">
+                            <div className="text-[11px] font-semibold text-[#ecdbbb] uppercase tracking-wider mb-1">
+                              📱 Telefonda Deneyin
+                            </div>
+                            <p className="text-[11px] text-zinc-400 leading-relaxed">
+                              QR kodu kameranızla okutarak mağazanın mobil alışveriş akışını kendi telefonunuzda test edin.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* MODE B: IPHONE 18 PRO MAX MOBILE STOREFRONT */}
+                  {ecomViewMode === 'mobile' && (
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                      <div className="lg:col-span-7 flex flex-col items-center">
+                        <div className="mb-3 flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-zinc-400">
+                          <span className="font-medium text-zinc-200">iPhone 18 Pro Max</span>
+                          <span className="text-zinc-600">·</span>
+                          <span className="text-emerald-400 font-medium">Mobil Mağaza Deneyimi</span>
+                        </div>
+
+                        <div className="relative w-full max-w-[375px] h-[740px] rounded-[54px] p-[3.5px] bg-gradient-to-b from-[#44423e] via-[#242321] to-[#363431] shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(236,219,187,0.12)] ring-1 ring-white/25 select-none">
+                          <div className="absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] pointer-events-none" />
+                          <div className="absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] pointer-events-none" />
+                          <div className="absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] pointer-events-none" />
+                          <div className="absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] pointer-events-none" />
+
+                          <div
+                            className="relative w-full h-full rounded-[50px] overflow-hidden bg-white flex flex-col ring-1 ring-black/80"
+                            style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)', isolation: 'isolate' }}
+                          >
+                            <div className="h-[42px] shrink-0 bg-[#09090b] px-6 flex items-center justify-between z-30 select-none">
+                              <span className="text-[13px] font-semibold tracking-tight text-white">09:41</span>
+                              <div className="w-[108px] h-[26px] bg-black rounded-full ring-1 ring-white/15 flex items-center justify-end px-2.5">
+                                <div className="w-3 h-3 rounded-full bg-[#060b14] border border-[#162035]" />
+                              </div>
+                              <span className="text-[10px] font-bold text-white">5G · 98%</span>
+                            </div>
+
+                            <div className="relative flex-1 w-full bg-white overflow-hidden">
+                              <iframe
+                                src="/demos/ecommerce/index.html"
+                                title="FLAW ATELIER Mobil Mağaza"
+                                className="w-full h-full border-0"
+                              />
+                            </div>
+
+                            <div className="h-[20px] shrink-0 bg-[#09090b] flex items-center justify-center">
+                              <div className="w-32 h-[4px] bg-white/40 rounded-full" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="lg:col-span-5 flex flex-col gap-5">
+                        <div className="p-6 rounded-2xl border border-[#ecdbbb]/25 bg-[#1c1c1c]/90">
+                          <h3 className="text-lg font-semibold text-white mb-2">
+                            %85 Mobil Trafik Odaklı Tasarım
+                          </h3>
+                          <p className="text-xs text-zinc-300 leading-relaxed mb-4">
+                            Giyim ve streetwear alışverişlerinin %85&apos;i Instagram ve TikTok üzerinden mobilde gerçekleşir. Çift sütunlu ürün kartları, hızlı beden çipleri ve kayar sepet çekmecesiyle dönüşüm oranını maksimuma çıkarır.
+                          </p>
+                          <div className="p-4 rounded-xl bg-black/60 border border-white/10 text-center">
+                            <div className="text-[11px] font-semibold text-[#ecdbbb] uppercase tracking-wider mb-2">
+                              📱 Kendi Telefonunuzda Açın
+                            </div>
+                            <div className="p-3 bg-white rounded-xl w-fit mx-auto mb-2">
+                              <img
+                                src={'https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=' + encodeURIComponent(originUrl + '/demos/ecommerce/index.html')}
+                                alt="E-Ticaret Mobil QR"
+                                className="w-28 h-28"
+                              />
+                            </div>
+                            <div className="text-[10px] text-zinc-400 font-mono">
+                              FLAW ATELIER · Mobil Storefront
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
 

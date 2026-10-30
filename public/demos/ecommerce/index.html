@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>FLAW ATELIER | New Season Drop — Softlabs E-Ticaret Demosu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f4f4f5;
+      --surface-2: #ebebed;
+      --ink: #09090b;
+      --muted: #52525b;
+      --subtle: #8e8e96;
+      --champagne: #ecdbbb;
+      --line: rgba(9, 9, 11, 0.09);
+      --line-strong: rgba(9, 9, 11, 0.2);
+      --green: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f4f4f5;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c4c4cc;
+      border-radius: 99px;
+    }
+
+    /* Top Announcement Bar */
+    .topbar {
+      background: var(--ink);
+      color: #ffffff;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .topbar-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--champagne);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* Sticky Minimal Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 13px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .brand-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 21px;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .brand-tag {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 3px 6px;
+      background: var(--ink);
+      color: var(--champagne);
+      border-radius: 3px;
+    }
+
+    .culture-note {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+      border-left: 1px solid var(--line-strong);
+      padding-left: 10px;
+      display: none;
+    }
+
+    @media (min-width: 860px) {
+      .culture-note {
+        display: inline-block;
+      }
+    }
+
+    /* Header Actions */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      height: 36px;
+      padding: 0 11px;
+      border-radius: 99px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s ease;
+    }
+
+    .icon-btn:hover {
+      border-color: var(--ink);
+      background: var(--surface);
+    }
+
+    .cart-btn {
+      background: var(--ink);
+      color: #ffffff;
+      border: 1px solid var(--ink);
+      height: 36px;
+      padding: 0 14px;
+      border-radius: 99px;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .cart-btn:hover {
+      background: #222226;
+      transform: translateY(-1px);
+    }
+
+    .cart-count {
+      background: var(--champagne);
+      color: var(--ink);
+      font-size: 10.5px;
+      font-weight: 800;
+      min-width: 19px;
+      height: 19px;
+      padding: 0 5px;
+      border-radius: 99px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Search Drawer Bar */
+    .search-bar-wrap {
+      display: none;
+      border-top: 1px solid var(--line);
+      background: #fafafa;
+      padding: 10px 18px;
+    }
+
+    .search-bar-wrap.open {
+      display: block;
+    }
+
+    .search-input-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 9px 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 12.5px;
+      background: #ffffff;
+      color: var(--ink);
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--ink);
+    }
+
+    /* Category Nav Strip (Flaw Wear Horizontal Nav) */
+    .cat-strip {
+      border-bottom: 1px solid var(--line);
+      background: #ffffff;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .cat-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cat-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      white-space: nowrap;
+    }
+
+    .cat-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 11px 2px;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .cat-btn:hover {
+      color: var(--ink);
+    }
+
+    .cat-btn.active {
+      color: var(--ink);
+      border-bottom-color: var(--ink);
+    }
+
+    .cat-btn.sale {
+      color: #dc2626;
+    }
+
+    /* Editorial Hero Banner */
+    .hero {
+      max-width: 1180px;
+      margin: 16px auto 0;
+      padding: 0 18px;
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #0b0b0d;
+      min-height: 290px;
+      display: flex;
+      align-items: flex-end;
+      padding: 26px 24px;
+      color: #ffffff;
+    }
+
+    @media (min-width: 768px) {
+      .hero-card {
+        min-height: 360px;
+        align-items: center;
+        padding: 40px 44px;
+      }
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      opacity: 0.62;
+      transform: scale(1.02);
+      transition: transform 6s ease;
+    }
+
+    .hero-card:hover .hero-bg {
+      transform: scale(1.06);
+    }
+
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(9,9,11,0.92) 0%, rgba(9,9,11,0.62) 52%, rgba(9,9,11,0.2) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 520px;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 10px;
+      background: rgba(236, 219, 187, 0.16);
+      border: 1px solid rgba(236, 219, 187, 0.45);
+      color: var(--champagne);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border-radius: 99px;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(26px, 4.2vw, 44px);
+      font-weight: 800;
+      line-height: 1.03;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero-desc {
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 18px;
+      max-width: 430px;
+      line-height: 1.55;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: var(--ink);
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--champagne);
+    }
+
+    .btn-outline-light {
+      background: rgba(255,255,255,0.08);
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.28);
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .btn-outline-light:hover {
+      background: rgba(255,255,255,0.18);
+    }
+
+    /* Section Header */
+    .section-wrap {
+      max-width: 1180px;
+      margin: 26px auto 48px;
+      padding: 0 18px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .section-meta {
+      font-size: 11.5px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* Product Grid (2 cols on mobile like Flawwear, 3 cols on desktop) */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    @media (min-width: 768px) {
+      .product-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+      }
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      group: true;
+    }
+
+    .product-media {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      background: var(--surface);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .product-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .product-card:hover .product-media img {
+      transform: scale(1.05);
+    }
+
+    /* Top Left Drop Badge */
+    .badge-tag {
+      position: absolute;
+      top: 9px;
+      left: 9px;
+      background: rgba(9, 9, 11, 0.88);
+      color: #ffffff;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 4px 7px;
+      border-radius: 4px;
+      z-index: 2;
+    }
+
+    .badge-tag.atelier {
+      background: var(--ink);
+      color: var(--champagne);
+      border: 1px solid rgba(236, 219, 187, 0.35);
+    }
+
+    .badge-tag.discount {
+      background: #dc2626;
+      color: #ffffff;
+    }
+
+    /* Top Right Favorite Heart */
+    .fav-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      cursor: pointer;
+      z-index: 3;
+      transition: transform 0.15s ease;
+    }
+
+    .fav-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .fav-btn.liked {
+      color: #e11d48;
+    }
+
+    /* Bottom Left Flaw-Style Color Variant Indicator */
+    .color-pill {
+      position: absolute;
+      bottom: 9px;
+      left: 9px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(6px);
+      padding: 3px 7px;
+      border-radius: 99px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--ink);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      z-index: 2;
+    }
+
+    .swatch-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.2);
+      display: inline-block;
+    }
+
+    /* Product Info */
+    .product-brand {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-bottom: 2px;
+    }
+
+    .product-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 5px;
+      cursor: pointer;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-name:hover {
+      text-decoration: underline;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+      margin-bottom: 9px;
+    }
+
+    .price-now {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .price-old {
+      font-size: 11.5px;
+      color: var(--subtle);
+      text-decoration: line-through;
+    }
+
+    .price-vat {
+      font-size: 9.5px;
+      color: var(--subtle);
+      font-weight: 600;
+      margin-left: auto;
+    }
+
+    /* Size Selector Strip + Quick Add */
+    .size-row {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 7px;
+    }
+
+    .size-chip {
+      flex: 1;
+      height: 26px;
+      border: 1px solid var(--line-strong);
+      background: #ffffff;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 10.5px;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.14s ease;
+    }
+
+    .size-chip:hover {
+      border-color: var(--ink);
+    }
+
+    .size-chip.selected {
+      background: var(--ink);
+      color: #ffffff;
+      border-color: var(--ink);
+    }
+
+    .add-btn {
+      width: 100%;
+      height: 34px;
+      border-radius: 5px;
+      border: 1px solid var(--ink);
+      background: #ffffff;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .add-btn:hover {
+      background: var(--ink);
+      color: #ffffff;
+    }
+
+    .add-btn.added {
+      background: var(--green);
+      border-color: var(--green);
+      color: #ffffff;
+    }
+
+    /* Store Perks Strip */
+    .perks {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #fafafa;
+      padding: 20px 18px;
+    }
+
+    .perks-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    @media (min-width: 768px) {
+      .perks-inner {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .perk-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 11.5px;
+    }
+
+    .perk-title {
+      font-weight: 800;
+      color: var(--ink);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .perk-sub {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* Minimal Footer */
+    .footer {
+      background: var(--ink);
+      color: #a1a1aa;
+      padding: 24px 18px;
+      font-size: 11px;
+    }
+
+    .footer-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .footer-brand {
+      color: #ffffff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+    }
+
+    /* Slide-Over Cart Drawer */
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 9, 11, 0.5);
+      backdrop-filter: blur(3px);
+      z-index: 90;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+    }
+
+    .backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 390px;
+      background: #ffffff;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: -12px 0 40px rgba(0,0,0,0.18);
+    }
+
+    .cart-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-head {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .drawer-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .close-btn {
+      background: var(--surface);
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Free Shipping Progress */
+    .ship-bar {
+      padding: 11px 18px;
+      background: #fafafa;
+      border-bottom: 1px solid var(--line);
+      font-size: 11.5px;
+    }
+
+    .ship-track {
+      height: 5px;
+      background: #e4e4e7;
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .ship-fill {
+      height: 100%;
+      background: var(--ink);
+      transition: width 0.3s ease;
+    }
+
+    .ship-fill.unlocked {
+      background: var(--green);
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cart-item img {
+      width: 64px;
+      height: 84px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+
+    .cart-item-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cart-item-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .cart-item-meta {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .qty-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+    }
+
+    .qty-ctrl {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+    }
+
+    .qty-btn {
+      width: 24px;
+      height: 24px;
+      background: none;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .qty-val {
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 0 7px;
+    }
+
+    .drawer-foot {
+      padding: 16px 18px;
+      border-top: 1px solid var(--line);
+      background: #ffffff;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 13px;
+      border-radius: 6px;
+      border: none;
+      background: var(--ink);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-bottom: 8px;
+      transition: background 0.18s ease;
+    }
+
+    .checkout-btn:hover {
+      background: #27272a;
+    }
+
+    .wa-order-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #22c55e;
+      background: rgba(34, 197, 94, 0.08);
+      color: #15803d;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* Quick View Modal */
+    .qv-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 110;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(9, 9, 11, 0.6);
+      backdrop-filter: blur(4px);
+    }
+
+    .qv-modal.open {
+      display: flex;
+    }
+
+    .qv-card {
+      background: #ffffff;
+      border-radius: 12px;
+      max-width: 680px;
+      width: 100%;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @media (min-width: 640px) {
+      .qv-card {
+        grid-template-columns: 1fr 1.1fr;
+      }
+    }
+
+    .qv-img {
+      width: 100%;
+      height: 290px;
+      object-fit: cover;
+      background: var(--surface);
+    }
+
+    @media (min-width: 640px) {
+      .qv-img {
+        height: 100%;
+        min-height: 380px;
+      }
+    }
+
+    .qv-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--ink);
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 120;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.24s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <span class="topbar-dot"></span>
+    <span>NEW SEASON DROP '26 · ₺2.000 ÜZERİ ÜCRETSİZ KARGO · AYNI GÜN HIZLI TESLİMAT</span>
+    <span class="topbar-dot"></span>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#top" class="brand-wrap">
+        <span class="brand-logo">FLAW</span>
+        <span class="brand-tag">ATELIER</span>
+        <span class="culture-note">Streetwear Studio 🖤 #flawculture</span>
+      </a>
+
+      <div class="header-actions">
+        <button type="button" class="icon-btn" onclick="toggleSearch()" title="Ürün Ara">
+          <span>🔍</span>
+          <span style="display:none" id="searchLabel">Ara</span>
+        </button>
+        <button type="button" class="cart-btn" onclick="openCart()">
+          <span>SEPETİM</span>
+          <span class="cart-count" id="headerCartCount">1</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar-wrap" id="searchWrap">
+      <div class="search-input-inner">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Koleksiyonda ara: Baggy eşofman, boxy hoodie, oversize tişört..."
+          oninput="renderProducts()"
+        />
+      </div>
+    </div>
+
+    <!-- Category Strip -->
+    <nav class="cat-strip">
+      <div class="cat-inner" id="catNav">
+        <button class="cat-btn active" data-cat="all" onclick="setCategory('all', this)">TÜM KOLEKSİYON</button>
+        <button class="cat-btn" data-cat="new" onclick="setCategory('new', this)">NEW DROP</button>
+        <button class="cat-btn" data-cat="atelier" onclick="setCategory('atelier', this)">FLAW ATELIER</button>
+        <button class="cat-btn" data-cat="top" onclick="setCategory('top', this)">ÜST GİYİM</button>
+        <button class="cat-btn" data-cat="bottom" onclick="setCategory('bottom', this)">BAGGY & ALT GİYİM</button>
+        <button class="cat-btn sale" data-cat="sale" onclick="setCategory('sale', this)">SEZON FIRSATI</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Editorial Hero -->
+  <section class="hero" id="top">
+    <div class="hero-card">
+      <img
+        class="hero-bg"
+        src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1400&q=85"
+        alt="New Season Streetwear Drop"
+      />
+      <div class="hero-gradient"></div>
+      <div class="hero-content">
+        <div class="hero-kicker">● DROP 04 · ISTANBUL STREETWEAR</div>
+        <h1 class="hero-title">NEW SEASON<br />ATELIER DROP</h1>
+        <p class="hero-desc">
+          480 GSM ağır gramajlı %100 pamuk boxy hoodie’ler, ayarlanabilir paça baggy eşofman altları ve sınırlı üretim sokak koleksiyonu.
+        </p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="document.getElementById('shopSection').scrollIntoView({behavior:'smooth'})">
+            KOLEKSİYONU İNCELE ↓
+          </button>
+          <button class="btn-outline-light" onclick="filterAtelierAndScroll()">
+            FLAW ATELIER SERİSİ
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Grid Section -->
+  <main class="section-wrap" id="shopSection">
+    <div class="section-head">
+      <h2 class="section-title" id="sectionTitle">ÖNE ÇIKAN DROP PARÇALARI</h2>
+      <span class="section-meta" id="productCountText">6 Ürün Listeleniyor</span>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+  </main>
+
+  <!-- Store Perks -->
+  <section class="perks">
+    <div class="perks-inner">
+      <div class="perk-box">
+        <span>⚡</span>
+        <div>
+          <div class="perk-title">Aynı Gün Kargo</div>
+          <div class="perk-sub">16:00'a kadar verilen siparişlerde</div>
+        </div>
+      </div>
+      <div class="perk-box">
+        <span>🔒</span>
+        <div>
+          <div class="perk-title">256-Bit Iyzico POS</div>
+          <div class="perk-sub">Taksitli & 3D Secure güvenli ödeme</div>
+        </div>
+      </div>
+      <div class="perk-box">
+        <span>🔄</span>
+        <div>
+          <div class="perk-title">14 Gün Kolay Değişim</div>
+          <div class="perk-sub">Ücretsiz beden ve ürün değişimi</div>
+        </div>
+      </div>
+      <div class="perk-box">
+        <span>🖤</span>
+        <div>
+          <div class="perk-title">480 GSM Heavyweight</div>
+          <div class="perk-sub">%100 organik şardonlu pamuk doku</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimal Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">FLAW // ATELIER STUDIO</div>
+        <div style="margin-top:3px;">İstanbul Sokak Modası · Bakırköy · Beşiktaş · Kadıköy · Online Mağaza</div>
+      </div>
+      <div style="color:#ecdbbb;font-weight:700;">
+        Powered by Softlabs Next-Gen Commerce ⚡
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer Backdrop & Panel -->
+  <div class="backdrop" id="cartBackdrop" onclick="closeCart()"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="drawer-head">
+      <span class="drawer-title">SEPETİM (<span id="drawerCount">1</span>)</span>
+      <button class="close-btn" onclick="closeCart()">✕</button>
+    </div>
+
+    <div class="ship-bar">
+      <div id="shipText" style="font-weight:700;"></div>
+      <div class="ship-track">
+        <div class="ship-fill" id="shipFill" style="width:65%"></div>
+      </div>
+    </div>
+
+    <div class="cart-items" id="cartItemsContainer"></div>
+
+    <div class="drawer-foot" id="drawerFoot">
+      <div class="total-row">
+        <span style="font-size:12px;color:var(--muted);font-weight:700;">GENEL TOPLAM (KDV Dahil)</span>
+        <span style="font-size:18px;font-weight:800;" id="cartTotalText">₺0,00</span>
+      </div>
+      <button class="checkout-btn" onclick="simulateCheckout()">
+        GÜVENLİ ÖDEMEYE GEÇ (IYZICO) →
+      </button>
+      <button class="wa-order-btn" onclick="simulateWhatsAppOrder()">
+        💬 WhatsApp ile 1-Tıkla Sipariş Ver
+      </button>
+    </div>
+  </aside>
+
+  <!-- Quick View Modal -->
+  <div class="qv-modal" id="qvModal" onclick="if(event.target===this) closeQuickView()">
+    <div class="qv-card" id="qvContent"></div>
+  </div>
+
+  <!-- Bottom Toast -->
+  <div class="toast" id="toastBox">
+    <span id="toastMsg">✓ Ürün sepete eklendi</span>
+    <button onclick="openCart()" style="background:var(--champagne);color:#09090b;border:none;padding:4px 10px;border-radius:99px;font-size:11px;font-weight:800;cursor:pointer;">
+      Sepeti Gör
+    </button>
+  </div>
+
+  <script>
+    const PRODUCTS = [
+      {
+        id: 'p1',
+        brand: 'FLAW ATELIER',
+        name: 'Atelier Heavyweight Boxy Hoodie Siyah',
+        price: 1899,
+        oldPrice: null,
+        badge: 'ATELIER',
+        badgeType: 'atelier',
+        cats: ['new', 'atelier', 'top'],
+        colors: ['#09090b', '#52525b', '#d6d3d1'],
+        colorCount: 3,
+        fabric: '480 GSM %100 Organik Pamuk · Boxy Fit Düşük Omuz',
+        image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'p2',
+        brand: 'FLAW',
+        name: 'Script Ayarlanabilir Paça Baggy Eşofman Altı',
+        price: 1299,
+        oldPrice: null,
+        badge: 'BEST SELLER',
+        badgeType: 'default',
+        cats: ['new', 'bottom'],
+        colors: ['#1e293b', '#09090b', '#a1a1aa'],
+        colorCount: 3,
+        fabric: '380 GSM Üç İplik Şardonlu · Stoperli Paça Baggy Kalıp',
+        image: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'p3',
+        brand: 'FLAW ATELIER',
+        name: 'Old Skool Kalıp Heavyweight Tişört Ekru',
+        price: 799,
+        oldPrice: null,
+        badge: 'NEW DROP',
+        badgeType: 'default',
+        cats: ['new', 'atelier', 'top'],
+        colors: ['#f5f5f4', '#09090b', '#44403c'],
+        colorCount: 4,
+        fabric: '300 GSM Tok Süprem · Geniş Yaka Oversize Kesim',
+        image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'p4',
+        brand: 'FLAW',
+        name: 'Raw Carpenter Baggy Denim Pantolon İndigo',
+        price: 1749,
+        oldPrice: null,
+        badge: 'NEW DROP',
+        badgeType: 'default',
+        cats: ['new', 'bottom'],
+        colors: ['#1e3a5f', '#18181b'],
+        colorCount: 2,
+        fabric: '14 Oz Rijit Denim · Ultra Geniş Sokak Kesimi',
+        image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'p5',
+        brand: 'FLAW ATELIER',
+        name: 'Atelier Cropped Fermuarlı Bomber Ceket',
+        price: 2299,
+        oldPrice: 2799,
+        badge: '%18 İNDİRİM',
+        badgeType: 'discount',
+        cats: ['atelier', 'top', 'sale'],
+        colors: ['#27272a', '#09090b'],
+        colorCount: 2,
+        fabric: 'Su İtici Mat Dokuma · Çift Yönlü Metal Fermuar',
+        image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'p6',
+        brand: 'WITH FLAW',
+        name: '3D Nakışlı Washed Streetwear Şapka',
+        price: 549,
+        oldPrice: 699,
+        badge: 'FIRSAT',
+        badgeType: 'discount',
+        cats: ['sale'],
+        colors: ['#09090b', '#3f3f46', '#d6d3d1'],
+        colorCount: 3,
+        fabric: 'Yıkamalı Pamuk Gabardin · Ayarlanabilir Metal Toka',
+        image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=900&q=80'
+      }
+    ];
+
+    let activeCat = 'all';
+    const selectedSizes = { p1: 'L', p2: 'M', p3: 'L', p4: '32', p5: 'M', p6: 'STD' };
+    const likedIds = new Set(['p1']);
+    let cart = [
+      { id: 'p2', size: 'M', qty: 1 }
+    ];
+
+    function formatTL(num) {
+      return '₺' + num.toLocaleString('tr-TR') + ',00';
+    }
+
+    function getSizesFor(product) {
+      if (product.id === 'p4') return ['30', '32', '34', '36'];
+      if (product.id === 'p6') return ['STD'];
+      return ['S', 'M', 'L', 'XL'];
+    }
+
+    function renderProducts() {
+      const q = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+      const grid = document.getElementById('productGrid');
+
+      const filtered = PRODUCTS.filter((p) => {
+        const matchCat = activeCat === 'all' || p.cats.includes(activeCat);
+        const matchQuery = !q || p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q);
+        return matchCat && matchQuery;
+      });
+
+      document.getElementById('productCountText').textContent = filtered.length + ' Ürün Listeleniyor';
+
+      grid.innerHTML = filtered.map((p) => {
+        const sizes = getSizesFor(p);
+        const curSize = selectedSizes[p.id] || sizes[0];
+        const isLiked = likedIds.has(p.id);
+
+        return `
+          <article class="product-card">
+            <div class="product-media" onclick="openQuickView('${p.id}')">
+              <span class="badge-tag ${p.badgeType}">${p.badge}</span>
+              <button
+                type="button"
+                class="fav-btn ${isLiked ? 'liked' : ''}"
+                onclick="event.stopPropagation(); toggleLike('${p.id}')"
+                title="Favorilere Ekle"
+              >${isLiked ? '♥' : '♡'}</button>
+              <img src="${p.image}" alt="${p.name}" loading="lazy" />
+              <div class="color-pill">
+                ${p.colors.map(c => `<span class="swatch-dot" style="background:${c}"></span>`).join('')}
+                <span>+${p.colorCount}</span>
+              </div>
+            </div>
+
+            <div class="product-brand">${p.brand}</div>
+            <div class="product-name" onclick="openQuickView('${p.id}')">${p.name}</div>
+
+            <div class="price-row">
+              <span class="price-now">${formatTL(p.price)}</span>
+              ${p.oldPrice ? `<span class="price-old">${formatTL(p.oldPrice)}</span>` : ''}
+              <span class="price-vat">KDV Dahil</span>
+            </div>
+
+            <div class="size-row">
+              ${sizes.map(s => `
+                <button
+                  type="button"
+                  class="size-chip ${curSize === s ? 'selected' : ''}"
+                  onclick="selectSize('${p.id}', '${s}')"
+                >${s}</button>
+              `).join('')}
+            </div>
+
+            <button
+              type="button"
+              id="addBtn_${p.id}"
+              class="add-btn"
+              onclick="addToCart('${p.id}')"
+            >SEPETE EKLE</button>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectSize(pid, size) {
+      selectedSizes[pid] = size;
+      renderProducts();
+    }
+
+    function toggleLike(pid) {
+      if (likedIds.has(pid)) likedIds.delete(pid);
+      else likedIds.add(pid);
+      renderProducts();
+    }
+
+    function setCategory(cat, btnEl) {
+      activeCat = cat;
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+
+      const titles = {
+        all: 'ÖNE ÇIKAN DROP PARÇALARI',
+        new: 'NEW SEASON DROP // YENİ GELENLER',
+        atelier: 'FLAW ATELIER ÖZEL SERİ',
+        top: 'OVERSIZE ÜST GİYİM KOLEKSİYONU',
+        bottom: 'BAGGY EŞOFMAN & DENİM',
+        sale: 'DEPODA YER AÇIYORUZ · SEZON FIRSATI'
+      };
+      document.getElementById('sectionTitle').textContent = titles[cat] || 'KOLEKSİYON';
+      renderProducts();
+    }
+
+    function filterAtelierAndScroll() {
+      const btn = document.querySelector('.cat-btn[data-cat="atelier"]');
+      setCategory('atelier', btn);
+      document.getElementById('shopSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function toggleSearch() {
+      const wrap = document.getElementById('searchWrap');
+      wrap.classList.toggle('open');
+      if (wrap.classList.contains('open')) {
+        document.getElementById('searchInput').focus();
+      }
+    }
+
+    function addToCart(pid) {
+      const p = PRODUCTS.find(x => x.id === pid);
+      if (!p) return;
+      const size = selectedSizes[pid] || getSizesFor(p)[0];
+      const existing = cart.find(item => item.id === pid && item.size === size);
+      if (existing) existing.qty += 1;
+      else cart.push({ id: pid, size, qty: 1 });
+
+      updateCartUI();
+
+      const btn = document.getElementById('addBtn_' + pid);
+      if (btn) {
+        btn.classList.add('added');
+        btn.textContent = '✓ SEPETE EKLENDİ';
+        setTimeout(() => {
+          btn.classList.remove('added');
+          btn.textContent = 'SEPETE EKLE';
+        }, 1100);
+      }
+
+      showToast(`✓ ${p.name} (${size}) eklendi`);
+    }
+
+    function changeQty(idx, delta) {
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) cart.splice(idx, 1);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const totalCount = cart.reduce((acc, i) => acc + i.qty, 0);
+      const totalAmount = cart.reduce((acc, i) => {
+        const prod = PRODUCTS.find(x => x.id === i.id);
+        return acc + (prod ? prod.price * i.qty : 0);
+      }, 0);
+
+      document.getElementById('headerCartCount').textContent = totalCount;
+      document.getElementById('drawerCount').textContent = totalCount;
+      document.getElementById('cartTotalText').textContent = formatTL(totalAmount);
+
+      // Free shipping bar (2000 TL threshold)
+      const threshold = 2000;
+      const pct = Math.min(100, Math.round((totalAmount / threshold) * 100));
+      const shipFill = document.getElementById('shipFill');
+      const shipText = document.getElementById('shipText');
+      shipFill.style.width = pct + '%';
+
+      if (totalAmount >= threshold) {
+        shipFill.classList.add('unlocked');
+        shipText.innerHTML = '🎉 <span style="color:#059669">Ücretsiz Kargo Ayrıcalığı Aktif!</span>';
+      } else {
+        shipFill.classList.remove('unlocked');
+        shipText.innerHTML = `Ücretsiz kargo için <strong>${formatTL(threshold - totalAmount)}</strong> kaldı`;
+      }
+
+      const container = document.getElementById('cartItemsContainer');
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div style="text-align:center;padding:48px 16px;color:var(--muted);font-size:12.5px;">
+            <div style="font-size:28px;margin-bottom:8px;">🛍️</div>
+            <div style="font-weight:700;color:var(--ink);margin-bottom:4px;">Sepetiniz şu an boş</div>
+            <div>New Drop koleksiyonundan favori bedeninizi seçip ekleyebilirsiniz.</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = cart.map((item, idx) => {
+        const prod = PRODUCTS.find(x => x.id === item.id);
+        return `
+          <div class="cart-item">
+            <img src="${prod.image}" alt="${prod.name}" />
+            <div class="cart-item-info">
+              <div>
+                <div class="cart-item-title">${prod.name}</div>
+                <div class="cart-item-meta">Beden: <strong>${item.size}</strong> · ${prod.brand}</div>
+              </div>
+              <div class="qty-row">
+                <div class="qty-ctrl">
+                  <button class="qty-btn" onclick="changeQty(${idx}, -1)">−</button>
+                  <span class="qty-val">${item.qty}</span>
+                  <button class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
+                </div>
+                <span style="font-weight:800;font-size:13px;">${formatTL(prod.price * item.qty)}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openCart() {
+      document.getElementById('cartBackdrop').classList.add('open');
+      document.getElementById('cartDrawer').classList.add('open');
+    }
+
+    function closeCart() {
+      document.getElementById('cartBackdrop').classList.remove('open');
+      document.getElementById('cartDrawer').classList.remove('open');
+    }
+
+    function openQuickView(pid) {
+      const p = PRODUCTS.find(x => x.id === pid);
+      if (!p) return;
+      const sizes = getSizesFor(p);
+      const curSize = selectedSizes[p.id] || sizes[0];
+
+      document.getElementById('qvContent').innerHTML = `
+        <img class="qv-img" src="${p.image}" alt="${p.name}" />
+        <div class="qv-body">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <span style="font-size:10.5px;font-weight:800;letter-spacing:0.12em;color:var(--muted);">${p.brand}</span>
+              <button class="close-btn" onclick="closeQuickView()">✕</button>
+            </div>
+            <h3 style="font-family:'Syne',sans-serif;font-size:19px;font-weight:800;margin-bottom:8px;">${p.name}</h3>
+            <div style="font-size:18px;font-weight:800;margin-bottom:12px;">
+              ${formatTL(p.price)}
+              ${p.oldPrice ? `<span class="price-old" style="margin-left:6px;">${formatTL(p.oldPrice)}</span>` : ''}
+            </div>
+            <p style="font-size:12px;color:var(--muted);background:var(--surface);padding:10px 12px;border-radius:6px;margin-bottom:14px;">
+              <strong>Kumaş & Kalıp:</strong> ${p.fabric}
+            </p>
+            <div style="font-size:11px;font-weight:800;text-transform:uppercase;margin-bottom:6px;">Beden Seçimi</div>
+            <div class="size-row" style="margin-bottom:14px;">
+              ${sizes.map(s => `
+                <button
+                  type="button"
+                  class="size-chip ${curSize === s ? 'selected' : ''}"
+                  onclick="selectedSizes['${p.id}']='${s}'; openQuickView('${p.id}'); renderProducts();"
+                >${s}</button>
+              `).join('')}
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <button class="checkout-btn" style="margin:0;" onclick="addToCart('${p.id}'); closeQuickView(); openCart();">
+              SEPETE EKLE & SEPETE GİT →
+            </button>
+            <div style="font-size:11px;color:var(--muted);text-align:center;">
+              ⚡ Saat 16:00'a kadar verilen siparişler aynı gün kargoda
+            </div>
+          </div>
+        </div>
+      `;
+      document.getElementById('qvModal').classList.add('open');
+    }
+
+    function closeQuickView() {
+      document.getElementById('qvModal').classList.remove('open');
+    }
+
+    function simulateCheckout() {
+      if (cart.length === 0) return;
+      const container = document.getElementById('cartItemsContainer');
+      container.innerHTML = `
+        <div style="padding:28px 14px;text-align:center;">
+          <div style="width:52px;height:52px;border-radius:50%;background:#dcfce7;color:#15803d;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;margin:0 auto 12px;">✓</div>
+          <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:800;margin-bottom:6px;">SİPARİŞİNİZ ONAYLANDI!</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px;">
+            Sipariş No: <strong>#FLW-8492</strong><br/>
+            3D Secure ödemeniz başarıyla alındı ve kargo barkodunuz oluşturuldu. SMS takip linkiniz telefonunuza iletildi.
+          </div>
+          <button class="btn-primary" style="background:var(--ink);color:#fff;" onclick="cart=[]; updateCartUI(); closeCart();">
+            Alışverişe Devam Et
+          </button>
+        </div>
+      `;
+    }
+
+    function simulateWhatsAppOrder() {
+      if (cart.length === 0) return;
+      showToast('💬 WhatsApp hızlı sipariş özeti hazırlandı!');
+    }
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const box = document.getElementById('toastBox');
+      document.getElementById('toastMsg').textContent = msg;
+      box.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => box.classList.remove('show'), 2800);
+    }
+
+    renderProducts();
+    updateCartUI();
+  </script>
+</body>
+</html>
