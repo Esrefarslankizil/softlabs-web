@@ -30,7 +30,11 @@ export default function Footer() {
           <a href="#hizmetler" className="hover:text-[#525252] transition">
             Hizmetler
           </a>
-          <a href="#surec" className="hover:text-[#525252] transition">
+          <a href="/fiyatlandirma" className="text-zinc-900 font-bold hover:text-[#9e7a38] transition flex items-center gap-1">
+            <span>💎</span>
+            <span>Fiyatlandırma</span>
+          </a>
+          <a href="/#surec" className="hover:text-[#525252] transition">
             Süreç
           </a>
           <a href="#calismalar" className="hover:text-[#525252] transition">
