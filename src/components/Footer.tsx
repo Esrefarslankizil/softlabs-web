@@ -21,29 +21,28 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center gap-7 text-xs font-semibold text-[#6c6c6c]">
-          <a href="#hakkimizda" className="hover:text-[#525252] transition">
+          <a href="/#hakkimizda" className="hover:text-[#525252] transition">
             Hakkımızda
           </a>
-          <a href="#neden-biz" className="hover:text-[#525252] transition">
+          <a href="/#neden-biz" className="hover:text-[#525252] transition">
             Neden Biz?
           </a>
-          <a href="#hizmetler" className="hover:text-[#525252] transition">
+          <a href="/#hizmetler" className="hover:text-[#525252] transition">
             Hizmetler
           </a>
-          <a href="/fiyatlandirma" className="text-zinc-900 font-bold hover:text-[#9e7a38] transition flex items-center gap-1">
-            <span>💎</span>
-            <span>Fiyatlandırma</span>
+          <a href="/fiyatlandirma" className="text-zinc-900 font-bold hover:text-[#9e7a38] transition">
+            Fiyatlandırma
           </a>
           <a href="/#surec" className="hover:text-[#525252] transition">
             Süreç
           </a>
-          <a href="#calismalar" className="hover:text-[#525252] transition">
+          <a href="/#calismalar" className="hover:text-[#525252] transition">
             Başarılar
           </a>
-          <a href="#entegrasyonlar" className="hover:text-[#525252] transition">
+          <a href="/#entegrasyonlar" className="hover:text-[#525252] transition">
             Entegrasyonlar
           </a>
-          <a href="#iletisim" className="hover:text-[#525252] transition">
+          <a href="/#iletisim" className="hover:text-[#525252] transition">
             İletişim
           </a>
           <a href="mailto:hello@softlabs.com" className="text-[#525252] hover:text-[#6c6c6c] transition underline underline-offset-4 decoration-[#ecdbbb] decoration-2 font-bold">

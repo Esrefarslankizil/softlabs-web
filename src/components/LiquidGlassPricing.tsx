@@ -2,366 +2,231 @@
 
 import React, { useState } from 'react';
 
-export type BillingCycle = 'monthly' | 'yearly';
+type SectorKey = 'eticaret' | 'restoran';
 
-interface PlanFeature {
-  text: string;
-  highlight?: boolean;
+interface FeatureItem {
+  category: string;
+  detail: string;
 }
 
-interface PricingPlan {
+interface Plan {
   id: string;
   name: string;
-  tagline: string;
-  badge?: string;
-  featured?: boolean;
-  monthlyPrice: number;
-  yearlyPrice: number;
-  monthlyNote: string;
-  yearlyNote: string;
-  features: PlanFeature[];
-  buttonLabel: string;
-  buttonVariant: 'default' | 'featured' | 'outline';
-  customCta?: string;
+  isPro?: boolean;
+  popularBadge?: string;
+  description: string;
+  price: number;
+  period: string;
+  ctaText: string;
+  features: FeatureItem[];
 }
 
-const PLANS: PricingPlan[] = [
-  {
-    id: 'starter',
-    name: 'Dijital Vitrin',
-    tagline: 'Butik işletmeler, kafeler ve yeni kurulan markalar için.',
-    monthlyPrice: 5900,
-    yearlyPrice: 4700,
-    monthlyNote: '/ay, esnek faturalandırma',
-    yearlyNote: '/ay, yıllık faturalandırılır (₺14.400 tasarruf)',
-    buttonLabel: 'Projeyi Başlat',
-    buttonVariant: 'default',
-    features: [
-      { text: '0.4s Ultra Hızlı Next.js Mimarisi' },
-      { text: 'Mobil & Tablet %100 Uyumlu Responsive Tasarım' },
-      { text: 'Google Haritalar & Yerel SEO Entegrasyonu' },
-      { text: 'WhatsApp Hızlı İletişim & Tek Tıkla Arama' },
-      { text: 'Ücretsiz SSL Sertifikası, Bulut Barındırma & CDN' },
-      { text: 'Temel İletişim ve Müşteri Talep Formu' },
+const PRICING_DATA: Record<SectorKey, { label: string; badge?: string; subtitle: string; plans: Plan[] }> = {
+  eticaret: {
+    label: 'E-Ticaret',
+    badge: 'Odak',
+    subtitle: 'Ultra hızlı mobil vitrin, sanal POS, pazaryeri ve otomatik kargo entegrasyonu.',
+    plans: [
+      {
+        id: 'eticaret-standart',
+        name: 'Standart',
+        description: 'Online butikler ve markasını dijitale taşımak isteyenler için.',
+        price: 10000,
+        period: 'anahtar teslim',
+        ctaText: 'Standart Paketi Seç',
+        features: [
+          { category: 'Mağaza & Sipariş', detail: 'Ultra Hızlı Mobil Mağaza, Üyeliksiz Sipariş' },
+          { category: 'Kasa & POS', detail: 'İyzico / PayTR Sanal POS, Havale & Kapıda Ödeme' },
+          { category: 'Kargo & Takip', detail: 'Kargo Takip Kodu & Desi / Koli Yönetimi' },
+          { category: 'Sipariş İletişimi', detail: 'Sipariş Fişi Termal Çıktısı & WhatsApp Bildirimi' },
+          { category: 'Stok & Varyant', detail: 'Temel Düzey Ürün, Varyant & Kategori Yönetimi' },
+          { category: 'CRM & Sadakat', detail: 'Temel Müşteri Kaydı & İndirim Kuponu' },
+          { category: 'Raporlama', detail: 'Gün Sonu Sipariş ve Ciro Dönüşüm Özeti' },
+        ],
+      },
+      {
+        id: 'eticaret-plus',
+        name: 'Plus',
+        isPro: true,
+        popularBadge: 'En Popüler',
+        description: 'Pazaryeri ve otomatik kargoyla büyüyen markalar için.',
+        price: 15000,
+        period: 'anahtar teslim',
+        ctaText: 'Plus Paketi Başlat',
+        features: [
+          { category: 'Mağaza & Sipariş', detail: 'Tümüne Ek + Beden Seçimi & Akıllı Sepet Kurgusu' },
+          { category: 'Kasa & POS', detail: 'Taksit Matrisi, Tek Tıkla Kart Saklama & Cüzdan' },
+          { category: 'Kargo & Takip', detail: 'Trendyol, Hepsiburada Çift Yönlü Entegrasyon' },
+          { category: 'Sipariş İletişimi', detail: 'Otomatik Kargo Barkodu (Yurtiçi, Aras, MNG)' },
+          { category: 'Stok & Varyant', detail: 'Pazaryerlerinde Otomatik Stok & Fiyat Eşitleme' },
+          { category: 'CRM & Sadakat', detail: 'Müşteri Sadakat (Puan/Cüzdan) ve Terk Sepet' },
+          { category: 'Raporlama', detail: 'Kategori ve Ürün Bazlı Net Kâr Analizi' },
+        ],
+      },
+      {
+        id: 'eticaret-premium',
+        name: 'Premium',
+        description: 'Çok kanallı satış, e-ihracat ve kurumsal ERP için.',
+        price: 20000,
+        period: 'anahtar teslim',
+        ctaText: 'Premium Teklif Al',
+        features: [
+          { category: 'Mağaza & Sipariş', detail: 'Tümüne Ek + Çoklu Şube & B2B Bayi Portalı' },
+          { category: 'Kasa & POS', detail: 'Tümüne Ek + Kapsamlı Muhasebe / ERP Entegrasyonu' },
+          { category: 'Kargo & Takip', detail: 'Tümüne Ek + Depo & Kendi Kurye/Teslimat Otomasyonu' },
+          { category: 'Sipariş İletişimi', detail: 'Tümüne Ek + Hazırlık & Personel Performans Takibi' },
+          { category: 'Stok & Varyant', detail: 'Tümüne Ek + Fire Yönetimi, Sayım & Tedarikçi Modülü' },
+          { category: 'CRM & Sadakat', detail: 'Gelişmiş CRM, SMS/WhatsApp Kampanya Motoru' },
+          { category: 'Raporlama', detail: 'Yapay Zeka Destekli Gelecek Satış Tahmini' },
+        ],
+      },
     ],
   },
-  {
-    id: 'pro',
-    name: 'Operasyonel Güç',
-    tagline: 'Restoran, klinik, spor salonu ve büyüyen işletmeler için.',
-    badge: '★ EN ÇOK TERCİH EDİLEN',
-    featured: true,
-    monthlyPrice: 14500,
-    yearlyPrice: 11600,
-    monthlyNote: '/ay, esnek faturalandırma',
-    yearlyNote: '/ay, yıllık faturalandırılır (₺34.800 tasarruf)',
-    buttonLabel: 'Hemen Başlayın',
-    buttonVariant: 'featured',
-    features: [
-      { text: 'Dijital Vitrin paketindeki her şey dahil' },
-      { text: 'Sektörel Canlı Modül (QR Menü / QR Turnike / Randevu)', highlight: true },
-      { text: 'Otomatik WhatsApp & SMS Randevu / Sipariş Onayları', highlight: true },
-      { text: 'Adisyo POS veya Özel Randevu & Seans Entegrasyonu' },
-      { text: 'İşletme Sahibine Özel Dijital Yönetim Portalı' },
-      { text: 'Gelişmiş Ziyaretçi & Müşteri Analitikleri' },
-      { text: '7/24 Öncelikli Teknik Destek & Bakım SLA' },
+  restoran: {
+    label: 'Restoran & Kafe',
+    subtitle: 'QR menüden mutfak ekranına, adisyondan kurye takibine eksiksiz restoran sistemi.',
+    plans: [
+      {
+        id: 'restoran-standart',
+        name: 'Standart',
+        description: 'QR Menü, masadan sipariş ve temel kasa düzeni için.',
+        price: 10000,
+        period: 'anahtar teslim',
+        ctaText: 'Standart Paketi Seç',
+        features: [
+          { category: 'Menü & Sipariş', detail: 'QR Menü (Dijital Görüntüleme), Masadan Sipariş' },
+          { category: 'Kasa & POS', detail: 'Temel Kasa Yönetimi, Online Ödeme' },
+          { category: 'Paket Servis', detail: 'Sadece Gel-Al (Manuel)' },
+          { category: 'Mutfak İletişimi', detail: 'Mutfak Yazıcısı (Adisyon) Çıktısı' },
+          { category: 'Stok & Maliyet', detail: 'Temel Düzey Ürün ve Kategori Yönetimi' },
+          { category: 'CRM & Pazarlama', detail: 'Temel Müşteri Kaydı' },
+          { category: 'Raporlama', detail: 'Gün Sonu Satış Özeti' },
+        ],
+      },
+      {
+        id: 'restoran-plus',
+        name: 'Plus',
+        isPro: true,
+        popularBadge: 'En Popüler',
+        description: 'Garson terminali ve mutfak ekranıyla tam operasyon.',
+        price: 15000,
+        period: 'anahtar teslim',
+        ctaText: 'Plus Paketi Başlat',
+        features: [
+          { category: 'Menü & Sipariş', detail: 'Tümüne Ek + Garson El Terminali / Tablet Desteği' },
+          { category: 'Kasa & POS', detail: 'Gelişmiş POS Sistemi, Parçalı ve Çoklu Ödeme' },
+          { category: 'Paket Servis', detail: 'Yemeksepeti, Getir, Trendyol Yemek Entegrasyonu' },
+          { category: 'Mutfak İletişimi', detail: 'Dijital Mutfak Ekranı (KDS) Entegrasyonu' },
+          { category: 'Stok & Maliyet', detail: 'Reçete Bazlı Otomatik Stok Düşümü' },
+          { category: 'CRM & Pazarlama', detail: 'Müşteri Sadakat (Puan/Cüzdan) Sistemi' },
+          { category: 'Raporlama', detail: 'Kategori ve Ürün Bazlı Kâr Analizi' },
+        ],
+      },
+      {
+        id: 'restoran-premium',
+        name: 'Premium',
+        description: 'Franchise zincirleri ve yapay zeka destekli yönetim.',
+        price: 20000,
+        period: 'anahtar teslim',
+        ctaText: 'Premium Teklif Al',
+        features: [
+          { category: 'Menü & Sipariş', detail: 'Tümüne Ek + Çoklu Şube (Franchise) Yönetimi' },
+          { category: 'Kasa & POS', detail: 'Tümüne Ek + Kapsamlı Muhasebe / ERP Entegrasyonu' },
+          { category: 'Paket Servis', detail: 'Tümüne Ek + Kendi Kurye / Teslimat Takip Otomasyonu' },
+          { category: 'Mutfak İletişimi', detail: 'Tümüne Ek + Hazırlık Süresi ve Personel Analizi' },
+          { category: 'Stok & Maliyet', detail: 'Tümüne Ek + Fire Yönetimi, Sayım ve Tedarikçi Modülü' },
+          { category: 'CRM & Pazarlama', detail: 'Gelişmiş CRM, SMS/WhatsApp Kampanya Optimizasyonu' },
+          { category: 'Raporlama', detail: 'Yapay Zeka Destekli Gelecek Satış Tahmini' },
+        ],
+      },
     ],
   },
-  {
-    id: 'enterprise',
-    name: 'Kurumsal Mimari',
-    tagline: 'Çok şubeli zincirler, e-ticaret markaları ve özel ERP ihtiyaçları için.',
-    monthlyPrice: 32000,
-    yearlyPrice: 25600,
-    monthlyNote: '/ay, esnek faturalandırma',
-    yearlyNote: '/ay, yıllık faturalandırılır (₺76.800 tasarruf)',
-    buttonLabel: 'Özel Teklif Al',
-    buttonVariant: 'outline',
-    features: [
-      { text: 'Operasyonel Güç paketindeki her şey dahil' },
-      { text: 'Özel Next.js E-Ticaret veya B2B Bayi Portalı', highlight: true },
-      { text: 'Iyzico / Stripe / PayTR Sanal POS & Kargo Entegrasyonu' },
-      { text: 'Çok Şubeli Merkezi Stok, Kasa ve Personel Yönetimi' },
-      { text: 'Özel API Geliştirme & Logo / Mikro / ERP Köprüsü' },
-      { text: 'Kişisel Çözüm Mimarı & Kıdemli Mühendislik Desteği' },
-      { text: '%99.9 Kesintisiz Uptime & Felaket Kurtarma Garantisi' },
-    ],
-  },
-];
-
-function formatPrice(amount: number) {
-  return amount.toLocaleString('tr-TR');
-}
-
-/**
- * Animated rolling price display that rolls digits when the price changes.
- */
-function RollingPrice({ value }: { value: number }) {
-  const formatted = formatPrice(value);
-
-  return (
-    <span className="inline-flex items-baseline overflow-hidden font-display tracking-tight text-zinc-950 font-bold">
-      {formatted.split('').map((char, index) => {
-        if (char === '.' || char === ',') {
-          return (
-            <span key={index} className="inline-block text-zinc-400 font-sans mx-0.5">
-              {char}
-            </span>
-          );
-        }
-        return (
-          <span
-            key={`${index}-${char}`}
-            className="inline-block transition-transform duration-500 ease-out animate-rise"
-          >
-            {char}
-          </span>
-        );
-      })}
-    </span>
-  );
-}
+};
 
 export default function LiquidGlassPricing() {
-  const [billing, setBilling] = useState<BillingCycle>('yearly');
+  const [sector, setSector] = useState<SectorKey>('eticaret');
+  const current = PRICING_DATA[sector];
 
-  const getWhatsAppUrl = (planName: string, price: number) => {
-    const cycleText = billing === 'yearly' ? 'Yıllık (%20 İndirimli)' : 'Aylık';
-    const msg = `Merhaba SoftLabs ekibi, ${planName} paketi (${cycleText} - ₺${formatPrice(price)}/ay) hakkında detaylı bilgi ve işletmeme kurulum süreci için görüşmek istiyorum.`;
+  const getWhatsAppUrl = (plan: Plan) => {
+    const msg = `Merhaba SoftLabs, ${current.label} sektörü için "${plan.name}" (${plan.price.toLocaleString('tr-TR')} TL) paketi hakkında detaylı bilgi almak ve projeyi başlatmak istiyorum.`;
     return `https://wa.me/905011366815?text=${encodeURIComponent(msg)}`;
   };
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-      {/* Background Optical Refraction Blobs */}
-      <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-[#ecdbbb]/25 via-[#f0e6d6]/20 to-transparent rounded-full blur-[90px] -z-10" />
-      <div className="pointer-events-none absolute top-1/2 -left-32 w-[450px] h-[450px] bg-gradient-to-br from-[#ecdbbb]/20 to-transparent rounded-full blur-[100px] -z-10" />
-      <div className="pointer-events-none absolute top-1/3 -right-32 w-[450px] h-[450px] bg-gradient-to-bl from-zinc-200/40 via-[#ecdbbb]/15 to-transparent rounded-full blur-[100px] -z-10" />
-
-      {/* Header Section */}
-      <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 border border-[#ecdbbb]/80 shadow-[0_2px_12px_rgba(236,219,187,0.3)] backdrop-blur-xl mb-4">
-          <span className="w-2 h-2 rounded-full bg-[#c8a261] animate-pulse" />
-          <span className="text-[11px] font-bold tracking-wider uppercase text-zinc-800">
-            Şeffaf & Esnek Yatırım
-          </span>
+    <section className="pricing" aria-label="Fiyatlandırma Paketleri">
+      {/* Sector Switcher (Exact Framer .billing Structure) */}
+      <div className="billing-wrap">
+        <div className="billing" role="radiogroup" aria-label="Sektör Seçimi">
+          {(Object.keys(PRICING_DATA) as SectorKey[]).map((key) => {
+            const item = PRICING_DATA[key];
+            const isChecked = sector === key;
+            return (
+              <button
+                key={key}
+                className="billing-option"
+                type="button"
+                role="radio"
+                aria-checked={isChecked}
+                onClick={() => setSector(key)}
+              >
+                <span>{item.label}</span>
+                {item.badge && <span className="save">{item.badge}</span>}
+              </button>
+            );
+          })}
         </div>
+      </div>
 
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold text-zinc-950 tracking-tight leading-[1.1] mb-5">
-          İşletmeniz İçin <br />
-          <span className="bg-gradient-to-r from-zinc-950 via-zinc-800 to-[#9e7a38] bg-clip-text text-transparent">
-            Liquid Glass Fiyatlandırma
-          </span>
-        </h1>
-
-        <p className="text-base sm:text-lg text-zinc-600 font-normal leading-relaxed max-w-2xl mx-auto">
-          Gizli maliyet veya sürpriz ek ücret yok. Kod kalitesi yüksek, ultra hızlı ve operasyonunuzu büyütecek modern yazılım altyapısı.
+      {/* Subtitle / Context */}
+      <div className="text-center mb-8">
+        <p className="text-sm text-[#15171c]/70 font-medium">
+          {current.subtitle}
         </p>
+      </div>
 
-        {/* Liquid Glass Switcher (Framer-inspired Liquid Glass Pill) */}
-        <div className="mt-8 sm:mt-10 inline-flex items-center justify-center">
-          <div className="relative p-1.5 rounded-full bg-[#f4ede1]/70 border border-white/90 shadow-[inset_0_2px_6px_rgba(0,0,0,0.04),0_8px_24px_-6px_rgba(0,0,0,0.06)] backdrop-blur-2xl ring-1 ring-[#ecdbbb]/40 flex items-center">
-            {/* Sliding Pill Indicator */}
-            <div
-              className={`absolute top-1.5 bottom-1.5 w-[calc(50%-6px)] rounded-full bg-white shadow-[0_3px_14px_rgba(0,0,0,0.08),inset_0_1px_1px_rgba(255,255,255,0.9),inset_0_-1px_1px_rgba(0,0,0,0.04)] border border-white/80 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                billing === 'monthly' ? 'left-1.5' : 'left-[calc(50%+3px)]'
-              }`}
-            />
+      {/* 3 Liquid Glass Cards (Exact Framer .cards & .card Structure) */}
+      <div className="cards">
+        {current.plans.map((plan) => (
+          <article key={plan.id} className={`card ${plan.isPro ? 'pro' : ''}`}>
+            <div className="card-head">
+              <h2>{plan.name}</h2>
+              {plan.popularBadge && <span className="popular">{plan.popularBadge}</span>}
+            </div>
 
-            <button
-              type="button"
-              onClick={() => setBilling('monthly')}
-              className={`relative z-10 px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-200 cursor-pointer ${
-                billing === 'monthly' ? 'text-zinc-950 font-bold' : 'text-zinc-500 hover:text-zinc-900'
-              }`}
-            >
-              Aylık Ödeme
-            </button>
+            <p className="description">{plan.description}</p>
 
-            <button
-              type="button"
-              onClick={() => setBilling('yearly')}
-              className={`relative z-10 px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-200 cursor-pointer flex items-center gap-2 ${
-                billing === 'yearly' ? 'text-zinc-950 font-bold' : 'text-zinc-500 hover:text-zinc-900'
-              }`}
-            >
-              <span>Yıllık Taahhüt</span>
-              <span className="px-2 py-0.5 rounded-full bg-[#ecdbbb] text-zinc-950 font-extrabold text-[10px] tracking-wide border border-[#d4b37f]/40 shadow-xs">
-                %20 İndirim
+            <div className="price" aria-label={`₺${plan.price.toLocaleString('tr-TR')} ${plan.period}`}>
+              <span className="amount">
+                <span className="currency">₺</span>
+                <span>{plan.price.toLocaleString('tr-TR')}</span>
               </span>
-            </button>
-          </div>
-        </div>
-      </div>
+              <span className="period">/{plan.period}</span>
+            </div>
 
-      {/* Pricing Cards Grid (Liquid Glass Surfaces) */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-8 items-stretch">
-        {PLANS.map((plan) => {
-          const currentPrice = billing === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice;
-          const currentNote = billing === 'monthly' ? plan.monthlyNote : plan.yearlyNote;
-
-          return (
-            <div
-              key={plan.id}
-              className={`relative flex flex-col justify-between rounded-[32px] p-7 sm:p-9 transition-all duration-300 group ${
-                plan.featured
-                  ? 'lg:-translate-y-2'
-                  : 'hover:-translate-y-1'
-              }`}
-              style={{
-                /* Physical Optical Glass Material */
-                background: plan.featured
-                  ? 'linear-gradient(165deg, rgba(255, 255, 255, 0.95) 0%, rgba(253, 250, 244, 0.88) 55%, rgba(246, 238, 222, 0.85) 100%)'
-                  : 'linear-gradient(165deg, rgba(255, 255, 255, 0.85) 0%, rgba(252, 251, 249, 0.72) 100%)',
-                backdropFilter: 'blur(32px) saturate(190%)',
-                WebkitBackdropFilter: 'blur(32px) saturate(190%)',
-                boxShadow: plan.featured
-                  ? '0 0 72px 18px rgba(212, 179, 127, 0.24), 0 32px 64px -20px rgba(0, 0, 0, 0.12), inset 0 1.5px 1px rgba(255, 255, 255, 1), inset 0 -1.5px 1px rgba(212, 179, 127, 0.35), inset 1.5px 0 1px rgba(255, 255, 255, 0.7), inset -1.5px 0 1px rgba(255, 255, 255, 0.5), inset 0 34px 50px -34px rgba(255, 255, 255, 0.9)'
-                  : '0 20px 48px -18px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 1.5px 1px rgba(255, 255, 255, 0.9), inset 0 -1px 1px rgba(255, 255, 255, 0.3), inset 1.5px 0 1px rgba(255, 255, 255, 0.4), inset -1px 0 1px rgba(255, 255, 255, 0.2), inset 0 24px 38px -30px rgba(255, 255, 255, 0.6)',
-                border: plan.featured
-                  ? '1.5px solid rgba(212, 179, 127, 0.55)'
-                  : '1px solid rgba(255, 255, 255, 0.75)',
-              }}
+            <a
+              className="cta"
+              href={getWhatsAppUrl(plan)}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {/* Top Specular Sheen Gradient Overlay */}
-              <div
-                className="pointer-events-none absolute inset-0 rounded-[32px] overflow-hidden"
-                style={{
-                  background:
-                    'linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.08) 35%, transparent 70%)',
-                }}
-              />
+              {plan.ctaText}
+            </a>
 
-              {/* Floating Featured Badge */}
-              {plan.badge && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20">
-                  <span className="px-3.5 py-1 rounded-full bg-gradient-to-r from-[#1c1a16] via-[#2d2922] to-[#1c1a16] text-[#ecdbbb] border border-[#ecdbbb]/50 text-[10px] font-extrabold tracking-wider uppercase shadow-[0_4px_16px_rgba(0,0,0,0.18)] flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#d4b37f] animate-ping" />
-                    <span>{plan.badge}</span>
+            <div className="rule" />
+
+            <ul className="features">
+              {plan.features.map((feat, idx) => (
+                <li key={idx}>
+                  <span className="check">✓</span>
+                  <span>
+                    <strong className="font-semibold opacity-90">{feat.category}:</strong> {feat.detail}
                   </span>
-                </div>
-              )}
-
-              {/* Card Header & Price */}
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <h3 className="text-xl sm:text-2xl font-display font-bold text-zinc-950">
-                    {plan.name}
-                  </h3>
-                </div>
-
-                <p className="text-xs sm:text-sm text-zinc-500 font-medium leading-relaxed mb-6 min-h-[38px]">
-                  {plan.tagline}
-                </p>
-
-                {/* Price Display */}
-                <div className="pt-2 pb-6 border-b border-zinc-200/60">
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="text-xl sm:text-2xl font-display font-bold text-zinc-400">
-                      ₺
-                    </span>
-                    <span className="text-4xl sm:text-5xl font-extrabold tracking-tight">
-                      <RollingPrice value={currentPrice} />
-                    </span>
-                  </div>
-                  <div className="text-xs text-zinc-500 font-medium mt-1.5">
-                    {currentNote}
-                  </div>
-                </div>
-
-                {/* Features List */}
-                <div className="py-6 space-y-3.5">
-                  <div className="text-[11px] font-bold tracking-wider uppercase text-zinc-400 mb-2">
-                    Paket Kapsamı & Avantajlar
-                  </div>
-                  {plan.features.map((feat, i) => (
-                    <div key={i} className="flex items-start gap-3 text-xs sm:text-[13px] text-zinc-700 leading-snug">
-                      <div
-                        className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
-                          feat.highlight || plan.featured
-                            ? 'bg-[#ecdbbb] text-zinc-950 shadow-xs'
-                            : 'bg-zinc-200/80 text-zinc-800'
-                        }`}
-                      >
-                        <span className="text-[10px] font-bold">✓</span>
-                      </div>
-                      <span className={feat.highlight ? 'font-bold text-zinc-950' : 'font-medium'}>
-                        {feat.text}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Action Button */}
-              <div className="pt-4">
-                <a
-                  href={getWhatsAppUrl(plan.name, currentPrice)}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`relative w-full py-3.5 px-6 rounded-2xl text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 flex items-center justify-center gap-2 shadow-sm cursor-pointer select-none active:scale-[0.98] ${
-                    plan.featured
-                      ? 'bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 text-[#ecdbbb] hover:text-white hover:shadow-[0_8px_25px_rgba(0,0,0,0.25)] border border-[#ecdbbb]/40'
-                      : 'bg-white hover:bg-zinc-50 text-zinc-900 border border-zinc-200 hover:border-zinc-300 shadow-xs'
-                  }`}
-                >
-                  <span>{plan.buttonLabel}</span>
-                  <span className="text-sm">→</span>
-                </a>
-
-                <div className="text-center mt-2.5 text-[10px] text-zinc-400 font-medium">
-                  {plan.id === 'starter'
-                    ? '10 iş gününde anahtar teslim'
-                    : plan.id === 'pro'
-                    ? '14 iş gününde entegre canlı kurulum'
-                    : 'Özel sprint planlaması ile teslim'}
-                </div>
-              </div>
-            </div>
-          );
-        })}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
       </div>
-
-      {/* Feature Comparison & Value Guarantee Strip */}
-      <div className="mt-16 sm:mt-24 p-8 sm:p-10 rounded-[32px] bg-gradient-to-br from-white/90 via-[#fcfaf7]/85 to-[#f6f0e4]/80 border border-[#ecdbbb]/60 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-          <div className="flex flex-col gap-2">
-            <div className="w-10 h-10 rounded-2xl bg-[#ecdbbb]/50 border border-[#d4b37f]/40 flex items-center justify-center text-lg mx-auto md:mx-0">
-              ⚡
-            </div>
-            <h4 className="text-base font-bold text-zinc-950 font-display">
-              0.4 Saniye Açılış Hızı Garantisi
-            </h4>
-            <p className="text-xs text-zinc-600 leading-relaxed">
-              Shopify veya WordPress hantallığı olmadan, Next.js mimarisiyle müşterilerinizin reklam dönüşüm oranını 2-3 katına çıkarıyoruz.
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <div className="w-10 h-10 rounded-2xl bg-[#ecdbbb]/50 border border-[#d4b37f]/40 flex items-center justify-center text-lg mx-auto md:mx-0">
-              🔒
-            </div>
-            <h4 className="text-base font-bold text-zinc-950 font-display">
-              Sıfır Komisyon & Bağımsızlık
-            </h4>
-            <p className="text-xs text-zinc-600 leading-relaxed">
-              Yemeksepeti veya Getir gibi platformlara cironuzun %20-30&apos;unu kaptırmadan doğrudan kendi müşterinize kendi posunuzla satış yapın.
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <div className="w-10 h-10 rounded-2xl bg-[#ecdbbb]/50 border border-[#d4b37f]/40 flex items-center justify-center text-lg mx-auto md:mx-0">
-              🤝
-            </div>
-            <h4 className="text-base font-bold text-zinc-950 font-display">
-              Yerinde Eğitim & 7/24 Destek
-            </h4>
-            <p className="text-xs text-zinc-600 leading-relaxed">
-              Sistemi kurup bırakmıyoruz; personelinizi eğitiyor, menü ve ürünlerinizi yüklüyor ve 7/24 teknik nöbet desteği sağlıyoruz.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
   );
 }

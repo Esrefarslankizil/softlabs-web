@@ -149,20 +149,20 @@ export default function Nav() {
               </a>
             </div>
 
-            {/* Row 4: Fiyatlandırma (Liquid Glass) Highlight */}
+            {/* Row 4: Fiyatlandırma & Sektörel Paketler */}
             <div className="pt-1 border-t border-white/10" data-framer-name="Row">
               <a
                 href="/fiyatlandirma"
                 onClick={() => setOpen(false)}
-                className="w-full flex items-center justify-between rounded-full py-2.5 sm:py-3 px-5 text-center text-xs sm:text-sm font-bold text-[#ecdbbb] bg-white/10 border border-[#ecdbbb]/40 transition-all duration-200 hover:bg-white/20 hover:scale-[1.02] tracking-wide shadow-sm"
+                className="w-full flex items-center justify-between rounded-full py-2.5 sm:py-3 px-5 text-center text-xs sm:text-sm font-semibold text-[#ecdbbb] bg-white/[0.08] border border-[#ecdbbb]/35 transition-all duration-200 hover:bg-white/15 hover:scale-[1.01] tracking-wide"
                 data-framer-name="Variant 1"
               >
-                <span className="flex items-center gap-2">
-                  <span>💎</span>
+                <span className="flex items-center gap-2.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#ecdbbb] shadow-[0_0_6px_#ecdbbb]" />
                   <span>Fiyatlandırma & Paketler</span>
                 </span>
-                <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-[#ecdbbb] text-zinc-950 font-extrabold">
-                  Liquid Glass
+                <span className="text-[10px] uppercase font-mono px-2.5 py-0.5 rounded-full bg-[#ecdbbb] text-zinc-950 font-bold">
+                  Sektörel →
                 </span>
               </a>
             </div>
