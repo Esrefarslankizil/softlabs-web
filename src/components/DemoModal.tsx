@@ -187,18 +187,26 @@ export default function DemoModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 md:p-6 overflow-hidden bg-black/80 backdrop-blur-xl animate-fadeIn">
-      {/* Modal Card Shell */}
-      <div className="relative flex flex-col w-full h-full sm:h-[92vh] sm:max-w-6xl rounded-none sm:rounded-3xl border border-[#ecdbbb]/35 bg-[#141414] text-white shadow-[0_25px_80px_rgba(0,0,0,0.8)] overflow-hidden">
+    <div
+      onClick={(e) => {
+        if (e.target === e.currentTarget) closeModal();
+      }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-hidden bg-black/75 backdrop-blur-[24px] animate-fadeIn"
+    >
+      {/* Modal Card Shell with Liquid Glass Framing */}
+      <div
+        className="relative flex flex-col w-full h-full sm:h-[92vh] sm:max-w-6xl rounded-[36px] sm:rounded-[44px] border border-white/15 bg-black/60 shadow-[0_24px_60px_rgba(0,0,0,0.35)] backdrop-blur-[30px] text-white overflow-hidden transition-all duration-300 animate-rise"
+        data-framer-name="Nav Menu"
+      >
         
         {/* Top Header Bar */}
-        <div className="flex items-center justify-between px-5 sm:px-8 py-4 sm:py-5 border-b border-[#ecdbbb]/20 bg-[#1a1a1a]/95 backdrop-blur-md z-30 shrink-0">
+        <div className="flex items-center justify-between px-5 sm:px-8 py-4 sm:py-5 border-b border-white/15 bg-black/40 backdrop-blur-[30px] z-30 shrink-0">
           <div className="flex items-center gap-3">
             {selectedSector ? (
               <button
                 type="button"
                 onClick={() => setSelectedSector(null)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-[#ecdbbb] hover:text-white text-xs sm:text-sm font-medium transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 bg-white/10 hover:bg-white/20 text-[#ecdbbb] hover:text-white text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer shadow-sm hover:scale-[1.02]"
               >
                 <span>←</span>
                 <span>Tüm Sektörlere Dön</span>
@@ -219,7 +227,7 @@ export default function DemoModal() {
                 href={'https://wa.me/905011366815?text=' + getWhatsAppMessage(currentSectorInfo?.title || 'Özel')}
                 target="_blank"
                 rel="noreferrer"
-                className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-semibold shadow-md transition-all cursor-pointer"
+                className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-semibold shadow-md transition-all cursor-pointer hover:scale-[1.02]"
               >
                 <span>💬</span>
                 <span>Bu Sistemi İşletmeme Kur</span>
@@ -230,7 +238,7 @@ export default function DemoModal() {
               type="button"
               onClick={closeModal}
               aria-label="Kapat"
-              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-white/15 bg-white/10 hover:bg-white/20 text-white transition-all duration-200 cursor-pointer shadow-sm hover:scale-105 active:scale-95"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -240,7 +248,7 @@ export default function DemoModal() {
         </div>
 
         {/* Modal Scrollable Body */}
-        <div className="flex-1 overflow-y-auto overflow-x-hidden overscroll-contain bg-gradient-to-b from-[#141414] via-[#111111] to-[#0a0a0a]">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden overscroll-contain bg-black/25 custom-scrollbar">
           
           {/* ========================================================= */}
           {/* VIEW 1: SECTOR SELECTION CATALOG                          */}
@@ -255,7 +263,7 @@ export default function DemoModal() {
                 <h2 className="text-2xl sm:text-4xl font-display font-semibold tracking-tight text-white mb-3">
                   Hangi Sektör İçin Demo İncelemek İstersiniz?
                 </h2>
-                <p className="text-sm sm:text-base text-zinc-400">
+                <p className="text-sm sm:text-base text-zinc-300">
                   İşletmenizin operasyonlarını hızlandıran, müşteri deneyimini katlayan interaktif demoyu seçin ve hemen canlı test edin.
                 </p>
               </div>
@@ -266,7 +274,7 @@ export default function DemoModal() {
                   <div
                     key={sector.id}
                     onClick={() => setSelectedSector(sector.id)}
-                    className="group relative flex flex-col justify-between rounded-2xl border border-white/10 hover:border-[#ecdbbb]/60 bg-[#1c1c1c]/80 hover:bg-[#222222] overflow-hidden transition-all duration-300 hover:shadow-[0_12px_35px_rgba(236,219,187,0.15)] hover:-translate-y-1 cursor-pointer"
+                    className="group relative flex flex-col justify-between rounded-[28px] sm:rounded-[36px] border border-white/15 hover:border-white/35 bg-white/[0.04] hover:bg-white/[0.08] backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.35)] overflow-hidden transition-all duration-300 hover:shadow-[0_24px_60px_rgba(0,0,0,0.55)] hover:-translate-y-1 cursor-pointer"
                   >
                     {/* Sector Card Image Banner */}
                     <div className="relative h-44 w-full overflow-hidden bg-zinc-900">
@@ -275,10 +283,10 @@ export default function DemoModal() {
                         alt={sector.title}
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#1c1c1c] via-black/40 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
                       
                       {/* Badge Top Left */}
-                      <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-[11px] font-semibold text-[#ecdbbb]">
+                      <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/70 backdrop-blur-[20px] border border-white/20 text-[11px] font-semibold text-[#ecdbbb] shadow-sm">
                         {sector.badge}
                       </span>
                     </div>
@@ -290,10 +298,10 @@ export default function DemoModal() {
                           <span>{sector.title}</span>
                           <span className="text-xs text-zinc-400 group-hover:translate-x-1 transition-transform">→</span>
                         </h3>
-                        <p className="text-xs text-zinc-300 font-medium mb-3 line-clamp-1">
+                        <p className="text-xs text-[#ecdbbb]/90 font-medium mb-2.5 line-clamp-1">
                           {sector.tagline}
                         </p>
-                        <p className="text-xs text-zinc-400 leading-relaxed mb-4 line-clamp-2">
+                        <p className="text-xs text-zinc-300 leading-relaxed mb-4 line-clamp-2">
                           {sector.description}
                         </p>
                       </div>
@@ -304,7 +312,7 @@ export default function DemoModal() {
                           {sector.tags.slice(0, 3).map((tag, i) => (
                             <span
                               key={i}
-                              className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] text-zinc-300 font-medium"
+                              className="px-2.5 py-1 rounded-full bg-white/10 border border-white/15 text-[10px] text-zinc-200 font-medium"
                             >
                               {tag}
                             </span>
@@ -323,7 +331,7 @@ export default function DemoModal() {
               </div>
 
               {/* Bottom Custom Sector Notice */}
-              <div className="mt-12 p-6 rounded-2xl border border-[#ecdbbb]/25 bg-gradient-to-r from-[#201d18] via-[#1c1a16] to-[#181818] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+              <div className="mt-12 p-6 rounded-[28px] sm:rounded-[36px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
                 <div>
                   <h4 className="text-base font-semibold text-white mb-1">
                     Farklı bir sektör veya özel bir iş akışınız mı var?
@@ -521,7 +529,7 @@ export default function DemoModal() {
 
                   {/* Right: Capability & Interactive Stand Details */}
                   <div className="lg:col-span-5 flex flex-col gap-6">
-                    <div className="p-6 rounded-2xl border border-[#ecdbbb]/25 bg-[#1c1c1c]/90">
+                    <div className="p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
                         <span>☕</span>
                         <span>AURA Dijital QR Menü & Adisyon</span>
@@ -557,7 +565,7 @@ export default function DemoModal() {
                         <p className="text-[11px] text-zinc-400 mb-3">
                           Bu QR kodunu telefonunuzun kamerasıyla okutarak sol taraftaki menüyü kendi mobil ekranınızda anında deneyimleyebilirsiniz:
                         </p>
-                        <div className="flex items-center justify-center p-3 bg-white rounded-lg w-fit mx-auto shadow-md">
+                        <div className="flex items-center justify-center p-3 bg-white/55 rounded-lg w-fit mx-auto shadow-md">
                           <img
                             src={'https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=' + encodeURIComponent(originUrl + '/demos/qr-menu/index.html?masa=04')}
                             alt="Masa 04 QR Kodu"
@@ -579,7 +587,7 @@ export default function DemoModal() {
               {selectedSector === 'clinic' && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                   <div className="lg:col-span-7 flex flex-col gap-6">
-                    <div className="p-6 rounded-2xl border border-white/10 bg-[#1c1c1c]/90">
+                    <div className="p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
                         <div className="flex items-center gap-2.5">
                           <span className="p-2 rounded-xl bg-blue-500/10 text-blue-400 text-lg">🦷</span>
@@ -645,7 +653,7 @@ export default function DemoModal() {
                       </div>
                     </div>
 
-                    <div className="p-5 rounded-2xl border border-white/10 bg-[#161616]">
+                    <div className="p-5 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <h4 className="text-xs font-semibold text-[#ecdbbb] uppercase tracking-wider mb-3">
                         📋 Hekim Dijital Hasta Kartı Önizlemesi
                       </h4>
@@ -667,7 +675,7 @@ export default function DemoModal() {
                   </div>
 
                   <div className="lg:col-span-5 flex flex-col gap-5">
-                    <div className="p-6 rounded-2xl border border-[#ecdbbb]/25 bg-[#1c1c1c]/90">
+                    <div className="p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <h4 className="text-base font-semibold text-white mb-3">Kliniklere Sağladığımız Avantajlar</h4>
                       <div className="space-y-3.5 text-xs text-zinc-300">
                         <div className="p-3 rounded-xl bg-black/40 border border-white/5">
@@ -690,7 +698,7 @@ export default function DemoModal() {
               {selectedSector === 'beauty' && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                   <div className="lg:col-span-7 flex flex-col gap-6">
-                    <div className="p-6 rounded-2xl border border-white/10 bg-[#1c1c1c]/90">
+                    <div className="p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/10">
                         <div className="flex items-center gap-2.5">
                           <span className="p-2 rounded-xl bg-rose-500/10 text-rose-400 text-lg">✨</span>
@@ -745,7 +753,7 @@ export default function DemoModal() {
                   </div>
 
                   <div className="lg:col-span-5 flex flex-col gap-5">
-                    <div className="p-6 rounded-2xl border border-[#ecdbbb]/25 bg-[#1c1c1c]/90">
+                    <div className="p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <h4 className="text-base font-semibold text-white mb-3">Güzellik Merkezlerine Özel</h4>
                       <p className="text-xs text-zinc-300 leading-relaxed mb-4">
                         Danışanlarınız kalan seans haklarını WhatsApp mesajı üzerinden dilediği an görebilir. Randevu günü geldiğinde cihaz ve oda çakışmaları tamamen engellenir.
@@ -836,10 +844,10 @@ export default function DemoModal() {
                           <div className="w-16 flex items-center justify-end gap-1.5 text-white">
                             {/* Cellular Signal (4 bars) */}
                             <div className="flex items-end gap-[1.5px] h-3">
-                              <div className="w-[3px] h-[3.5px] bg-white rounded-[0.5px]" />
-                              <div className="w-[3px] h-[5.5px] bg-white rounded-[0.5px]" />
-                              <div className="w-[3px] h-[8px] bg-white rounded-[0.5px]" />
-                              <div className="w-[3px] h-[10.5px] bg-white rounded-[0.5px]" />
+                              <div className="w-[3px] h-[3.5px] bg-white/55 rounded-[0.5px]" />
+                              <div className="w-[3px] h-[5.5px] bg-white/55 rounded-[0.5px]" />
+                              <div className="w-[3px] h-[8px] bg-white/55 rounded-[0.5px]" />
+                              <div className="w-[3px] h-[10.5px] bg-white/55 rounded-[0.5px]" />
                             </div>
                             
                             {/* 5G */}
@@ -850,7 +858,7 @@ export default function DemoModal() {
                               <div className="w-[20px] h-[10.5px] rounded-[3px] border border-white/80 p-[1px] flex items-center">
                                 <div className="h-full w-[92%] bg-emerald-400 rounded-[1.5px]" />
                               </div>
-                              <div className="w-[1.5px] h-[4px] bg-white/80 rounded-r-[1px]" />
+                              <div className="w-[1.5px] h-[4px] bg-white/60 rounded-r-[1px]" />
                             </div>
                           </div>
                         </div>
@@ -893,7 +901,7 @@ export default function DemoModal() {
 
                   {/* Right: Capability & Live QR Turnstile Test */}
                   <div className="lg:col-span-5 flex flex-col gap-6">
-                    <div className="p-6 rounded-2xl border border-[#ecdbbb]/25 bg-[#1c1c1c]/90">
+                    <div className="p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
                         <span>🏋️‍♂️</span>
                         <span>APEX CLUB · QR Turnike & Üye Sistemi</span>
@@ -943,7 +951,7 @@ export default function DemoModal() {
                         <p className="text-[11px] text-zinc-400 mb-3">
                           Telefon kameranızla bu QR kodu okuttuğunuzda kendi ekranınızda <strong>&quot;{gymMemberName || 'Eşref Fırat'} · Saat 18:00 itibarıyla salona giriş yaptınız!&quot;</strong> ekranı açılır:
                         </p>
-                        <div className="flex items-center justify-center p-3 bg-white rounded-xl w-fit mx-auto shadow-[0_0_25px_rgba(16,185,129,0.25)]">
+                        <div className="flex items-center justify-center p-3 bg-white/55 rounded-xl w-fit mx-auto shadow-[0_0_25px_rgba(16,185,129,0.25)]">
                           <img
                             src={'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + encodeURIComponent(originUrl + '/demos/gym-app/index.html?scan=1&isim=' + (gymMemberName || 'Eşref Fırat'))}
                             alt="Spor Salonu Turnike QR Kodu"
@@ -1057,7 +1065,7 @@ export default function DemoModal() {
 
                   {/* Right: Capabilities + QR */}
                   <div className="lg:col-span-5 flex flex-col gap-6">
-                    <div className="p-6 rounded-2xl border border-[#ecdbbb]/25 bg-[#1c1c1c]/90">
+                    <div className="p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
                         <span>🛍️</span>
                         <span>MAISON ORVELLE · Lüks Butik Mobil Mağaza</span>
@@ -1089,7 +1097,7 @@ export default function DemoModal() {
                         <div className="text-[11px] font-semibold text-[#ecdbbb] uppercase tracking-wider mb-2">
                           📱 Kendi Telefonunuzdan Açın
                         </div>
-                        <div className="p-3 bg-white rounded-xl w-fit mx-auto mb-2 shadow-md">
+                        <div className="p-3 bg-white/55 rounded-xl w-fit mx-auto mb-2 shadow-md">
                           <img
                             src={'https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=' + encodeURIComponent(originUrl + '/demos/ecommerce/index.html')}
                             alt="Mağaza QR Kodu"
@@ -1152,17 +1160,17 @@ export default function DemoModal() {
                           </div>
                           <div className="w-16 flex items-center justify-end gap-1.5 text-white">
                             <div className="flex items-end gap-[1.5px] h-3">
-                              <div className="w-[3px] h-[3.5px] bg-white rounded-[0.5px]" />
-                              <div className="w-[3px] h-[5.5px] bg-white rounded-[0.5px]" />
-                              <div className="w-[3px] h-[8px] bg-white rounded-[0.5px]" />
-                              <div className="w-[3px] h-[10.5px] bg-white rounded-[0.5px]" />
+                              <div className="w-[3px] h-[3.5px] bg-white/55 rounded-[0.5px]" />
+                              <div className="w-[3px] h-[5.5px] bg-white/55 rounded-[0.5px]" />
+                              <div className="w-[3px] h-[8px] bg-white/55 rounded-[0.5px]" />
+                              <div className="w-[3px] h-[10.5px] bg-white/55 rounded-[0.5px]" />
                             </div>
                             <span className="text-[10px] font-bold tracking-tighter ml-0.5">5G</span>
                             <div className="flex items-center ml-0.5">
                               <div className="w-[20px] h-[10.5px] rounded-[3px] border border-white/80 p-[1px] flex items-center">
                                 <div className="h-full w-[90%] bg-[#d4b37f] rounded-[1.5px]" />
                               </div>
-                              <div className="w-[1.5px] h-[4px] bg-white/80 rounded-r-[1px]" />
+                              <div className="w-[1.5px] h-[4px] bg-white/60 rounded-r-[1px]" />
                             </div>
                           </div>
                         </div>
@@ -1203,7 +1211,7 @@ export default function DemoModal() {
 
                   {/* Right: Capabilities & Live QR */}
                   <div className="lg:col-span-5 flex flex-col gap-6">
-                    <div className="p-6 rounded-2xl border border-[#d4b37f]/30 bg-[#1c1c1c]/90">
+                    <div className="p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
                         <span>🏛️</span>
                         <span>VALMONT ESTATES · Lüks Gayrimenkul Vitrini</span>
@@ -1235,7 +1243,7 @@ export default function DemoModal() {
                         <div className="text-[11px] font-semibold text-[#d4b37f] uppercase tracking-wider mb-2">
                           📱 Kendi Telefonunuzdan Test Edin
                         </div>
-                        <div className="p-3 bg-white rounded-xl w-fit mx-auto mb-2 shadow-md">
+                        <div className="p-3 bg-white/55 rounded-xl w-fit mx-auto mb-2 shadow-md">
                           <img
                             src={'https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=' + encodeURIComponent(originUrl + '/demos/realestate/index.html')}
                             alt="Emlak Vitrini QR Kodu"
@@ -1257,7 +1265,7 @@ export default function DemoModal() {
               {selectedSector === 'hotel' && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                   <div className="lg:col-span-7 flex flex-col gap-6">
-                    <div className="p-6 rounded-2xl border border-white/10 bg-[#1c1c1c]/90">
+                    <div className="p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <div className="flex items-center gap-2.5 mb-5 pb-3 border-b border-white/10">
                         <span className="p-2 rounded-xl bg-amber-500/10 text-amber-400 text-lg">🛎️</span>
                         <div>
@@ -1286,7 +1294,7 @@ export default function DemoModal() {
                     </div>
                   </div>
 
-                  <div className="lg:col-span-5 p-6 rounded-2xl border border-[#ecdbbb]/25 bg-[#1c1c1c]/90 text-xs text-zinc-300 space-y-3">
+                  <div className="lg:col-span-5 p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)] text-xs text-zinc-300 space-y-3">
                     <h4 className="text-base font-semibold text-white">Otellere Özel Çözüm</h4>
                     <p>Odalara yerleştirilen şık akrilik QR stantlar sayesinde misafirleriniz telefon indirmeden oda servisi siparişi verir, spa randevusu oluşturur ve resepsiyona tek tıkla ulaşır.</p>
                   </div>
@@ -1299,7 +1307,7 @@ export default function DemoModal() {
               {selectedSector === 'auto' && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                   <div className="lg:col-span-7 flex flex-col gap-6">
-                    <div className="p-6 rounded-2xl border border-white/10 bg-[#1c1c1c]/90">
+                    <div className="p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <div className="flex items-center gap-2.5 mb-5 pb-3 border-b border-white/10">
                         <span className="p-2 rounded-xl bg-red-500/10 text-red-400 text-lg">🏎️</span>
                         <div>
@@ -1344,7 +1352,7 @@ export default function DemoModal() {
                     </div>
                   </div>
 
-                  <div className="lg:col-span-5 p-6 rounded-2xl border border-[#ecdbbb]/25 bg-[#1c1c1c]/90 text-xs text-zinc-300 space-y-3">
+                  <div className="lg:col-span-5 p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)] text-xs text-zinc-300 space-y-3">
                     <h4 className="text-base font-semibold text-white">Oto Servis & Detailing Avantajları</h4>
                     <p>Müşteri sürekli arayıp aracını sormaz; SMS ile gelen takip linkinden aracına yapılan tüm işlemleri fotoğraflarıyla anlık izler.</p>
                   </div>
