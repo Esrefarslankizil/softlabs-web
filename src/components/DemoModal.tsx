@@ -396,10 +396,10 @@ export default function DemoModal() {
               {/* ----------------------------------------------------------- */}
               {selectedSector === 'cafe' && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                  {/* Left: Smartphone Device Preview Frame (iPhone 18 Pro Max) */}
-                  <div className="lg:col-span-7 flex flex-col items-center">
-                    {/* Device Header Badge */}
-                    <div className="mb-3 flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-zinc-400">
+                  {/* Left: Smartphone Device Preview Frame (iPhone 18 Pro Max on Desktop, Native Full App on Mobile) */}
+                  <div className="lg:col-span-7 flex flex-col items-center w-full">
+                    {/* Device Header Badge (Desktop Only) */}
+                    <div className="hidden sm:flex mb-3 items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-zinc-400">
                       <svg className="w-3.5 h-3.5 text-[#ecdbbb] fill-current" viewBox="0 0 170 170">
                         <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.63-13.98-5.3-8.2-9.43-17.72-12.39-28.55-2.96-10.83-4.44-21.25-4.44-31.27 0-15.76 4.14-28.89 12.43-39.4 8.28-10.51 18.73-15.89 31.33-16.14 4.89 0 10.22 1.34 16 4.01 5.79 2.67 9.55 4.06 11.3 4.16 1.41-.1 5.34-1.55 11.8-4.35 6.46-2.81 12.03-4.1 16.71-3.89 12.73.65 22.84 5.37 30.34 14.16-11.08 6.74-16.51 16.03-16.3 27.87.21 9.35 3.84 17.15 10.89 23.4 7.05 6.25 15.42 9.8 25.11 10.66-2.28 6.85-4.99 13.78-8.13 20.79zM119.22 31.84c0-7.28 2.66-14.18 7.99-20.7 5.33-6.52 11.95-10.49 19.86-11.91.22 1.09.33 2.17.33 3.26 0 7.28-2.77 14.24-8.31 20.89-5.54 6.64-12.23 10.49-20.08 11.53-.21-1.09-.32-2.18-.32-3.27z" />
                       </svg>
@@ -408,46 +408,31 @@ export default function DemoModal() {
                       <span className="text-emerald-400 font-medium">Canlı İnteraktif Simülatör</span>
                     </div>
 
-                    {/* iPhone 18 Pro Max Outer Shell */}
-                    <div className="relative w-full max-w-[375px] h-[740px] max-sm:max-w-full max-sm:h-[calc(100dvh-210px)] max-sm:min-h-[520px] max-sm:rounded-[26px] max-sm:p-[2px] rounded-[54px] p-[3.5px] bg-gradient-to-b from-[#44423e] via-[#242321] to-[#363431] shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(236,219,187,0.12)] ring-1 ring-white/25 select-none transition-all">
+                    {/* Outer Shell: Clean Full-Width on Mobile, iPhone 18 Pro Max Chassis on Desktop */}
+                    <div className="relative w-full h-[75vh] min-h-[500px] rounded-2xl border border-white/15 bg-black/40 overflow-hidden shadow-lg sm:max-w-[375px] sm:h-[740px] sm:min-h-0 sm:rounded-[54px] sm:p-[3.5px] sm:bg-gradient-to-b sm:from-[#44423e] sm:via-[#242321] sm:to-[#363431] sm:shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(236,219,187,0.12)] sm:ring-1 sm:ring-white/25 select-none transition-all">
                       
-                      {/* --- PHYSICAL HARDWARE BUTTONS --- */}
-                      {/* Left: Action Button (Eylem Tuşu) */}
-                      <div className="max-sm:hidden absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      
-                      {/* Left: Volume Up */}
-                      <div className="max-sm:hidden absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      
-                      {/* Left: Volume Down */}
-                      <div className="max-sm:hidden absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      
-                      {/* Left Antenna Bands */}
-                      <div className="max-sm:hidden absolute -left-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="max-sm:hidden absolute -left-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      {/* --- PHYSICAL HARDWARE BUTTONS (Desktop Only) --- */}
+                      <div className="hidden sm:block absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[4.5px] top-[465px] w-[4.5px] h-14 bg-gradient-to-l from-[#1e1d1c] to-[#343330] rounded-r-sm border-y border-r border-[#4e4c47] shadow-inner pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute top-[2px] left-1/2 -translate-x-1/2 w-14 h-[2px] bg-[#181716] rounded-full z-30 pointer-events-none" />
 
-                      {/* Right: Power / Siri Button */}
-                      <div className="max-sm:hidden absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] shadow-sm pointer-events-none" />
-                      
-                      {/* Right: Camera Control (iPhone 16/17/18 Pro Sapphire Capacitive Sensor) */}
-                      <div className="max-sm:hidden absolute -right-[4.5px] top-[465px] w-[4.5px] h-14 bg-gradient-to-l from-[#1e1d1c] to-[#343330] rounded-r-sm border-y border-r border-[#4e4c47] shadow-inner pointer-events-none" />
-                      
-                      {/* Right Antenna Bands */}
-                      <div className="max-sm:hidden absolute -right-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="max-sm:hidden absolute -right-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-
-                      {/* Top Micro Speaker Earpiece Slit */}
-                      <div className="max-sm:hidden absolute top-[2px] left-1/2 -translate-x-1/2 w-14 h-[2px] bg-[#181716] rounded-full z-30 pointer-events-none" />
-
-                      {/* --- SCREEN CONTAINER (Ultra-slim 3.5px Bezel & Concentric 50px Radius) --- */}
+                      {/* --- SCREEN CONTAINER --- */}
                       <div 
-                        className="relative w-full h-full max-sm:rounded-[22px] rounded-[50px] overflow-hidden bg-[#f8f6f0] flex flex-col ring-1 ring-black/80"
+                        className="relative w-full h-full rounded-2xl sm:rounded-[50px] overflow-hidden bg-[#f8f6f0] flex flex-col sm:ring-1 sm:ring-black/80"
                         style={{
                           WebkitMaskImage: '-webkit-radial-gradient(white, black)',
                           isolation: 'isolate',
                         }}
                       >
-                        {/* iOS Status Bar (Native Pro Max Header) */}
-                        <div className="max-sm:hidden h-[42px] shrink-0 bg-[#f8f6f0] px-6 flex items-center justify-between z-30 select-none border-b border-[#a87e24]/10">
+                        {/* iOS Status Bar (Native Pro Max Header - Desktop Only) */}
+                        <div className="hidden sm:flex h-[42px] shrink-0 bg-[#f8f6f0] px-6 items-center justify-between z-30 select-none border-b border-[#a87e24]/10">
                           {/* Time */}
                           <div className="w-16 flex items-center">
                             <span className="text-[13px] font-semibold tracking-tight text-neutral-900 font-sans">
@@ -500,13 +485,13 @@ export default function DemoModal() {
                           />
                         </div>
 
-                        {/* iOS Bottom Home Bar */}
-                        <div className="max-sm:hidden h-[20px] shrink-0 bg-[#f8f6f0] flex items-center justify-center z-30 select-none pb-1">
+                        {/* iOS Bottom Home Bar (Desktop Only) */}
+                        <div className="hidden sm:flex h-[20px] shrink-0 bg-[#f8f6f0] items-center justify-center z-30 select-none pb-1">
                           <div className="w-32 h-[4px] bg-neutral-900/35 rounded-full hover:bg-neutral-900/60 transition-colors" />
                         </div>
 
-                        {/* Corner Curvature Protective Ring Overlay */}
-                        <div className="pointer-events-none absolute inset-0 max-sm:rounded-[22px] rounded-[52px] ring-1 ring-black/35 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.15)] z-40" />
+                        {/* Corner Curvature Protective Ring Overlay (Desktop Only) */}
+                        <div className="hidden sm:block pointer-events-none absolute inset-0 sm:rounded-[52px] ring-1 ring-black/35 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.15)] z-40" />
                       </div>
                     </div>
 
@@ -558,23 +543,35 @@ export default function DemoModal() {
                       </ul>
 
                       {/* Live Table Test Simulator */}
-                      <div className="p-4 rounded-xl bg-black/60 border border-white/10">
+                      <div className="p-4 rounded-xl bg-black/60 border border-white/10 text-center sm:text-left">
                         <div className="text-[11px] font-semibold text-[#ecdbbb] uppercase tracking-wider mb-2">
-                          📱 Kendi Telefonunuzdan Test Edin
+                          📱 Telefon Testi
                         </div>
-                        <p className="text-[11px] text-zinc-400 mb-3">
+                        <p className="text-[11px] text-zinc-400 mb-3 hidden sm:block">
                           Bu QR kodunu telefonunuzun kamerasıyla okutarak sol taraftaki menüyü kendi mobil ekranınızda anında deneyimleyebilirsiniz:
                         </p>
-                        <div className="flex items-center justify-center p-3 bg-white/55 rounded-lg w-fit mx-auto shadow-md">
+                        <p className="text-[11px] text-zinc-400 mb-3 sm:hidden">
+                          Telefondasınız; menüyü yukarıdaki alanda canlı test edebilir veya aşağıdaki butondan tam ekran açabilirsiniz:
+                        </p>
+                        <div className="hidden sm:flex items-center justify-center p-3 bg-white/55 rounded-lg w-fit mx-auto shadow-md">
                           <img
                             src={'https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=' + encodeURIComponent(originUrl + '/demos/qr-menu/index.html?masa=04')}
                             alt="Masa 04 QR Kodu"
                             className="w-28 h-28"
                           />
                         </div>
-                        <div className="text-center mt-2 text-[10px] text-zinc-400 font-mono">
+                        <div className="text-center mt-2 text-[10px] text-zinc-400 font-mono hidden sm:block">
                           Masa: 04 · Canlı Test
                         </div>
+                        <a
+                          href="/demos/qr-menu/index.html?masa=04"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="sm:hidden w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#ecdbbb] text-zinc-950 text-xs font-semibold shadow-sm transition-all"
+                        >
+                          <span>↗</span>
+                          <span>Menüyü Tam Ekran Aç</span>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -768,10 +765,10 @@ export default function DemoModal() {
               {/* ----------------------------------------------------------- */}
               {selectedSector === 'gym' && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                  {/* Left: Smartphone Device Preview Frame (iPhone 18 Pro Max) */}
-                  <div className="lg:col-span-7 flex flex-col items-center">
-                    {/* Device Header Badge */}
-                    <div className="mb-3 flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-zinc-400">
+                  {/* Left: Smartphone Device Preview Frame (iPhone 18 Pro Max on Desktop, Native Full App on Mobile) */}
+                  <div className="lg:col-span-7 flex flex-col items-center w-full">
+                    {/* Device Header Badge (Desktop Only) */}
+                    <div className="hidden sm:flex mb-3 items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-zinc-400">
                       <svg className="w-3.5 h-3.5 text-[#ecdbbb] fill-current" viewBox="0 0 170 170">
                         <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.63-13.98-5.3-8.2-9.43-17.72-12.39-28.55-2.96-10.83-4.44-21.25-4.44-31.27 0-15.76 4.14-28.89 12.43-39.4 8.28-10.51 18.73-15.89 31.33-16.14 4.89 0 10.22 1.34 16 4.01 5.79 2.67 9.55 4.06 11.3 4.16 1.41-.1 5.34-1.55 11.8-4.35 6.46-2.81 12.03-4.1 16.71-3.89 12.73.65 22.84 5.37 30.34 14.16-11.08 6.74-16.51 16.03-16.3 27.87.21 9.35 3.84 17.15 10.89 23.4 7.05 6.25 15.42 9.8 25.11 10.66-2.28 6.85-4.99 13.78-8.13 20.79zM119.22 31.84c0-7.28 2.66-14.18 7.99-20.7 5.33-6.52 11.95-10.49 19.86-11.91.22 1.09.33 2.17.33 3.26 0 7.28-2.77 14.24-8.31 20.89-5.54 6.64-12.23 10.49-20.08 11.53-.21-1.09-.32-2.18-.32-3.27z" />
                       </svg>
@@ -780,80 +777,55 @@ export default function DemoModal() {
                       <span className="text-emerald-400 font-medium">Canlı QR Turnike Simülatörü</span>
                     </div>
 
-                    {/* iPhone 18 Pro Max Outer Shell */}
-                    <div className="relative w-full max-w-[375px] h-[740px] max-sm:max-w-full max-sm:h-[calc(100dvh-210px)] max-sm:min-h-[520px] max-sm:rounded-[26px] max-sm:p-[2px] rounded-[54px] p-[3.5px] bg-gradient-to-b from-[#44423e] via-[#242321] to-[#363431] shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(16,185,129,0.14)] ring-1 ring-white/25 select-none transition-all">
+                    {/* Outer Shell: Clean Full-Width on Mobile, iPhone 18 Pro Max Chassis on Desktop */}
+                    <div className="relative w-full h-[75vh] min-h-[500px] rounded-2xl border border-white/15 bg-black/40 overflow-hidden shadow-lg sm:max-w-[375px] sm:h-[740px] sm:min-h-0 sm:rounded-[54px] sm:p-[3.5px] sm:bg-gradient-to-b sm:from-[#44423e] sm:via-[#242321] sm:to-[#363431] sm:shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(16,185,129,0.14)] sm:ring-1 sm:ring-white/25 select-none transition-all">
                       
-                      {/* --- PHYSICAL HARDWARE BUTTONS --- */}
-                      {/* Left: Action Button (Eylem Tuşu) */}
-                      <div className="max-sm:hidden absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      
-                      {/* Left: Volume Up */}
-                      <div className="max-sm:hidden absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      
-                      {/* Left: Volume Down */}
-                      <div className="max-sm:hidden absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      
-                      {/* Left Antenna Bands */}
-                      <div className="max-sm:hidden absolute -left-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="max-sm:hidden absolute -left-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      {/* --- PHYSICAL HARDWARE BUTTONS (Desktop Only) --- */}
+                      <div className="hidden sm:block absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[4.5px] top-[465px] w-[4.5px] h-14 bg-gradient-to-l from-[#1e1d1c] to-[#343330] rounded-r-sm border-y border-r border-[#4e4c47] shadow-inner pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute top-[2px] left-1/2 -translate-x-1/2 w-14 h-[2px] bg-[#181716] rounded-full z-30 pointer-events-none" />
 
-                      {/* Right: Power / Siri Button */}
-                      <div className="max-sm:hidden absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] shadow-sm pointer-events-none" />
-                      
-                      {/* Right: Camera Control (iPhone 18 Pro Sapphire Capacitive Sensor) */}
-                      <div className="max-sm:hidden absolute -right-[4.5px] top-[465px] w-[4.5px] h-14 bg-gradient-to-l from-[#1e1d1c] to-[#343330] rounded-r-sm border-y border-r border-[#4e4c47] shadow-inner pointer-events-none" />
-                      
-                      {/* Right Antenna Bands */}
-                      <div className="max-sm:hidden absolute -right-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="max-sm:hidden absolute -right-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-
-                      {/* Top Micro Speaker Earpiece Slit */}
-                      <div className="max-sm:hidden absolute top-[2px] left-1/2 -translate-x-1/2 w-14 h-[2px] bg-[#181716] rounded-full z-30 pointer-events-none" />
-
-                      {/* --- SCREEN CONTAINER (Ultra-slim 3.5px Bezel & Concentric 50px Radius) --- */}
+                      {/* --- SCREEN CONTAINER --- */}
                       <div 
-                        className="relative w-full h-full max-sm:rounded-[22px] rounded-[50px] overflow-hidden bg-[#0b0c0e] flex flex-col ring-1 ring-black/80"
+                        className="relative w-full h-full rounded-2xl sm:rounded-[50px] overflow-hidden bg-[#0b0c0e] flex flex-col sm:ring-1 sm:ring-black/80"
                         style={{
                           WebkitMaskImage: '-webkit-radial-gradient(white, black)',
                           isolation: 'isolate',
                         }}
                       >
-                        {/* iOS Status Bar (Dark Mode Pro Max Header - 18:00) */}
-                        <div className="max-sm:hidden h-[42px] shrink-0 bg-[#0b0c0e] px-6 flex items-center justify-between z-30 select-none border-b border-white/5">
-                          {/* Time */}
+                        {/* iOS Status Bar (Desktop Only) */}
+                        <div className="hidden sm:flex h-[42px] shrink-0 bg-[#0b0c0e] px-6 items-center justify-between z-30 select-none border-b border-white/5">
                           <div className="w-16 flex items-center">
                             <span className="text-[13px] font-semibold tracking-tight text-white font-sans">
                               18:00
                             </span>
                           </div>
 
-                          {/* iPhone 18 Pro Max Dynamic Island */}
+                          {/* Dynamic Island */}
                           <div className="relative w-[112px] h-[27px] bg-black rounded-full flex items-center justify-between px-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.8)] ring-1 ring-white/15 group cursor-default">
-                            {/* Privacy / Turnstile Active Sensor indicator */}
                             <div className="w-2 h-2 rounded-full bg-[#0a0a0a] flex items-center justify-center">
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                             </div>
-                            
-                            {/* TrueDepth Camera Optics */}
                             <div className="w-3.5 h-3.5 rounded-full bg-[#060b14] border border-[#162035] flex items-center justify-center relative shadow-inner">
                               <div className="w-1.5 h-1.5 rounded-full bg-[#1e2a4a]/90 shadow-[0_0_2px_#3b82f6]" />
                             </div>
                           </div>
 
-                          {/* Status Icons: Signal, 5G, Battery */}
                           <div className="w-16 flex items-center justify-end gap-1.5 text-white">
-                            {/* Cellular Signal (4 bars) */}
                             <div className="flex items-end gap-[1.5px] h-3">
                               <div className="w-[3px] h-[3.5px] bg-white/55 rounded-[0.5px]" />
                               <div className="w-[3px] h-[5.5px] bg-white/55 rounded-[0.5px]" />
                               <div className="w-[3px] h-[8px] bg-white/55 rounded-[0.5px]" />
                               <div className="w-[3px] h-[10.5px] bg-white/55 rounded-[0.5px]" />
                             </div>
-                            
-                            {/* 5G */}
                             <span className="text-[10px] font-bold tracking-tighter ml-0.5">5G</span>
-
-                            {/* Battery */}
                             <div className="flex items-center ml-0.5">
                               <div className="w-[20px] h-[10.5px] rounded-[3px] border border-white/80 p-[1px] flex items-center">
                                 <div className="h-full w-[92%] bg-emerald-400 rounded-[1.5px]" />
@@ -872,13 +844,13 @@ export default function DemoModal() {
                           />
                         </div>
 
-                        {/* iOS Bottom Home Bar */}
-                        <div className="max-sm:hidden h-[20px] shrink-0 bg-[#0b0c0e] flex items-center justify-center z-30 select-none pb-1">
+                        {/* iOS Bottom Home Bar (Desktop Only) */}
+                        <div className="hidden sm:flex h-[20px] shrink-0 bg-[#0b0c0e] items-center justify-center z-30 select-none pb-1">
                           <div className="w-32 h-[4px] bg-white/35 rounded-full hover:bg-white/60 transition-colors" />
                         </div>
 
-                        {/* Corner Curvature Protective Ring Overlay */}
-                        <div className="pointer-events-none absolute inset-0 max-sm:rounded-[22px] rounded-[50px] ring-1 ring-black/50 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] z-40" />
+                        {/* Corner Protective Ring (Desktop Only) */}
+                        <div className="hidden sm:block pointer-events-none absolute inset-0 sm:rounded-[50px] ring-1 ring-black/50 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] z-40" />
                       </div>
                     </div>
 
@@ -900,7 +872,7 @@ export default function DemoModal() {
                   </div>
 
                   {/* Right: Capability & Live QR Turnstile Test */}
-                  <div className="lg:col-span-5 flex flex-col gap-6">
+                  <div className="lg:col-span-5 flex flex-col gap-6 w-full">
                     <div className="p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
                         <span>🏋️‍♂️</span>
@@ -923,7 +895,7 @@ export default function DemoModal() {
                           className="w-full px-3.5 py-2 rounded-lg bg-[#121316] border border-white/15 text-white text-xs font-semibold focus:border-emerald-400 focus:outline-none"
                         />
                         <div className="mt-1.5 text-[10px] text-zinc-400">
-                          Yazdığınız isim hem soldaki <strong>iPhone 18 Pro Max</strong> ekranında hem de aşağıdaki QR kodda anında güncellenir.
+                          Yazdığınız isim ekranda ve aşağıdaki sistemde anında güncellenir.
                         </div>
                       </div>
 
@@ -943,24 +915,36 @@ export default function DemoModal() {
                       </ul>
 
                       {/* Live Mobile QR Turnstile Scanner Box */}
-                      <div className="p-4 rounded-xl bg-black/60 border border-emerald-500/25">
-                        <div className="text-[11px] font-semibold text-emerald-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                      <div className="p-4 rounded-xl bg-black/60 border border-emerald-500/25 text-center sm:text-left">
+                        <div className="text-[11px] font-semibold text-emerald-400 uppercase tracking-wider mb-1.5 flex items-center justify-center sm:justify-start gap-1.5">
                           <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
-                          <span>📱 Telefonunuzdan QR Okutun (Turnike Simülasyonu)</span>
+                          <span>📱 Turnike Simülasyonu</span>
                         </div>
-                        <p className="text-[11px] text-zinc-400 mb-3">
+                        <p className="text-[11px] text-zinc-400 mb-3 hidden sm:block">
                           Telefon kameranızla bu QR kodu okuttuğunuzda kendi ekranınızda <strong>&quot;{gymMemberName || 'Eşref Fırat'} · Saat 18:00 itibarıyla salona giriş yaptınız!&quot;</strong> ekranı açılır:
                         </p>
-                        <div className="flex items-center justify-center p-3 bg-white/55 rounded-xl w-fit mx-auto shadow-[0_0_25px_rgba(16,185,129,0.25)]">
+                        <p className="text-[11px] text-zinc-400 mb-3 sm:hidden">
+                          Telefondasınız; turnike girişini yukarıdaki ekranda canlı test edebilir veya aşağıdaki butondan tam ekran açabilirsiniz:
+                        </p>
+                        <div className="hidden sm:flex items-center justify-center p-3 bg-white/55 rounded-xl w-fit mx-auto shadow-[0_0_25px_rgba(16,185,129,0.25)]">
                           <img
                             src={'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + encodeURIComponent(originUrl + '/demos/gym-app/index.html?scan=1&isim=' + (gymMemberName || 'Eşref Fırat'))}
                             alt="Spor Salonu Turnike QR Kodu"
                             className="w-32 h-32"
                           />
                         </div>
-                        <div className="text-center mt-2.5 text-[10px] text-emerald-400 font-mono font-semibold">
+                        <div className="text-center mt-2.5 text-[10px] text-emerald-400 font-mono font-semibold hidden sm:block">
                           ✓ Turnike #01 · Saat 18:00 Giriş Kartı
                         </div>
+                        <a
+                          href={'/demos/gym-app/index.html?scan=1&isim=' + encodeURIComponent(gymMemberName || 'Eşref Fırat')}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="sm:hidden w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 text-black text-xs font-semibold shadow-sm transition-all"
+                        >
+                          <span>↗</span>
+                          <span>Turnike Uygulamasını Tam Ekran Aç</span>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -972,9 +956,10 @@ export default function DemoModal() {
               {/* ----------------------------------------------------------- */}
               {selectedSector === 'ecommerce' && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                  {/* Left: iPhone 18 Pro Max */}
-                  <div className="lg:col-span-7 flex flex-col items-center">
-                    <div className="mb-3 flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-zinc-400">
+                  {/* Left: Smartphone Device Preview Frame (iPhone 18 Pro Max on Desktop, Native Full App on Mobile) */}
+                  <div className="lg:col-span-7 flex flex-col items-center w-full">
+                    {/* Device Header Badge (Desktop Only) */}
+                    <div className="hidden sm:flex mb-3 items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-zinc-400">
                       <svg className="w-3.5 h-3.5 text-[#ecdbbb] fill-current" viewBox="0 0 170 170">
                         <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.63-13.98-5.3-8.2-9.43-17.72-12.39-28.55-2.96-10.83-4.44-21.25-4.44-31.27 0-15.76 4.14-28.89 12.43-39.4 8.28-10.51 18.73-15.89 31.33-16.14 4.89 0 10.22 1.34 16 4.01 5.79 2.67 9.55 4.06 11.3 4.16 1.41-.1 5.34-1.55 11.8-4.35 6.46-2.81 12.03-4.1 16.71-3.89 12.73.65 22.84 5.37 30.34 14.16-11.08 6.74-16.51 16.03-16.3 27.87.21 9.35 3.84 17.15 10.89 23.4 7.05 6.25 15.42 9.8 25.11 10.66-2.28 6.85-4.99 13.78-8.13 20.79zM119.22 31.84c0-7.28 2.66-14.18 7.99-20.7 5.33-6.52 11.95-10.49 19.86-11.91.22 1.09.33 2.17.33 3.26 0 7.28-2.77 14.24-8.31 20.89-5.54 6.64-12.23 10.49-20.08 11.53-.21-1.09-.32-2.18-.32-3.27z" />
                       </svg>
@@ -983,24 +968,25 @@ export default function DemoModal() {
                       <span className="text-emerald-400 font-medium">Canlı Mağaza Simülatörü</span>
                     </div>
 
-                    <div className="relative w-full max-w-[375px] h-[740px] max-sm:max-w-full max-sm:h-[calc(100dvh-210px)] max-sm:min-h-[520px] max-sm:rounded-[26px] max-sm:p-[2px] rounded-[54px] p-[3.5px] bg-gradient-to-b from-[#44423e] via-[#242321] to-[#363431] shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(236,219,187,0.14)] ring-1 ring-white/25 select-none transition-all">
-                      <div className="max-sm:hidden absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      <div className="max-sm:hidden absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      <div className="max-sm:hidden absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      <div className="max-sm:hidden absolute -left-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="max-sm:hidden absolute -left-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="max-sm:hidden absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] shadow-sm pointer-events-none" />
-                      <div className="max-sm:hidden absolute -right-[4.5px] top-[465px] w-[4.5px] h-14 bg-gradient-to-l from-[#1e1d1c] to-[#343330] rounded-r-sm border-y border-r border-[#4e4c47] shadow-inner pointer-events-none" />
-                      <div className="max-sm:hidden absolute -right-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="max-sm:hidden absolute -right-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="max-sm:hidden absolute top-[2px] left-1/2 -translate-x-1/2 w-14 h-[2px] bg-[#181716] rounded-full z-30 pointer-events-none" />
+                    {/* Outer Shell: Clean Full-Width on Mobile, iPhone 18 Pro Max Chassis on Desktop */}
+                    <div className="relative w-full h-[75vh] min-h-[500px] rounded-2xl border border-white/15 bg-black/40 overflow-hidden shadow-lg sm:max-w-[375px] sm:h-[740px] sm:min-h-0 sm:rounded-[54px] sm:p-[3.5px] sm:bg-gradient-to-b sm:from-[#44423e] sm:via-[#242321] sm:to-[#363431] sm:shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(236,219,187,0.14)] sm:ring-1 sm:ring-white/25 select-none transition-all">
+                      <div className="hidden sm:block absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[4.5px] top-[465px] w-[4.5px] h-14 bg-gradient-to-l from-[#1e1d1c] to-[#343330] rounded-r-sm border-y border-r border-[#4e4c47] shadow-inner pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute top-[2px] left-1/2 -translate-x-1/2 w-14 h-[2px] bg-[#181716] rounded-full z-30 pointer-events-none" />
 
                       <div
-                        className="relative w-full h-full max-sm:rounded-[22px] rounded-[50px] overflow-hidden bg-[#fbf8f3] flex flex-col ring-1 ring-black/80"
+                        className="relative w-full h-full rounded-2xl sm:rounded-[50px] overflow-hidden bg-[#fbf8f3] flex flex-col sm:ring-1 sm:ring-black/80"
                         style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)', isolation: 'isolate' }}
                       >
-                        {/* iOS Status Bar */}
-                        <div className="max-sm:hidden h-[42px] shrink-0 bg-[#fbf8f3] px-6 flex items-center justify-between z-30 select-none">
+                        {/* iOS Status Bar (Desktop Only) */}
+                        <div className="hidden sm:flex h-[42px] shrink-0 bg-[#fbf8f3] px-6 items-center justify-between z-30 select-none">
                           <div className="w-16 flex items-center">
                             <span className="text-[13px] font-semibold tracking-tight text-neutral-900">09:41</span>
                           </div>
@@ -1038,12 +1024,12 @@ export default function DemoModal() {
                           />
                         </div>
 
-                        {/* Home Bar */}
-                        <div className="max-sm:hidden h-[20px] shrink-0 bg-[#0e0d0c] flex items-center justify-center z-30 select-none pb-1">
+                        {/* Home Bar (Desktop Only) */}
+                        <div className="hidden sm:flex h-[20px] shrink-0 bg-[#0e0d0c] items-center justify-center z-30 select-none pb-1">
                           <div className="w-32 h-[4px] bg-white/40 rounded-full" />
                         </div>
 
-                        <div className="pointer-events-none absolute inset-0 max-sm:rounded-[22px] rounded-[50px] ring-1 ring-black/35 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.15)] z-40" />
+                        <div className="hidden sm:block pointer-events-none absolute inset-0 sm:rounded-[50px] ring-1 ring-black/35 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.15)] z-40" />
                       </div>
                     </div>
 
@@ -1055,7 +1041,7 @@ export default function DemoModal() {
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs font-semibold text-white border border-white/20 transition-all cursor-pointer shadow-sm hover:scale-[1.02]"
                       >
                         <span>↗</span>
-                        <span>Yeni Sekmede Aç</span>
+                        <span>Yeni Sekmede Tam Ekran Aç</span>
                       </a>
                       <span className="text-[11px] text-zinc-500">
                         📱 Kaydırın, ürüne dokunun, beden seçip çantaya ekleyin
@@ -1064,7 +1050,7 @@ export default function DemoModal() {
                   </div>
 
                   {/* Right: Capabilities + QR */}
-                  <div className="lg:col-span-5 flex flex-col gap-6">
+                  <div className="lg:col-span-5 flex flex-col gap-6 w-full">
                     <div className="p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
                         <span>🛍️</span>
@@ -1093,20 +1079,35 @@ export default function DemoModal() {
                         </li>
                       </ul>
 
-                      <div className="p-4 rounded-xl bg-black/60 border border-white/10 text-center">
+                      <div className="p-4 rounded-xl bg-black/60 border border-white/10 text-center sm:text-left">
                         <div className="text-[11px] font-semibold text-[#ecdbbb] uppercase tracking-wider mb-2">
-                          📱 Kendi Telefonunuzdan Açın
+                          📱 Telefon Testi
                         </div>
-                        <div className="p-3 bg-white/55 rounded-xl w-fit mx-auto mb-2 shadow-md">
+                        <p className="text-[11px] text-zinc-400 mb-3 hidden sm:block">
+                          Telefon kameranızla bu QR kodu okutarak mağazayı kendi telefonunuzda anında deneyimleyin:
+                        </p>
+                        <p className="text-[11px] text-zinc-400 mb-3 sm:hidden">
+                          Telefondasınız; butik mağazayı yukarıdaki ekranda canlı test edebilir veya aşağıdaki butondan tam ekran açabilirsiniz:
+                        </p>
+                        <div className="hidden sm:flex p-3 bg-white/55 rounded-xl w-fit mx-auto mb-2 shadow-md">
                           <img
                             src={'https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=' + encodeURIComponent(originUrl + '/demos/ecommerce/index.html')}
                             alt="Mağaza QR Kodu"
                             className="w-28 h-28"
                           />
                         </div>
-                        <div className="text-[10px] text-zinc-400 font-mono">
+                        <div className="text-[10px] text-zinc-400 font-mono hidden sm:block text-center">
                           MAISON ORVELLE · Canlı Test
                         </div>
+                        <a
+                          href="/demos/ecommerce/index.html"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="sm:hidden w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#ecdbbb] text-zinc-950 text-xs font-semibold shadow-sm transition-all"
+                        >
+                          <span>↗</span>
+                          <span>Mağazayı Tam Ekran Aç</span>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -1118,9 +1119,10 @@ export default function DemoModal() {
               {/* ----------------------------------------------------------- */}
               {selectedSector === 'realestate' && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                  {/* Left: iPhone 18 Pro Max Frame */}
-                  <div className="lg:col-span-7 flex flex-col items-center">
-                    <div className="mb-3 flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-zinc-400">
+                  {/* Left: Smartphone Device Preview Frame (iPhone 18 Pro Max on Desktop, Native Full App on Mobile) */}
+                  <div className="lg:col-span-7 flex flex-col items-center w-full">
+                    {/* Device Header Badge (Desktop Only) */}
+                    <div className="hidden sm:flex mb-3 items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-zinc-400">
                       <svg className="w-3.5 h-3.5 text-[#d4b37f] fill-current" viewBox="0 0 170 170">
                         <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.63-13.98-5.3-8.2-9.43-17.72-12.39-28.55-2.96-10.83-4.44-21.25-4.44-31.27 0-15.76 4.14-28.89 12.43-39.4 8.28-10.51 18.73-15.89 31.33-16.14 4.89 0 10.22 1.34 16 4.01 5.79 2.67 9.55 4.06 11.3 4.16 1.41-.1 5.34-1.55 11.8-4.35 6.46-2.81 12.03-4.1 16.71-3.89 12.73.65 22.84 5.37 30.34 14.16-11.08 6.74-16.51 16.03-16.3 27.87.21 9.35 3.84 17.15 10.89 23.4 7.05 6.25 15.42 9.8 25.11 10.66-2.28 6.85-4.99 13.78-8.13 20.79zM119.22 31.84c0-7.28 2.66-14.18 7.99-20.7 5.33-6.52 11.95-10.49 19.86-11.91.22 1.09.33 2.17.33 3.26 0 7.28-2.77 14.24-8.31 20.89-5.54 6.64-12.23 10.49-20.08 11.53-.21-1.09-.32-2.18-.32-3.27z" />
                       </svg>
@@ -1129,24 +1131,25 @@ export default function DemoModal() {
                       <span className="text-[#d4b37f] font-medium">Lüks Portföy Simülatörü</span>
                     </div>
 
-                    <div className="relative w-full max-w-[375px] h-[740px] max-sm:max-w-full max-sm:h-[calc(100dvh-210px)] max-sm:min-h-[520px] max-sm:rounded-[26px] max-sm:p-[2px] rounded-[54px] p-[3.5px] bg-gradient-to-b from-[#44423e] via-[#242321] to-[#363431] shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(212,179,127,0.16)] ring-1 ring-white/25 select-none transition-all">
-                      <div className="max-sm:hidden absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      <div className="max-sm:hidden absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      <div className="max-sm:hidden absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
-                      <div className="max-sm:hidden absolute -left-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="max-sm:hidden absolute -left-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="max-sm:hidden absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] shadow-sm pointer-events-none" />
-                      <div className="max-sm:hidden absolute -right-[4.5px] top-[465px] w-[4.5px] h-14 bg-gradient-to-l from-[#1e1d1c] to-[#343330] rounded-r-sm border-y border-r border-[#4e4c47] shadow-inner pointer-events-none" />
-                      <div className="max-sm:hidden absolute -right-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="max-sm:hidden absolute -right-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
-                      <div className="max-sm:hidden absolute top-[2px] left-1/2 -translate-x-1/2 w-14 h-[2px] bg-[#181716] rounded-full z-30 pointer-events-none" />
+                    {/* Outer Shell: Clean Full-Width on Mobile, iPhone 18 Pro Max Chassis on Desktop */}
+                    <div className="relative w-full h-[75vh] min-h-[500px] rounded-2xl border border-white/15 bg-black/40 overflow-hidden shadow-lg sm:max-w-[375px] sm:h-[740px] sm:min-h-0 sm:rounded-[54px] sm:p-[3.5px] sm:bg-gradient-to-b sm:from-[#44423e] sm:via-[#242321] sm:to-[#363431] sm:shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(212,179,127,0.16)] sm:ring-1 sm:ring-white/25 select-none transition-all">
+                      <div className="hidden sm:block absolute -left-[5.5px] top-[105px] w-[5.5px] h-7 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[5.5px] top-[148px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[5.5px] top-[210px] w-[5.5px] h-12 bg-gradient-to-r from-[#2c2b29] to-[#4a4844] rounded-l-md border-y border-l border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute -left-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[5.5px] top-[160px] w-[5.5px] h-16 bg-gradient-to-l from-[#2c2b29] to-[#4a4844] rounded-r-md border-y border-r border-[#5f5d58] shadow-sm pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[4.5px] top-[465px] w-[4.5px] h-14 bg-gradient-to-l from-[#1e1d1c] to-[#343330] rounded-r-sm border-y border-r border-[#4e4c47] shadow-inner pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[4px] top-16 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute -right-[4px] bottom-24 w-[4px] h-[2px] bg-[#66635d] pointer-events-none" />
+                      <div className="hidden sm:block absolute top-[2px] left-1/2 -translate-x-1/2 w-14 h-[2px] bg-[#181716] rounded-full z-30 pointer-events-none" />
 
                       <div
-                        className="relative w-full h-full max-sm:rounded-[22px] rounded-[50px] overflow-hidden bg-[#0b0c0e] flex flex-col ring-1 ring-black/80"
+                        className="relative w-full h-full rounded-2xl sm:rounded-[50px] overflow-hidden bg-[#0b0c0e] flex flex-col sm:ring-1 sm:ring-black/80"
                         style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)', isolation: 'isolate' }}
                       >
-                        {/* iOS Status Bar */}
-                        <div className="max-sm:hidden h-[42px] shrink-0 bg-[#0b0c0e] px-6 flex items-center justify-between z-30 select-none border-b border-white/5">
+                        {/* iOS Status Bar (Desktop Only) */}
+                        <div className="hidden sm:flex h-[42px] shrink-0 bg-[#0b0c0e] px-6 items-center justify-between z-30 select-none border-b border-white/5">
                           <div className="w-16 flex items-center">
                             <span className="text-[13px] font-semibold tracking-tight text-white">09:41</span>
                           </div>
@@ -1184,12 +1187,12 @@ export default function DemoModal() {
                           />
                         </div>
 
-                        {/* Home Bar */}
-                        <div className="max-sm:hidden h-[20px] shrink-0 bg-[#0b0c0e] flex items-center justify-center z-30 select-none pb-1">
+                        {/* Home Bar (Desktop Only) */}
+                        <div className="hidden sm:flex h-[20px] shrink-0 bg-[#0b0c0e] items-center justify-center z-30 select-none pb-1">
                           <div className="w-32 h-[4px] bg-white/35 rounded-full" />
                         </div>
 
-                        <div className="pointer-events-none absolute inset-0 max-sm:rounded-[22px] rounded-[50px] ring-1 ring-black/40 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] z-40" />
+                        <div className="hidden sm:block pointer-events-none absolute inset-0 sm:rounded-[50px] ring-1 ring-black/40 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] z-40" />
                       </div>
                     </div>
 
@@ -1210,7 +1213,7 @@ export default function DemoModal() {
                   </div>
 
                   {/* Right: Capabilities & Live QR */}
-                  <div className="lg:col-span-5 flex flex-col gap-6">
+                  <div className="lg:col-span-5 flex flex-col gap-6 w-full">
                     <div className="p-6 rounded-[28px] border border-white/15 bg-black/40 backdrop-blur-[20px] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
                         <span>🏛️</span>
@@ -1239,20 +1242,35 @@ export default function DemoModal() {
                         </li>
                       </ul>
 
-                      <div className="p-4 rounded-xl bg-black/60 border border-white/10 text-center">
+                      <div className="p-4 rounded-xl bg-black/60 border border-white/10 text-center sm:text-left">
                         <div className="text-[11px] font-semibold text-[#d4b37f] uppercase tracking-wider mb-2">
-                          📱 Kendi Telefonunuzdan Test Edin
+                          📱 Telefon Testi
                         </div>
-                        <div className="p-3 bg-white/55 rounded-xl w-fit mx-auto mb-2 shadow-md">
+                        <p className="text-[11px] text-zinc-400 mb-3 hidden sm:block">
+                          Telefon kameranızla bu QR kodu okutarak portföyü kendi telefonunuzda anında deneyimleyin:
+                        </p>
+                        <p className="text-[11px] text-zinc-400 mb-3 sm:hidden">
+                          Telefondasınız; lüks portföyü yukarıdaki ekranda canlı test edebilir veya aşağıdaki butondan tam ekran açabilirsiniz:
+                        </p>
+                        <div className="hidden sm:flex p-3 bg-white/55 rounded-xl w-fit mx-auto mb-2 shadow-md">
                           <img
                             src={'https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=' + encodeURIComponent(originUrl + '/demos/realestate/index.html')}
                             alt="Emlak Vitrini QR Kodu"
                             className="w-28 h-28"
                           />
                         </div>
-                        <div className="text-[10px] text-zinc-400 font-mono">
+                        <div className="text-[10px] text-zinc-400 font-mono hidden sm:block text-center">
                           VALMONT ESTATES · Canlı Test
                         </div>
+                        <a
+                          href="/demos/realestate/index.html"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="sm:hidden w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#ecdbbb] text-zinc-950 text-xs font-semibold shadow-sm transition-all"
+                        >
+                          <span>↗</span>
+                          <span>Portföyü Tam Ekran Aç</span>
+                        </a>
                       </div>
                     </div>
                   </div>
